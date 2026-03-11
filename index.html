@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fabian Spitzer — Operations + AI</title>
-  <meta name="description" content="Senior operator who scaled to €4B+, then built AI systems himself. Closing the gap between AI strategy and operational reality.">
+  <meta name="description" content="Senior operator who scaled to €4B+. Now helping companies move AI from roadmap to operational reality — across teams, workflows, and execution.">
   <meta property="og:title" content="Fabian Spitzer — Operations + AI">
-  <meta property="og:description" content="18 years scaling operations to €4B+. Then I built production AI systems. Now I close the gap between AI strategy and operational reality.">
+  <meta property="og:description" content="18 years scaling operations to €4B+. I help companies move AI from strategy decks into live workflows — with the teams they already have.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fabiansp77.github.io/fabian-spitzer/">
   <meta name="twitter:card" content="summary_large_image">
@@ -275,23 +275,27 @@
     .why-now-kicker { font-family:var(--serif); font-size:clamp(18px, 2.2vw, 24px); font-weight:400; line-height:1.35; color:var(--text); margin-top:32px; max-width:560px; }
     .why-now-kicker em { color:var(--amber); font-style:italic; }
 
-    /* ── Radar Chart ── */
+    /* ── Gap Bar Chart ── */
     .why-now-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
-    .why-now-chart { position:relative; }
-    .radar-svg { width:100%; max-width:380px; height:auto; display:block; margin:0 auto; }
-    .radar-theoretical, .radar-observed {
-      transform-origin: 220px 220px; transform: scale(0); opacity:0;
-      transition: transform 1.2s cubic-bezier(.22,1,.36,1), opacity .5s ease;
-    }
-    .radar-observed { transition-delay: .5s; }
-    .why-now-chart.v .radar-theoretical, .why-now-chart.v .radar-observed { transform: scale(1); opacity:1; }
-    .radar-legend { display:flex; gap:20px; justify-content:center; margin-top:16px; }
-    .radar-legend-item { display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); }
-    .radar-legend-dot { width:8px; height:8px; border-radius:50%; }
-    .radar-legend-dot.th { background:var(--amber); }
-    .radar-legend-dot.ob { background:#6b6880; }
-    .radar-chart-label { font-family:var(--mono); font-size:10px; letter-spacing:.04em; color:var(--text-muted); text-align:center; margin-top:6px; }
-    .radar-chart-label em { color:var(--amber); font-style:normal; }
+    .why-now-visual { position:relative; }
+    .gap-bar-group { display:flex; flex-direction:column; gap:20px; }
+    .gap-bar-row { display:flex; align-items:flex-start; gap:12px; }
+    .gap-bar-label { font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); min-width:90px; padding-top:4px; text-align:right; }
+    .gap-bar-track { flex:1; display:flex; flex-direction:column; gap:4px; }
+    .gap-bar-fill { height:18px; border-radius:1px; position:relative; width:0; transition: width 1.2s cubic-bezier(.22,1,.36,1); }
+    .gap-bar-fill span { position:absolute; right:6px; top:50%; transform:translateY(-50%); font-family:var(--mono); font-size:9px; letter-spacing:.04em; color:rgba(255,255,255,.7); opacity:0; transition: opacity .3s ease .8s; }
+    .why-now-visual.v .gap-bar-fill { width:var(--bar-w); }
+    .why-now-visual.v .gap-bar-fill span { opacity:1; }
+    .gap-bar-fill.amber { background:linear-gradient(90deg, rgba(212,160,84,.3), rgba(212,160,84,.7)); }
+    .gap-bar-fill.dim { background:linear-gradient(90deg, rgba(107,104,128,.2), rgba(107,104,128,.5)); }
+    .gap-bar-fill.dim span { transition-delay: 1.2s; }
+    .gap-bar-legend { display:flex; gap:20px; justify-content:flex-start; margin-top:20px; padding-left:102px; }
+    .gap-legend-item { display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); }
+    .gap-legend-dot { width:8px; height:8px; border-radius:1px; }
+    .gap-legend-dot.amber { background:var(--amber); }
+    .gap-legend-dot.dim { background:#6b6880; }
+    .gap-bar-tagline { font-family:var(--mono); font-size:10px; letter-spacing:.04em; color:var(--text-muted); margin-top:8px; padding-left:102px; }
+    .gap-bar-tagline em { color:var(--amber); font-style:normal; }
 
     /* ── Mid-page CTA ── */
     .mid-cta { padding:44px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); display:flex; justify-content:center; align-items:center; gap:32px; }
@@ -327,8 +331,9 @@
       .form-row { grid-template-columns:1fr; }
       .cta::before { height:48px; }
       .why-now-grid { grid-template-columns:1fr; gap:24px; }
-      .why-now-chart { order:-1; }
-      .radar-svg { max-width:280px; }
+      .why-now-visual { order:-1; }
+      .gap-bar-label { min-width:70px; font-size:9px; }
+      .gap-bar-legend, .gap-bar-tagline { padding-left:82px; }
       .why-now-numbers { flex-direction:column; align-items:flex-start; gap:16px; }
       .why-now-vs { padding-bottom:0; }
       .mid-cta { flex-direction:column; gap:16px; text-align:center; }
@@ -368,7 +373,7 @@
   <div class="container">
     <div class="hero-eyebrow" data-i18n="hero_eyebrow">Fabian Spitzer — Operations + AI</div>
     <h1 data-i18n="hero_h1">Between AI strategy and<br>operational reality, there's a gap.<br><em>I close it.</em></h1>
-    <p class="hero-sub" data-i18n="hero_sub">18 years scaling operations to €4B+. Then I built AI systems myself. Now I make them work inside yours.</p>
+    <p class="hero-sub" data-i18n="hero_sub">18 years scaling operations to €4B+. Now I help companies move AI from roadmap to operational reality — with the teams they already have.</p>
 
     <div class="hero-metrics">
       <div class="hero-metric">
@@ -450,8 +455,8 @@
     </div>
 
     <div class="gap-bridge r r-d2">
-      <h3 data-i18n="gap_bridge">This is where I come in. Not as a consultant with a framework. As an <em>operator who builds, embeds, and aligns.</em></h3>
-      <p data-i18n="gap_bridge_sub">18 years in operational leadership — scaling to €4B+, turning around P&Ls, building teams of 50+. Then I went hands-on into AI. I don't replace your team — I make it stronger by closing the gap between what AI can do and what your operations actually need.</p>
+      <h3 data-i18n="gap_bridge">This is where I come in. Not as a consultant with a framework. As an <em>operator who aligns teams, processes, and technology.</em></h3>
+      <p data-i18n="gap_bridge_sub">18 years in operational leadership — scaling to €4B+, turning around P&Ls, building teams of 50+. I don't replace your team — I make it stronger by translating AI potential into operational reality across departments, workflows, and execution.</p>
     </div>
   </div>
 </section>
@@ -478,69 +483,48 @@
           </div>
         </div>
 
-        <p class="why-now-text r r-d2" data-i18n="wn_text">Anthropic's 2025 research confirms what operators see daily: AI capability isn't the bottleneck. Deployment is. The 61-point gap between what AI can do and what companies actually use isn't a technology problem — it's an operations problem. And it's widening.</p>
+        <p class="why-now-text r r-d2" data-i18n="wn_text">Most companies have an AI strategy. Few have someone who can actually wire it into their operations — across teams, processes, and existing workflows. The gap between what AI can do and what organizations actually deploy isn't technical. It's operational. And it's growing.</p>
         <div class="why-now-cite r r-d2">Source: <a href="https://www.anthropic.com/research/labor-market-impacts" target="_blank" rel="noopener">Anthropic — Labor Market Impacts of AI, 2025</a></div>
-        <p class="why-now-kicker r r-d3" data-i18n="wn_kicker">The companies closing this gap now will lead. The rest will <em>hire consultants to explain why they didn't.</em></p>
+        <p class="why-now-kicker r r-d3" data-i18n="wn_kicker">The companies closing this gap now will lead. The rest will still be <em>running pilots in 2027.</em></p>
       </div>
 
-      <!-- Radar Chart: Figure 2 from Anthropic's Labor Market Report -->
-      <div class="why-now-chart r r-d2">
-        <svg class="radar-svg" viewBox="-30 -5 500 450" xmlns="http://www.w3.org/2000/svg" aria-label="Radar chart showing gap between AI theoretical capability and actual deployment across occupations">
-          <!-- Grid circles -->
-          <circle cx="220" cy="220" r="37.5" fill="none" stroke="rgba(255,255,255,.04)" stroke-width=".5"/>
-          <circle cx="220" cy="220" r="75" fill="none" stroke="rgba(255,255,255,.04)" stroke-width=".5"/>
-          <circle cx="220" cy="220" r="112.5" fill="none" stroke="rgba(255,255,255,.04)" stroke-width=".5"/>
-          <circle cx="220" cy="220" r="150" fill="none" stroke="rgba(255,255,255,.07)" stroke-width=".5"/>
-          <!-- Axis lines -->
-          <line x1="220" y1="220" x2="220" y2="70" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
-          <line x1="220" y1="220" x2="326" y2="114" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
-          <line x1="220" y1="220" x2="370" y2="220" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
-          <line x1="220" y1="220" x2="326" y2="326" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
-          <line x1="220" y1="220" x2="220" y2="370" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
-          <line x1="220" y1="220" x2="114" y2="326" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
-          <line x1="220" y1="220" x2="70" y2="220" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
-          <line x1="220" y1="220" x2="114" y2="114" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
-          <!-- Theoretical capability polygon (amber) — data from Anthropic report Figure 2 -->
-          <g class="radar-theoretical">
-            <polygon points="220,79 305,135 355,220 284,284 220,303 175,265 153,220 151,151"
-                     fill="rgba(212,160,84,.14)" stroke="#d4a054" stroke-width="1.5" stroke-linejoin="round"/>
-            <circle cx="220" cy="79" r="2.5" fill="#d4a054"/>
-            <circle cx="305" cy="135" r="2.5" fill="#d4a054"/>
-            <circle cx="355" cy="220" r="2.5" fill="#d4a054"/>
-            <circle cx="284" cy="284" r="2.5" fill="#d4a054"/>
-            <circle cx="220" cy="303" r="2.5" fill="#d4a054"/>
-            <circle cx="175" cy="265" r="2.5" fill="#d4a054"/>
-            <circle cx="153" cy="220" r="2.5" fill="#d4a054"/>
-            <circle cx="151" cy="151" r="2.5" fill="#d4a054"/>
-          </g>
-          <!-- Observed deployment polygon (dim) -->
-          <g class="radar-observed">
-            <polygon points="220,171 247,194 262,220 252,252 220,247 209,231 202,220 199,199"
-                     fill="rgba(107,104,128,.15)" stroke="#6b6880" stroke-width="1.5" stroke-linejoin="round"/>
-            <circle cx="220" cy="171" r="2.5" fill="#6b6880"/>
-            <circle cx="247" cy="194" r="2.5" fill="#6b6880"/>
-            <circle cx="262" cy="220" r="2.5" fill="#6b6880"/>
-            <circle cx="252" cy="252" r="2.5" fill="#6b6880"/>
-            <circle cx="220" cy="247" r="2.5" fill="#6b6880"/>
-            <circle cx="209" cy="231" r="2.5" fill="#6b6880"/>
-            <circle cx="202" cy="220" r="2.5" fill="#6b6880"/>
-            <circle cx="199" cy="199" r="2.5" fill="#6b6880"/>
-          </g>
-          <!-- Category labels -->
-          <text x="220" y="58" text-anchor="middle" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Tech &amp; Math</text>
-          <text x="336" y="110" text-anchor="start" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Finance</text>
-          <text x="380" y="224" text-anchor="start" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Office &amp; Admin</text>
-          <text x="336" y="340" text-anchor="start" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Legal</text>
-          <text x="220" y="393" text-anchor="middle" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Sales</text>
-          <text x="104" y="340" text-anchor="end" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Education</text>
-          <text x="60" y="224" text-anchor="end" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Arts &amp; Media</text>
-          <text x="104" y="110" text-anchor="end" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Management</text>
-        </svg>
-        <div class="radar-legend">
-          <span class="radar-legend-item"><span class="radar-legend-dot th"></span><span data-i18n="wn_leg_th">Theoretical</span></span>
-          <span class="radar-legend-item"><span class="radar-legend-dot ob"></span><span data-i18n="wn_leg_ob">Observed</span></span>
+      <!-- Gap Visualization: Clean bar chart showing capability vs deployment -->
+      <div class="why-now-visual r r-d2">
+        <div class="gap-bar-group">
+          <div class="gap-bar-row">
+            <span class="gap-bar-label" data-i18n="wn_bar_ops">Operations</span>
+            <div class="gap-bar-track">
+              <div class="gap-bar-fill amber" style="--bar-w:90%"><span>90%</span></div>
+              <div class="gap-bar-fill dim" style="--bar-w:28%"><span>28%</span></div>
+            </div>
+          </div>
+          <div class="gap-bar-row">
+            <span class="gap-bar-label" data-i18n="wn_bar_fin">Finance</span>
+            <div class="gap-bar-track">
+              <div class="gap-bar-fill amber" style="--bar-w:80%"><span>80%</span></div>
+              <div class="gap-bar-fill dim" style="--bar-w:25%"><span>25%</span></div>
+            </div>
+          </div>
+          <div class="gap-bar-row">
+            <span class="gap-bar-label" data-i18n="wn_bar_mgmt">Management</span>
+            <div class="gap-bar-track">
+              <div class="gap-bar-fill amber" style="--bar-w:65%"><span>65%</span></div>
+              <div class="gap-bar-fill dim" style="--bar-w:20%"><span>20%</span></div>
+            </div>
+          </div>
+          <div class="gap-bar-row">
+            <span class="gap-bar-label" data-i18n="wn_bar_sales">Sales</span>
+            <div class="gap-bar-track">
+              <div class="gap-bar-fill amber" style="--bar-w:55%"><span>55%</span></div>
+              <div class="gap-bar-fill dim" style="--bar-w:18%"><span>18%</span></div>
+            </div>
+          </div>
         </div>
-        <div class="radar-chart-label" data-i18n="wn_chart_label">The <em>gap</em> is the opportunity.</div>
+        <div class="gap-bar-legend">
+          <span class="gap-legend-item"><span class="gap-legend-dot amber"></span><span data-i18n="wn_leg_th">AI Capability</span></span>
+          <span class="gap-legend-item"><span class="gap-legend-dot dim"></span><span data-i18n="wn_leg_ob">Actually Deployed</span></span>
+        </div>
+        <div class="gap-bar-tagline" data-i18n="wn_chart_label">The <em>gap</em> is an operations problem — not a technology one.</div>
       </div>
     </div>
   </div>
@@ -591,8 +575,8 @@
     <!-- AI Proof -->
     <div class="track-ai r r-d2">
       <div class="track-ai-label">AskProAI · 2025–Present</div>
-      <h3 data-i18n="ai_h3">Then I built the systems myself.</h3>
-      <p data-i18n="ai_p">After years of scaling operations, I went hands-on into AI — not as a side project, but as a running business. Production voice agents, workflow automation, AI-native CRM. Built end-to-end, shipped to paying clients.</p>
+      <h3 data-i18n="ai_h3">Then I went hands-on to understand what operationalization really takes.</h3>
+      <p data-i18n="ai_p">After years of leading operations, I built an applied AI company from scratch — voice agents, workflow automation, AI-native CRM. Not to become a developer, but to deeply understand what it takes to move AI from prototype to production inside real organizations.</p>
       <div class="track-ai-caps">
         <span class="track-ai-cap">Voice AI Agents</span>
         <span class="track-ai-cap">Workflow Automation</span>
@@ -668,8 +652,8 @@
 
     <div class="fit-list">
       <div class="fit-item r">
-        <div class="fit-q" data-i18n="f1_q">"We need AI in our operations, but nobody owns it."</div>
-        <div class="fit-a" data-i18n="f1_a">I embed AI into real business processes — not as theory, but as shipped systems your teams actually use.</div>
+        <div class="fit-q" data-i18n="f1_q">"We have an AI strategy, but nobody's wiring it into our operations."</div>
+        <div class="fit-a" data-i18n="f1_a">I translate AI potential into workflows your teams actually adopt — across departments, not in a silo.</div>
       </div>
       <div class="fit-item r r-d1">
         <div class="fit-q" data-i18n="f2_q">"We're scaling fast and operations can't keep up."</div>
@@ -680,8 +664,12 @@
         <div class="fit-a" data-i18n="f3_a">Restructuring, automation, team realignment. Proven: €1.3M EBITDA in 6 months from a crisis.</div>
       </div>
       <div class="fit-item r r-d3">
-        <div class="fit-q" data-i18n="f4_q">"We don't need another consultant. We need someone who embeds."</div>
-        <div class="fit-a" data-i18n="f4_a">I join your team, not observe it. I align leadership, engineering, and ops — and I stay until the change is real.</div>
+        <div class="fit-q" data-i18n="f4_q">"Product, engineering, and ops are all moving — but not together."</div>
+        <div class="fit-a" data-i18n="f4_a">I sit at the intersection. I align cross-functional teams around shared execution, not just shared meetings.</div>
+      </div>
+      <div class="fit-item r r-d4">
+        <div class="fit-q" data-i18n="f5_q">"We don't need another consultant. We need someone who embeds."</div>
+        <div class="fit-a" data-i18n="f5_a">I join your team, not observe it. I work alongside leadership, engineering, and ops — and I stay until the change is real.</div>
       </div>
     </div>
   </div>
@@ -762,7 +750,7 @@ const T = {
     nav_gap:'Die Lücke', nav_why:'Warum jetzt', nav_proof:'Track Record', nav_how:'Arbeitsweise', nav_fit:'Passt es?', nav_contact:'Kontakt', nav_cta:'Gespräch',
     hero_eyebrow:'Fabian Spitzer — Operations + AI',
     hero_h1:'Zwischen AI-Strategie und operativer Realität liegt eine Lücke.<br><em>Ich schließe sie.</em>',
-    hero_sub:'18 Jahre Operations auf €4B+ skaliert. Dann habe ich selbst AI-Systeme gebaut. Jetzt mache ich sie in euren wirksam.',
+    hero_sub:'18 Jahre Operations auf €4B+ skaliert. Jetzt helfe ich Unternehmen, AI vom Strategiepapier in die operative Realität zu bringen — mit den Teams, die sie bereits haben.',
     m_volume:'Ops-Volumen skaliert', m_growth:'Umsatzwachstum (24Mo)', m_ebitda:'EBITDA-Turnaround (6Mo)', m_team:'Team aufgebaut & geführt',
     cta_talk:'Gespräch vereinbaren',
     strip_label:'Gebaut & skaliert bei',
@@ -772,19 +760,20 @@ const T = {
     g2_t:'Engineering baut AI. Aber wer verankert es im Geschäft?', g2_d:'Eure Entwickler kennen LLMs. Euer Ops-Team kennt die Prozesse. Aber niemand verbindet Geschäftslogik, technische Umsetzung und Teamakzeptanz. Genau hier bleibt AI stecken.',
     g3_t:'Das Wachstum überholt die operative Basis.', g3_d:'Der Umsatz steigt, aber die Prozesse brechen. Ihr braucht Struktur, KPIs und jemanden, der das Rückgrat baut — nicht das nächste Strategiepapier.',
     g4_t:'Ihr braucht einen Operator, der AI wirklich versteht.', g4_d:'Klassische COOs bauen keine Systeme. AI-Berater führen keine Operations. Ihr braucht jemanden, der beides kann. Diese Kombination gibt es kaum.',
-    gap_bridge:'Hier komme ich ins Spiel. Nicht als Berater mit Framework. Als <em>Operator, der baut, sich einbettet und ausrichtet.</em>',
-    gap_bridge_sub:'18 Jahre operative Führung — Skalierung auf €4B+, P&L-Turnarounds, Teams von 50+ aufgebaut. Dann bin ich selbst in die AI-Entwicklung gegangen. Ich ersetze euer Team nicht — ich mache es stärker, indem ich die Lücke schließe zwischen dem, was AI kann, und dem, was eure Operations tatsächlich brauchen.',
+    gap_bridge:'Hier komme ich ins Spiel. Nicht als Berater mit Framework. Als <em>Operator, der Teams, Prozesse und Technologie zusammenbringt.</em>',
+    gap_bridge_sub:'18 Jahre operative Führung — Skalierung auf €4B+, P&L-Turnarounds, Teams von 50+ aufgebaut. Ich ersetze euer Team nicht — ich mache es stärker, indem ich AI-Potenzial in operative Realität übersetze — über Abteilungen, Workflows und Execution hinweg.',
     wn_label:'Warum jetzt', wn_h2:'AI kann die Arbeit erledigen. <em style="color:var(--amber); font-style:italic;">Niemand verankert es.</em>',
     wn_cap:'Theoretische AI-Fähigkeit', wn_actual:'Tatsächlich in Unternehmen im Einsatz',
-    wn_text:'Anthropics Forschung von 2025 bestätigt, was Operators täglich sehen: AI-Fähigkeit ist nicht der Engpass. Die Implementierung ist es. Die 61-Punkte-Lücke zwischen dem, was AI kann, und dem, was Unternehmen tatsächlich nutzen, ist kein Technologieproblem — es ist ein Operations-Problem. Und die Lücke wächst.',
-    wn_kicker:'Die Unternehmen, die diese Lücke jetzt schließen, werden führen. Der Rest wird <em>Berater beauftragen, die erklären, warum nicht.</em>',
-    wn_leg_th:'Theoretisch', wn_leg_ob:'Tatsächlich', wn_chart_label:'Die <em>Lücke</em> ist die Chance.',
+    wn_text:'Die meisten Unternehmen haben eine AI-Strategie. Wenige haben jemanden, der sie tatsächlich in die Operations verdrahtet — über Teams, Prozesse und bestehende Workflows hinweg. Die Lücke zwischen AI-Fähigkeit und tatsächlichem Deployment ist kein technisches Problem. Es ist ein operatives. Und sie wächst.',
+    wn_kicker:'Die Unternehmen, die diese Lücke jetzt schließen, werden führen. Der Rest wird <em>2027 noch Pilotprojekte fahren.</em>',
+    wn_leg_th:'AI-Fähigkeit', wn_leg_ob:'Tatsächlich deployed', wn_chart_label:'Die <em>Lücke</em> ist ein Operations-Problem — kein technisches.',
+    wn_bar_ops:'Operations', wn_bar_fin:'Finanzen', wn_bar_mgmt:'Management', wn_bar_sales:'Vertrieb',
     mid_cta_text:'Genug gesehen? Direkt zum Gespräch.', mid_cta_btn:'Gespräch vereinbaren',
     track_label:'Track Record', track_h2:'Probleme, die ich gelöst habe. Zahlen, die ich bewegt habe.',
     t1_c:'„Das operative Rückgrat für Deutschlands größten Kreditvergleich aufbauen."', t1_a:'Volle P&L-Verantwortung als Managing Director. Team auf 50+ aufgebaut, Enterprise-Partnerschaften strukturiert, operativen Kern über ein Jahrzehnt Wachstum skaliert.', t1_l:'Jahresvolumen',
     t2_c:'„€38M-Startup. Daraus eine Wachstumsmaschine machen."', t2_a:'Operations, Vertrieb und Partner-Ökosystem als COO neu aufgebaut. Finanzierungsvolumen auf €223M in 24 Monaten skaliert.', t2_l:'Volumen-Wachstum',
     t3_c:'„€27M-Unternehmen verbrennt Cash. Sechs Monate Zeit."', t3_a:'Operative Restrukturierung, Prozessautomatisierung, Team-Neuausrichtung. €1.3M EBITDA als Interim COO geliefert.', t3_l:'EBITDA in 6Mo',
-    ai_h3:'Dann habe ich die Systeme selbst gebaut.', ai_p:'Nach Jahren der Operations-Skalierung bin ich selbst in die AI-Entwicklung gegangen — nicht als Nebenprojekt, sondern als laufendes Geschäft. Produktionsreife Voice-Agents, Workflow-Automatisierung, AI-natives CRM. Vollständig konzipiert, gebaut und an zahlende Kunden geliefert.',
+    ai_h3:'Dann bin ich hands-on gegangen, um zu verstehen was Operationalisierung wirklich braucht.', ai_p:'Nach Jahren operativer Führung habe ich eine Applied-AI-Firma von Grund auf aufgebaut — Voice-Agents, Workflow-Automatisierung, AI-natives CRM. Nicht um Entwickler zu werden, sondern um tief zu verstehen, was es braucht, AI vom Prototyp in die Produktion realer Organisationen zu bringen.',
     how_label:'Arbeitsweise', how_h2:'Ein Operator. Mehrere Modi.', how_intro:'Operative Führung, eigenhändiger Aufbau, messbare Ergebnisse — unabhängig vom Format. Die Tiefe des Engagements richtet sich nach dem, was ihr braucht.',
     h1_t:'AI in echte Operations', h1_d:'Vom Proof-of-Concept in die Produktion — eingebettet in echte Prozesse, gemessen an KPIs, von Teams übernommen.',
     h2_t:'Workflows, die sich multiplizieren', h2_d:'Voice-Agents, Prozess-Orchestrierung, Automatisierung, die verändert, wie Teams arbeiten — nicht nur Zeit spart.',
@@ -795,10 +784,11 @@ const T = {
     e2_label:'Sekundär', e2_mode:'Interim- & fokussierte Mandate', e2_detail:'3–12 Monate. Transformation, Turnarounds oder Überbrückung von Führungslücken.',
     e3_label:'Selektiv', e3_mode:'Beratung & definierte AI-Projekte', e3_detail:'AI-Strategie, Transformations-Roadmaps oder abgegrenzte Entwicklungsprojekte. Gelieferte Systeme, keine Foliensätze.',
     fit_label:'Passt es?', fit_h2:'Unternehmen holen mich, wenn…',
-    f1_q:'„Wir brauchen AI in unseren Operations, aber niemand trägt die Verantwortung dafür."', f1_a:'Ich integriere AI in echte Geschäftsprozesse — nicht als Theorie, sondern als gelieferte Systeme, die eure Teams tatsächlich nutzen.',
+    f1_q:'„Wir haben eine AI-Strategie, aber niemand verdrahtet sie mit unseren Operations."', f1_a:'Ich übersetze AI-Potenzial in Workflows, die eure Teams tatsächlich übernehmen — abteilungsübergreifend, nicht im Silo.',
     f2_q:'„Wir wachsen schnell und die Operations kommen nicht hinterher."', f2_a:'Ich baue das operative Rückgrat: KPIs, Prozesse, Teamstrukturen. Dreimal gemacht, von Startup bis Scale-up.',
     f3_q:'„Die Zahlen stimmen nicht. Wir brauchen einen Turnaround."', f3_a:'Restrukturierung, Automatisierung, Team-Neuausrichtung. Bewiesen: €1.3M EBITDA in 6 Monaten aus einer Krisensituation.',
-    f4_q:'„Wir brauchen keinen weiteren Berater. Wir brauchen jemanden, der sich einbettet."', f4_a:'Ich werde Teil eures Teams, nicht Beobachter. Ich bringe Führung, Engineering und Operations auf eine Linie — und bleibe, bis die Veränderung greift.',
+    f4_q:'„Product, Engineering und Ops bewegen sich alle — aber nicht zusammen."', f4_a:'Ich sitze an der Schnittstelle. Ich bringe cross-funktionale Teams um gemeinsame Execution zusammen, nicht nur um gemeinsame Meetings.',
+    f5_q:'„Wir brauchen keinen weiteren Berater. Wir brauchen jemanden, der sich einbettet."', f5_a:'Ich werde Teil eures Teams, nicht Beobachter. Ich arbeite mit Führung, Engineering und Ops zusammen — und bleibe, bis die Veränderung greift.',
     cta_h2:'Wenn AI in euren Operations nicht ankommt —<br><em>reden wir.</em>', cta_sub:'20 Minuten. Kein Pitch. Erzählt mir, wo es stockt — und ich sage euch ehrlich, ob es passt.',
     form_name:'Name', form_company:'Unternehmen + Rolle', form_message:'Worum geht es?',
     form_alt:'Oder auf <a href="https://linkedin.com/in/fabian-spitzer/" target="_blank" rel="noopener">LinkedIn</a> vernetzen',

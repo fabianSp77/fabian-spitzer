@@ -28,7 +28,6 @@
       --amber: #d4a054;
       --amber-bright: #e8b86d;
       --amber-glow: rgba(212,160,84,.05);
-      --green: #4ade80;
       --serif: 'DM Serif Display', Georgia, serif;
       --mono: 'JetBrains Mono', 'Courier New', monospace;
       --body: 'Outfit', -apple-system, sans-serif;
@@ -86,7 +85,6 @@
     @media (prefers-reduced-motion: reduce) {
       .r { opacity:1; transform:none; transition:none; }
       .hero-metric-val span { transition:none !important; }
-      @keyframes pulse { 0%,100% { opacity:1; } }
     }
 
     /* ══════════════════════════════════
@@ -221,9 +219,6 @@
     .cta h2 { font-family:var(--serif); font-size:clamp(30px, 3.8vw, 48px); font-weight:400; line-height:1.1; margin-bottom:20px; }
     .cta h2 em { color:var(--amber); font-style:italic; }
     .cta-sub { font-size:16px; color:var(--text-secondary); font-weight:300; line-height:1.7; margin-bottom:28px; max-width:420px; }
-    .cta-avail { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--green); letter-spacing:.03em; margin-bottom:28px; display:flex; align-items:center; gap:10px; }
-    .cta-avail::before { content:''; width:8px; height:8px; background:var(--green); border-radius:50%; animation:pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.35; } }
     .cta-actions { display:flex; gap:12px; flex-wrap:wrap; }
 
     /* Contact links */
@@ -243,15 +238,6 @@
     .footer-right a { font-family:var(--mono); font-size:11px; color:var(--text-dim); text-decoration:none; letter-spacing:.04em; transition:color .3s; }
     .footer-right a:hover { color:var(--text-muted); }
 
-    /* ── Sticky CTA (mobile) ── */
-    .sticky-cta { position:fixed; bottom:0; left:0; right:0; z-index:99; padding:12px 20px; background:rgba(6,6,16,.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-      border-top:1px solid var(--border); display:none; transform:translateY(100%); transition:transform .35s var(--ease); }
-    .sticky-cta.show { transform:translateY(0); }
-    .sticky-cta-inner { display:flex; justify-content:space-between; align-items:center; max-width:var(--container); margin:0 auto; }
-    .sticky-cta-text { font-family:var(--mono); font-size:12px; color:var(--text-muted); letter-spacing:.03em; }
-    .sticky-cta a { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.06em; text-transform:uppercase;
-      color:var(--bg); background:var(--amber); padding:10px 24px; text-decoration:none; transition:background .3s; }
-    .sticky-cta a:hover { background:var(--amber-bright); }
 
     /* ══════════════════════════════════
        RESPONSIVE
@@ -274,10 +260,6 @@
       .cta::before { height:48px; }
       footer .container { flex-direction:column; gap:12px; text-align:center; }
       .footer-right { justify-content:center; }
-      .sticky-cta { display:block; }
-    }
-    @media (min-width:769px) {
-      .sticky-cta { display:none !important; }
     }
   </style>
 </head>
@@ -310,7 +292,7 @@
   <div class="container">
     <div class="hero-eyebrow" data-i18n="hero_eyebrow">Fabian Spitzer — Operations + AI</div>
     <h1 data-i18n="hero_h1">Between AI strategy and<br>operational reality, there's a gap.<br><em>I close it.</em></h1>
-    <p class="hero-sub" data-i18n="hero_sub">18 years scaling operations to €4B+. Then I built production AI systems myself. Now I bring both into your company.</p>
+    <p class="hero-sub" data-i18n="hero_sub">18 years scaling operations to €4B+. Then I built production AI systems myself. Now I help companies make AI work — inside their teams, processes, and reality.</p>
 
     <div class="hero-metrics">
       <div class="hero-metric">
@@ -392,8 +374,8 @@
     </div>
 
     <div class="gap-bridge r r-d2">
-      <h3 data-i18n="gap_bridge">This is where I come in. Not as a consultant with a framework. As an <em>operator who builds.</em></h3>
-      <p data-i18n="gap_bridge_sub">18 years in operational leadership — scaling to €4B+, turning around P&Ls, building teams of 50+. Then I went hands-on: built production voice agents, workflow automation, and AI-native systems from scratch.</p>
+      <h3 data-i18n="gap_bridge">This is where I come in. Not as a consultant with a framework. As an <em>operator who builds, embeds, and aligns.</em></h3>
+      <p data-i18n="gap_bridge_sub">18 years in operational leadership — scaling to €4B+, turning around P&Ls, building teams of 50+. Then I went hands-on into AI. I don't replace your team — I make it stronger by closing the gap between what AI can do and what your operations actually need.</p>
     </div>
   </div>
 </section>
@@ -477,8 +459,8 @@
           <p data-i18n="h3_d">KPIs, processes, team structures, P&L management. From startup chaos to structured growth.</p>
         </div>
         <div class="how-item">
-          <h3 data-i18n="h4_t">Business and tech, bridged</h3>
-          <p data-i18n="h4_d">I speak boardroom and dev stand-up fluently. I close the gap by building both sides.</p>
+          <h3 data-i18n="h4_t">Embedded, not external</h3>
+          <p data-i18n="h4_d">I work inside your team, not around it. I align stakeholders, strengthen existing structures, and make sure what gets built actually sticks.</p>
         </div>
       </div>
 
@@ -523,6 +505,10 @@
         <div class="fit-q" data-i18n="f3_q">"The numbers aren't working. We need a turnaround."</div>
         <div class="fit-a" data-i18n="f3_a">Restructuring, automation, team realignment. Proven: €1.3M EBITDA in 6 months from a crisis.</div>
       </div>
+      <div class="fit-item r r-d3">
+        <div class="fit-q" data-i18n="f4_q">"We don't need another consultant. We need someone who embeds."</div>
+        <div class="fit-a" data-i18n="f4_a">I join your team, not observe it. I align leadership, engineering, and ops — and I stay until the change is real.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -533,8 +519,7 @@
     <div class="cta-grid r">
       <div>
         <h2 data-i18n="cta_h2">If AI isn't landing in<br>your operations —<br><em>let's talk.</em></h2>
-        <p class="cta-sub" data-i18n="cta_sub">20 minutes. No pitch. Tell me where things are stuck — and I'll tell you honestly whether I can help.</p>
-        <div class="cta-avail" data-i18n="cta_avail">Available immediately</div>
+        <p class="cta-sub" data-i18n="cta_sub">20 minutes. No pitch. Tell me where things are stuck — and I'll tell you honestly whether there's a fit.</p>
         <div class="cta-actions">
           <a href="mailto:fabianspitzer@icloud.com" class="btn-primary" data-i18n="cta_btn">Send Email</a>
           <a href="https://linkedin.com/in/fabian-spitzer/" target="_blank" rel="noopener" class="btn-secondary" data-i18n="cta_li">LinkedIn</a>
@@ -571,13 +556,6 @@
   </div>
 </footer>
 
-<!-- Sticky CTA (mobile only) -->
-<div class="sticky-cta" id="stickyCta" aria-hidden="true">
-  <div class="sticky-cta-inner">
-    <span class="sticky-cta-text" data-i18n="sticky_text">Available immediately</span>
-    <a href="mailto:fabianspitzer@icloud.com" data-i18n="sticky_btn">Let's Talk</a>
-  </div>
-</div>
 
 <script>
 /* ── i18n ── */
@@ -586,7 +564,7 @@ const T = {
     nav_gap:'Die Lücke', nav_proof:'Track Record', nav_how:'Wie ich arbeite', nav_fit:'Passt es?', nav_contact:'Kontakt', nav_cta:'Gespräch',
     hero_eyebrow:'Fabian Spitzer — Operations + AI',
     hero_h1:'Zwischen AI-Strategie und operativer Realität liegt eine Lücke.<br><em>Ich schließe sie.</em>',
-    hero_sub:'18 Jahre Operations-Skalierung bis €4B+. Dann habe ich selbst produktionsreife AI-Systeme gebaut. Jetzt bringe ich beides in euer Unternehmen.',
+    hero_sub:'18 Jahre Operations-Skalierung bis €4B+. Dann habe ich selbst produktionsreife AI-Systeme gebaut. Jetzt helfe ich Unternehmen, AI zum Laufen zu bringen — in ihren Teams, Prozessen und ihrer Realität.',
     m_volume:'Ops-Volumen skaliert', m_growth:'Umsatzwachstum (24Mo)', m_ebitda:'EBITDA-Turnaround (6Mo)', m_team:'Team aufgebaut',
     cta_talk:'Gespräch vereinbaren',
     strip_label:'Gebaut & skaliert bei',
@@ -596,8 +574,8 @@ const T = {
     g2_t:'Engineering baut AI. Aber wer verdrahtet es mit dem Business?', g2_d:'Eure Entwickler kennen LLMs. Euer Ops-Team kennt die Prozesse. Niemand verbindet Business-Logik, technischen Build und Team-Adoption. Hier bleibt AI stecken.',
     g3_t:'Das Wachstum überholt die Operations.', g3_d:'Der Umsatz steigt, aber Prozesse brechen. Ihr braucht Struktur, KPIs und jemanden der das Rückgrat baut — kein weiteres Strategy-Deck.',
     g4_t:'Ihr braucht einen Operator, der AI wirklich versteht.', g4_d:'Klassische COOs bauen keine Systeme. AI-Berater führen keine Operations. Ihr braucht jemanden der beides kann. Diese Kombination gibt es kaum.',
-    gap_bridge:'Hier komme ich ins Spiel. Nicht als Berater mit Framework. Als <em>Operator, der baut.</em>',
-    gap_bridge_sub:'18 Jahre operative Führung — Skalierung bis €4B+, P&L-Turnarounds, Teams von 50+ aufgebaut. Dann bin ich hands-on in AI gegangen: produktionsreife Voice-Agents, Workflow-Automatisierung und AI-native Systeme von Grund auf gebaut.',
+    gap_bridge:'Hier komme ich ins Spiel. Nicht als Berater mit Framework. Als <em>Operator, der baut, sich einbettet und ausrichtet.</em>',
+    gap_bridge_sub:'18 Jahre operative Führung — Skalierung bis €4B+, P&L-Turnarounds, Teams von 50+ aufgebaut. Dann bin ich hands-on in AI gegangen. Ich ersetze euer Team nicht — ich mache es stärker, indem ich die Lücke schließe zwischen dem, was AI kann, und dem, was eure Operations wirklich brauchen.',
     track_label:'Track Record', track_h2:'Probleme, die ich gelöst habe. Zahlen, die ich bewegt habe.',
     t1_c:'„Das operative Rückgrat für Deutschlands größten Kreditvergleich aufbauen."', t1_a:'Volle P&L als Managing Director. Team auf 50+ aufgebaut, Enterprise-Partnerschaften strukturiert, operativen Kern über ein Jahrzehnt Wachstum skaliert.', t1_l:'Jahresvolumen',
     t2_c:'„€38M-Startup. Daraus eine Wachstumsmaschine machen."', t2_a:'Operations, Vertrieb und Partner-Ökosystem als COO neu aufgebaut. Finanzierungsvolumen auf €223M in 24 Monaten skaliert.', t2_l:'Volumen-Wachstum',
@@ -607,7 +585,7 @@ const T = {
     h1_t:'AI in echte Operations', h1_d:'Vom Proof-of-Concept in die Produktion — eingebettet in echte Prozesse, gemessen an KPIs, adoptiert von Teams.',
     h2_t:'Workflows, die sich potenzieren', h2_d:'Voice-Agents, Prozess-Orchestrierung, Automatisierung die verändert, wie Teams arbeiten.',
     h3_t:'Operations, die skalieren', h3_d:'KPIs, Prozesse, Teamstrukturen, P&L-Management. Von Startup-Chaos zu strukturiertem Wachstum.',
-    h4_t:'Business und Tech, verbunden', h4_d:'Ich spreche Vorstandsraum und Dev-Standup fließend. Ich schließe die Lücke, indem ich beide Seiten baue.',
+    h4_t:'Eingebettet, nicht extern', h4_d:'Ich arbeite in eurem Team, nicht drumherum. Ich richte Stakeholder aus, stärke bestehende Strukturen und sorge dafür, dass das Gebaute wirklich hält.',
     eng_title:'Engagement-Spektrum',
     e1_label:'Primär', e1_mode:'Festanstellung oder eingebettete Transformationsrolle', e1_detail:'COO, VP Operations, Head of Applied AI. Permanentes Teammitglied. Volle P&L-Verantwortung.',
     e2_label:'Sekundär', e2_mode:'Interim- & fokussierte Mandate', e2_detail:'3–12 Monate. Transformation, Turnarounds oder Überbrückung.',
@@ -616,10 +594,10 @@ const T = {
     f1_q:'„Wir brauchen AI in unseren Operations, aber niemand ownt es."', f1_a:'Ich integriere AI in echte Geschäftsprozesse — nicht als Theorie, sondern als gelieferte Systeme, die eure Teams wirklich nutzen.',
     f2_q:'„Wir wachsen schnell und die Operations kommen nicht hinterher."', f2_a:'Ich baue das operative Rückgrat: KPIs, Prozesse, Teamstrukturen. Dreimal gemacht, von Startup bis Scale-up.',
     f3_q:'„Die Zahlen stimmen nicht. Wir brauchen einen Turnaround."', f3_a:'Restrukturierung, Automatisierung, Team-Neuausrichtung. Bewiesen: €1.3M EBITDA in 6 Monaten aus einer Krise.',
-    cta_h2:'Wenn AI in euren Operations nicht landet —<br><em>reden wir.</em>', cta_sub:'20 Minuten. Kein Pitch. Erzählt mir, wo es hakt — und ich sage euch ehrlich, ob ich helfen kann.',
-    cta_avail:'Sofort verfügbar', cta_btn:'Email senden', cta_li:'LinkedIn',
+    f4_q:'„Wir brauchen keinen weiteren Berater. Wir brauchen jemanden, der sich einbettet."', f4_a:'Ich werde Teil eures Teams, nicht Beobachter. Ich richte Führung, Engineering und Ops aufeinander aus — und bleibe, bis die Veränderung real ist.',
+    cta_h2:'Wenn AI in euren Operations nicht landet —<br><em>reden wir.</em>', cta_sub:'20 Minuten. Kein Pitch. Erzählt mir, wo es hakt — und ich sage euch ehrlich, ob es passt.',
+    cta_btn:'Email senden', cta_li:'LinkedIn',
     footer_cv:'CV herunterladen', footer_op:'One-Pager',
-    sticky_text:'Sofort verfügbar', sticky_btn:'Gespräch',
   }
 };
 
@@ -673,17 +651,6 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('v'); rObs.unobserve(e.target); } });
   }, { threshold: .06, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.r').forEach(el => rObs.observe(el));
-
-  // Sticky CTA (mobile)
-  const sticky = document.getElementById('stickyCta');
-  if (sticky && window.innerWidth < 769) {
-    let shown = false;
-    window.addEventListener('scroll', () => {
-      const shouldShow = window.scrollY > window.innerHeight * 0.8;
-      if (shouldShow && !shown) { sticky.classList.add('show'); shown = true; }
-      else if (!shouldShow && shown) { sticky.classList.remove('show'); shown = false; }
-    }, { passive: true });
-  }
 
   // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {

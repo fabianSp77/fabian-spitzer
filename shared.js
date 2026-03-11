@@ -61,7 +61,7 @@ const T = {
     /* CTA */
     cta_h2:'Wenn AI in euren Operations nicht ankommt —<br><em>reden wir.</em>', cta_sub:'20 Minuten. Kein Pitch. Erzählt mir, wo es stockt — und ich sage euch ehrlich, ob es passt.',
     form_name:'Name', form_company:'Unternehmen + Rolle', form_message:'Worum geht es?',
-    form_alt:'Oder auf <a href="https://linkedin.com/in/fabian-spitzer/" target="_blank" rel="noopener">LinkedIn</a> vernetzen',
+    form_alt:'Oder auf <a href="https://www.linkedin.com/in/fabian-spitzer/" target="_blank" rel="noopener">LinkedIn</a> vernetzen',
     form_btn:'Nachricht senden',
     form_ok_h:'Nachricht erhalten.', form_ok_p:'Ich melde mich innerhalb von 24 Stunden. Freue mich auf das Gespräch.',
     footer_cv:'CV herunterladen', footer_op:'One-Pager',

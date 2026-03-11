@@ -22,20 +22,10 @@ const T = {
     core_h2:'Euer Team hat AI-Ideen. Berater haben eine Roadmap geliefert.<br><em>Aber nichts davon ist in Produktion.</em>',
     core_stat_label:'Die Lücke zwischen AI-Fähigkeit und tatsächlichem Einsatz ist operativ — nicht technisch.',
     core_bridge:'Nicht als Berater. Als <em>Operator, der Teams, Prozesse und Technologie zusammenbringt.</em>',
-    core_link_track:'Track Record ansehen', core_link_approach:'Arbeitsweise', core_link_why:'Warum jetzt',
-
-    /* Gap */
-    gap_label:'Die Lücke',
-    gap_h2:'Euer Team hat AI-Ideen. Berater haben eine Roadmap geliefert.<br><em>Aber nichts davon ist in Produktion.</em>',
-    g1_t:'Niemand verantwortet die Umsetzung.', g1_d:'AI-Anwendungsfälle stecken in Präsentationen. Engineering baut Prototypen. Operations läuft weiter wie bisher. Was fehlt, ist jemand, der die Umsetzung verantwortet — vom Konzept bis in den laufenden Betrieb.',
-    g2_t:'Engineering baut AI. Aber wer verankert es im Geschäft?', g2_d:'Eure Entwickler kennen LLMs. Euer Ops-Team kennt die Prozesse. Aber niemand verbindet Geschäftslogik, technische Umsetzung und Teamakzeptanz. Genau hier bleibt AI stecken.',
-    g3_t:'Das Wachstum überholt die operative Basis.', g3_d:'Der Umsatz steigt, aber die Prozesse brechen. Ihr braucht Struktur, KPIs und jemanden, der das Rückgrat baut — nicht das nächste Strategiepapier.',
-    g4_t:'Ihr braucht einen Operator, der AI wirklich versteht.', g4_d:'Klassische COOs bauen keine Systeme. AI-Berater führen keine Operations. Ihr braucht jemanden, der beides kann. Diese Kombination gibt es kaum.',
-    gap_bridge:'Hier komme ich ins Spiel. Nicht als Berater mit Framework. Als <em>Operator, der Teams, Prozesse und Technologie zusammenbringt.</em>',
-    gap_bridge_sub:'18 Jahre operative Führung — Skalierung auf €4B+, P&L-Turnarounds, Teams von 50+ aufgebaut. Ich ersetze euer Team nicht — ich mache es stärker, indem ich AI-Potenzial in operative Realität übersetze — über Abteilungen, Workflows und Execution hinweg.',
+    core_link_track:'Track Record ansehen →', core_link_approach:'Arbeitsweise →', core_link_why:'Warum jetzt →',
 
     /* Why Now */
-    wn_label:'Warum jetzt', wn_h2:'AI kann die Arbeit erledigen. <em style="color:var(--amber); font-style:italic;">Niemand verankert es.</em>',
+    wn_label:'Warum jetzt',
     wn_cap:'Theoretische AI-Fähigkeit', wn_actual:'Tatsächlich in Unternehmen im Einsatz',
     wn_text:'Die meisten Unternehmen haben eine AI-Strategie. Wenige haben jemanden, der sie tatsächlich in die Operations verdrahtet — über Teams, Prozesse und bestehende Workflows hinweg. Die Lücke zwischen AI-Fähigkeit und tatsächlichem Deployment ist kein technisches Problem. Es ist ein operatives. Und sie wächst.',
     wn_kicker:'Die Unternehmen, die diese Lücke jetzt schließen, werden führen. Der Rest wird <em>2027 noch Pilotprojekte fahren.</em>',
@@ -43,14 +33,14 @@ const T = {
     wn_bar_ops:'Operations', wn_bar_fin:'Finanzen', wn_bar_mgmt:'Management', wn_bar_sales:'Vertrieb',
 
     /* Track Record */
-    track_label:'Track Record', track_h2:'Probleme, die ich gelöst habe. Zahlen, die ich bewegt habe.',
+    track_label:'Track Record',
     t1_c:'„Das operative Rückgrat für Deutschlands größten Kreditvergleich aufbauen."', t1_a:'Volle P&L-Verantwortung als Managing Director. Team auf 50+ aufgebaut, Enterprise-Partnerschaften strukturiert, operativen Kern über ein Jahrzehnt Wachstum skaliert.', t1_l:'Jahresvolumen',
     t2_c:'„€38M-Startup. Daraus eine Wachstumsmaschine machen."', t2_a:'Operations, Vertrieb und Partner-Ökosystem als COO neu aufgebaut. Finanzierungsvolumen auf €223M in 24 Monaten skaliert.', t2_l:'Volumen-Wachstum',
     t3_c:'„€27M-Unternehmen verbrennt Cash. Sechs Monate Zeit."', t3_a:'Operative Restrukturierung, Prozessautomatisierung, Team-Neuausrichtung. €1.3M EBITDA als Interim COO geliefert.', t3_l:'EBITDA in 6Mo',
-    ai_h3:'Dann bin ich hands-on gegangen, um zu verstehen was Operationalisierung wirklich braucht.', ai_p:'Nach Jahren operativer Führung habe ich eine Applied-AI-Firma von Grund auf aufgebaut — Voice-Agents, Workflow-Automatisierung, AI-natives CRM. Nicht um Entwickler zu werden, sondern um tief zu verstehen, was es braucht, AI vom Prototyp in die Produktion realer Organisationen zu bringen.',
+    ai_h3:'Dann bin ich hands-on gegangen, um zu verstehen, was Operationalisierung wirklich braucht.', ai_p:'Nach Jahren operativer Führung habe ich eine Applied-AI-Firma von Grund auf aufgebaut — Voice-Agents, Workflow-Automatisierung, AI-natives CRM. Nicht um Entwickler zu werden, sondern um tief zu verstehen, was es braucht, AI vom Prototyp in die Produktion realer Organisationen zu bringen.',
 
     /* How I Work */
-    how_label:'Arbeitsweise', how_h2:'Ein Operator. Mehrere Modi.', how_intro:'Operative Führung, eigenhändiger Aufbau, messbare Ergebnisse — unabhängig vom Format. Die Tiefe des Engagements richtet sich nach dem, was ihr braucht.',
+    how_label:'Arbeitsweise',
     h1_t:'AI in echte Operations', h1_d:'Vom Proof-of-Concept in die Produktion — eingebettet in echte Prozesse, gemessen an KPIs, von Teams übernommen.',
     h2_t:'Workflows, die sich multiplizieren', h2_d:'Voice-Agents, Prozess-Orchestrierung, Automatisierung, die verändert, wie Teams arbeiten — nicht nur Zeit spart.',
     h3_t:'Operations, die skalieren', h3_d:'KPIs, Prozesse, Teamstrukturen, P&L-Steuerung. Von Startup-Chaos zu strukturiertem Wachstum.',

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fabian Spitzer — AI Operations & Transformation</title>
+  <meta name="description" content="Senior operator who scaled to €4B+, then built AI systems himself. Now closing the gap between AI strategy and operational reality.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06060b;
+      --bg-elevated: #0c0c14;
+      --border: rgba(255,255,255,.08);
+      --border-hover: rgba(255,255,255,.18);
+      --text: #eceae7;
+      --text-secondary: #cccac7;
+      --text-muted: #918f9b;
+      --text-dim: #5a5868;
+      --amber: #d4a054;
+      --amber-bright: #e8b86d;
+      --amber-glow: rgba(212,160,84,.06);
+      --green: #4ade80;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --mono: 'JetBrains Mono', 'Courier New', monospace;
+      --body: 'Outfit', -apple-system, sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; scrollbar-width:thin; scrollbar-color:var(--text-dim) transparent; }
+    body { background:var(--bg); color:var(--text); font-family:var(--body); font-weight:300; line-height:1.6; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    ::selection { background:var(--amber); color:var(--bg); }
+
+    .noise { position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.02;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size:256px; }
+    .scroll-line { position:fixed; top:0; left:0; height:2px; background:var(--amber); z-index:200; transition:width .1s linear; }
+
+    .container { max-width:1080px; margin:0 auto; padding:0 24px; position:relative; z-index:2; }
+    section { position:relative; z-index:2; }
+
+    /* ── Nav ── */
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:14px 0;
+      background:rgba(6,6,11,.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border); }
+    nav .container { display:flex; justify-content:space-between; align-items:center; }
+    .nav-name { font-family:var(--mono); font-size:13px; font-weight:500; letter-spacing:.04em; color:var(--text-muted); }
+    .nav-name span { color:var(--amber); }
+    .nav-links { display:flex; gap:28px; list-style:none; align-items:center; }
+    .nav-links a { font-family:var(--mono); font-size:11px; font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--text-muted); text-decoration:none; transition:color .25s; }
+    .nav-links a:hover { color:var(--amber); }
+    .nav-right { display:flex; align-items:center; gap:16px; }
+    .lang-toggle { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.04em; color:var(--text-muted);
+      background:none; border:1px solid var(--border); padding:5px 12px; cursor:pointer; transition:all .25s; }
+    .lang-toggle:hover { border-color:var(--amber); color:var(--amber); }
+    .nav-cta { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.06em; text-transform:uppercase;
+      color:var(--bg); background:var(--amber); padding:8px 20px; text-decoration:none; transition:all .25s; }
+    .nav-cta:hover { background:var(--amber-bright); transform:translateY(-1px); }
+
+    /* ── Buttons ── */
+    .btn-primary { display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; font-weight:500;
+      letter-spacing:.06em; text-transform:uppercase; color:var(--bg); background:var(--amber); padding:14px 32px;
+      text-decoration:none; transition:all .3s cubic-bezier(.22,1,.36,1); border:none; cursor:pointer; }
+    .btn-primary:hover { background:var(--amber-bright); transform:translateY(-2px); box-shadow:0 8px 32px rgba(212,160,84,.25); }
+    .btn-secondary { display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; font-weight:400;
+      letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); border:1px solid var(--border);
+      padding:14px 32px; text-decoration:none; transition:all .3s cubic-bezier(.22,1,.36,1); background:none; cursor:pointer; }
+    .btn-secondary:hover { border-color:var(--amber); color:var(--amber); transform:translateY(-2px); }
+
+    /* ── Animations ── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    @keyframes slideLeft { from { opacity:0; transform:translateX(-16px); } to { opacity:1; transform:translateX(0); } }
+    .reveal { opacity:0; transform:translateY(24px); transition:all .8s cubic-bezier(.22,1,.36,1); }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:.1s; }
+    .reveal-delay-2 { transition-delay:.2s; }
+    .reveal-delay-3 { transition-delay:.3s; }
+
+    /* ── HERO ── */
+    .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:100px 0 80px; }
+    .hero-eyebrow { font-family:var(--mono); font-size:11px; font-weight:400; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:28px; opacity:0; animation:fadeUp .8s .2s forwards; }
+    .hero h1 { font-family:var(--serif); font-size:clamp(32px,5vw,64px); font-weight:400; line-height:1.1; letter-spacing:-.02em; max-width:820px; opacity:0; animation:fadeUp .8s .35s forwards; }
+    .hero h1 em { color:var(--amber); font-style:italic; }
+    .hero-sub { font-size:17px; font-weight:300; color:var(--text-secondary); margin-top:24px; max-width:600px; line-height:1.7; opacity:0; animation:fadeUp .8s .5s forwards; }
+    .hero-proof { display:flex; gap:48px; margin-top:52px; opacity:0; animation:fadeUp .8s .65s forwards; }
+    .hero-proof-item { }
+    .hero-proof-val { font-family:var(--mono); font-size:clamp(28px,3.5vw,44px); font-weight:600; color:var(--amber); line-height:1; letter-spacing:-.02em; }
+    .hero-proof-label { font-family:var(--mono); font-size:9px; font-weight:400; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); margin-top:8px; }
+    .hero-actions { display:flex; gap:14px; flex-wrap:wrap; margin-top:48px; opacity:0; animation:fadeUp .8s .8s forwards; }
+
+    /* ── Trust strip ── */
+    .trust-strip { padding:48px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .trust-strip-inner { display:flex; align-items:center; gap:40px; flex-wrap:wrap; }
+    .trust-label { font-family:var(--mono); font-size:10px; font-weight:400; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); white-space:nowrap; }
+    .trust-companies { display:flex; gap:32px; flex-wrap:wrap; align-items:center; }
+    .trust-companies span { font-family:var(--mono); font-size:14px; font-weight:500; letter-spacing:.04em; color:var(--text-muted); transition:color .3s; }
+    .trust-companies span:hover { color:var(--amber); }
+
+    /* ── Section labels ── */
+    .sec-label { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); margin-bottom:20px; }
+
+    /* ── THE GAP ── */
+    .the-gap { padding:100px 0; }
+    .gap-headline { font-family:var(--serif); font-size:clamp(24px,3vw,36px); font-weight:400; line-height:1.2; max-width:600px; margin-bottom:48px; }
+    .gap-headline em { color:var(--amber); font-style:italic; }
+    .gap-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+    .gap-card { background:var(--bg); padding:36px 32px; transition:all .4s cubic-bezier(.22,1,.36,1); }
+    .gap-card:hover { background:var(--amber-glow); transform:translateY(-2px); }
+    .gap-icon { font-family:var(--mono); font-size:20px; color:var(--amber); margin-bottom:12px; }
+    .gap-title { font-family:var(--body); font-size:15px; font-weight:500; color:var(--text); margin-bottom:8px; line-height:1.35; }
+    .gap-desc { font-size:14px; color:var(--text-secondary); font-weight:300; line-height:1.6; }
+    .gap-bridge { margin-top:48px; padding:32px 36px; border:1px solid var(--border); background:var(--bg-elevated); }
+    .gap-bridge-text { font-family:var(--serif); font-size:20px; font-weight:400; line-height:1.35; }
+    .gap-bridge-text em { color:var(--amber); font-style:italic; }
+    .gap-bridge-sub { font-size:15px; color:var(--text-secondary); font-weight:300; margin-top:12px; line-height:1.65; max-width:640px; }
+
+    /* ── WHY BRING ME IN ── */
+    .why-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+    .why-item { display:flex; gap:12px; align-items:baseline; padding:16px 20px; border-bottom:1px solid var(--border); }
+    .why-item:nth-child(odd) { border-right:1px solid var(--border); }
+    .why-icon { color:var(--amber); font-size:18px; flex-shrink:0; line-height:1; }
+    .why-text { font-size:14px; color:var(--text-secondary); font-weight:300; line-height:1.6; }
+
+    /* ── HOW I WORK ── */
+    .how-work { padding:100px 0; }
+    .hw-headline { font-family:var(--serif); font-size:clamp(24px,3vw,36px); font-weight:400; line-height:1.2; max-width:640px; margin-bottom:20px; }
+    .hw-intro { font-size:16px; color:var(--text-secondary); font-weight:300; max-width:560px; margin-bottom:48px; line-height:1.7; }
+    .hw-columns { display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+    .hw-approach-item { padding:24px 0; border-top:1px solid var(--border); }
+    .hw-approach-title { font-family:var(--serif); font-size:18px; font-weight:400; margin-bottom:8px; line-height:1.25; }
+    .hw-approach-desc { font-size:14px; color:var(--text-secondary); font-weight:300; line-height:1.65; }
+    .hw-engage { padding:28px; border:1px solid var(--border); background:var(--bg-elevated); }
+    .hw-engage-title { font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--amber); margin-bottom:20px; }
+    .hw-engage-spectrum { display:flex; flex-direction:column; gap:0; }
+    .hw-engage-item { display:flex; gap:16px; align-items:flex-start; padding:16px 0; }
+    .hw-engage-dot { width:8px; height:8px; background:var(--amber); margin-top:5px; flex-shrink:0; transition:transform .3s; }
+    .hw-engage-item:hover .hw-engage-dot { transform:scale(1.4); }
+    .hw-engage-tier { font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); margin-bottom:4px; }
+    .hw-engage-mode { font-family:var(--mono); font-size:12px; font-weight:500; color:var(--text); letter-spacing:.02em; }
+    .hw-engage-detail { font-size:13px; color:var(--text-muted); font-weight:300; margin-top:2px; line-height:1.5; }
+
+    /* ── PROOF ── */
+    .proof { padding:100px 0; }
+    .proof-headline { font-family:var(--serif); font-size:clamp(24px,3vw,36px); font-weight:400; line-height:1.2; margin-bottom:48px; }
+    .proof-cards { display:flex; flex-direction:column; gap:1px; background:var(--border); border:1px solid var(--border); }
+    .proof-card { background:var(--bg); padding:36px 32px; display:grid; grid-template-columns:1fr auto; gap:32px; align-items:start; transition:all .4s cubic-bezier(.22,1,.36,1); }
+    .proof-card:hover { background:var(--amber-glow); }
+    .proof-context { font-family:var(--mono); font-size:11px; color:var(--text-muted); letter-spacing:.06em; text-transform:uppercase; margin-bottom:6px; }
+    .proof-challenge { font-family:var(--serif); font-size:17px; font-weight:400; line-height:1.3; margin-bottom:8px; color:var(--text); font-style:italic; }
+    .proof-action { font-size:14px; color:var(--text-secondary); font-weight:300; line-height:1.6; }
+    .proof-result { text-align:right; }
+    .proof-result-val { font-family:var(--mono); font-size:clamp(24px,3vw,36px); font-weight:600; color:var(--amber); line-height:1; letter-spacing:-.02em; }
+    .proof-result-label { font-family:var(--mono); font-size:8px; font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--text-muted); margin-top:6px; }
+
+    /* AI proof card — evolution framing */
+    .proof-ai { background:var(--bg-elevated); padding:40px 36px; border:1px solid var(--border); margin-top:24px; position:relative; overflow:hidden; }
+    .proof-ai::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:linear-gradient(180deg, var(--amber), transparent); }
+    .proof-ai-label { font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--amber); margin-bottom:14px; }
+    .proof-ai-title { font-family:var(--serif); font-size:20px; font-weight:400; margin-bottom:10px; line-height:1.3; }
+    .proof-ai-desc { font-size:15px; color:var(--text-secondary); font-weight:300; line-height:1.65; margin-bottom:20px; max-width:580px; }
+    .proof-ai-caps { display:flex; flex-wrap:wrap; gap:8px; }
+    .proof-ai-cap { font-family:var(--mono); font-size:11px; font-weight:400; color:var(--amber); border:1px solid rgba(212,160,84,.25); padding:6px 14px; letter-spacing:.02em; transition:all .3s; }
+    .proof-ai-cap:hover { background:rgba(212,160,84,.08); border-color:var(--amber); }
+
+    /* ── LEVERAGE VISUAL ── */
+    .leverage { padding:80px 0; }
+    .leverage-flow { display:flex; align-items:stretch; gap:0; margin-top:40px; border:1px solid var(--border); overflow:hidden; }
+    .lev-step { flex:1; padding:28px 20px; text-align:center; position:relative; background:var(--bg); transition:all .4s; }
+    .lev-step:not(:last-child)::after { content:''; position:absolute; right:0; top:20%; height:60%; width:1px; background:var(--border); }
+    .lev-step:hover { background:var(--amber-glow); }
+    .lev-step-num { font-family:var(--mono); font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:8px; }
+    .lev-step-title { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--text); letter-spacing:.02em; margin-bottom:6px; }
+    .lev-step-desc { font-size:12px; color:var(--text-muted); font-weight:300; line-height:1.5; }
+    .lev-stuck { flex:1; padding:28px 20px; text-align:center; background:rgba(212,160,84,.04); border-left:2px solid var(--amber); border-right:2px solid var(--amber); position:relative; }
+    .lev-stuck .lev-step-num { color:var(--amber); }
+    .lev-stuck .lev-step-title { color:var(--amber); }
+    .lev-stuck .lev-step-desc { color:var(--text-secondary); }
+    .leverage-caption { font-family:var(--mono); font-size:11px; color:var(--text-muted); letter-spacing:.04em; margin-top:16px; text-align:center; }
+    .leverage-caption em { color:var(--amber); font-style:normal; font-weight:500; }
+
+    /* ── DIFFERENTIATOR ── */
+    .diff-block { padding:40px 48px; border-left:3px solid var(--amber); background:var(--bg-elevated); }
+    .diff-text { font-family:var(--serif); font-size:clamp(18px,2.2vw,24px); font-weight:400; line-height:1.4; color:var(--text); }
+    .diff-text em { color:var(--amber); font-style:italic; }
+    .diff-sub { font-size:15px; color:var(--text-secondary); font-weight:300; line-height:1.7; margin-top:16px; max-width:640px; }
+
+    /* ── SITUATIONS — narrative, not grid ── */
+    .situations { padding:80px 0; }
+    .sit-headline { font-family:var(--serif); font-size:clamp(24px,3vw,36px); font-weight:400; line-height:1.2; margin-bottom:48px; }
+    .sit-list { display:flex; flex-direction:column; gap:0; }
+    .sit-item { display:grid; grid-template-columns:1fr 1.2fr; gap:40px; padding:28px 0; border-bottom:1px solid var(--border); transition:all .3s; }
+    .sit-item:first-child { border-top:1px solid var(--border); }
+    .sit-item:hover { padding-left:12px; }
+    .sit-q { font-family:var(--serif); font-size:17px; font-weight:400; line-height:1.35; color:var(--amber); font-style:italic; }
+    .sit-a { font-size:14px; color:var(--text-secondary); font-weight:300; line-height:1.65; }
+
+    /* ── CTA ── */
+    .cta-section { padding:120px 0 100px; position:relative; }
+    .cta-section::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:1px; height:80px; background:linear-gradient(180deg, transparent, var(--amber)); }
+    .cta-inner { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+    .cta-headline { font-family:var(--serif); font-size:clamp(28px,3.5vw,44px); font-weight:400; line-height:1.15; margin-bottom:20px; }
+    .cta-headline em { color:var(--amber); font-style:italic; }
+    .cta-sub { font-size:16px; color:var(--text-secondary); font-weight:300; line-height:1.7; margin-bottom:32px; }
+    .cta-avail { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--green); letter-spacing:.03em; margin-bottom:28px; }
+    .cta-avail::before { content:''; display:inline-block; width:8px; height:8px; background:var(--green); border-radius:50%; margin-right:10px; vertical-align:middle;
+      animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.4; } }
+    .cta-actions { display:flex; gap:14px; flex-wrap:wrap; }
+    .cta-contact { display:flex; flex-direction:column; gap:16px; }
+    .cta-link { display:flex; gap:12px; align-items:center; text-decoration:none; padding:14px 0; border-bottom:1px solid var(--border); transition:all .3s; }
+    .cta-link:hover { border-color:var(--amber); padding-left:8px; }
+    .cta-link-label { font-family:var(--mono); font-size:10px; font-weight:400; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); min-width:60px; }
+    .cta-link-value { font-family:var(--mono); font-size:13px; font-weight:400; color:var(--text-muted); transition:color .3s; }
+    .cta-link:hover .cta-link-value { color:var(--amber); }
+
+    /* ── Footer ── */
+    footer { padding:32px 0; border-top:1px solid var(--border); }
+    footer .container { display:flex; justify-content:space-between; align-items:center; }
+    .footer-copy { font-family:var(--mono); font-size:11px; color:var(--text-dim); letter-spacing:.04em; }
+
+    /* ── Responsive ── */
+    @media (max-width:768px) {
+      .nav-links { display:none; }
+      .hero-proof { flex-direction:column; gap:20px; }
+      .gap-grid { grid-template-columns:1fr; }
+      .why-grid { grid-template-columns:1fr; }
+      .why-item:nth-child(odd) { border-right:none; }
+      .hw-columns { grid-template-columns:1fr; gap:40px; }
+      .proof-card { grid-template-columns:1fr; gap:16px; }
+      .proof-result { text-align:left; }
+      .leverage-flow { flex-direction:column; }
+      .lev-step:not(:last-child)::after { right:20%; top:auto; bottom:0; height:1px; width:60%; }
+      .lev-stuck { border-left:none; border-right:none; border-top:2px solid var(--amber); border-bottom:2px solid var(--amber); }
+      .sit-item { grid-template-columns:1fr; gap:12px; }
+      .cta-inner { grid-template-columns:1fr; gap:40px; }
+      .cta-section::before { height:48px; }
+      .trust-strip-inner { flex-direction:column; align-items:flex-start; gap:16px; }
+      .diff-block { padding:28px 24px; }
+      footer .container { flex-direction:column; gap:8px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="noise"></div>
+<div class="scroll-line" id="scrollLine"></div>
+
+<!-- Nav -->
+<nav>
+  <div class="container">
+    <div class="nav-name"><span>FS</span> / Fabian Spitzer</div>
+    <ul class="nav-links">
+      <li><a href="#gap" data-i18n="nav_gap">The Gap</a></li>
+      <li><a href="#how" data-i18n="nav_how">How I Work</a></li>
+      <li><a href="#proof" data-i18n="nav_proof">Proof</a></li>
+      <li><a href="#fit" data-i18n="nav_fit">Right Fit</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langBtn" onclick="toggleLang()">DE</button>
+      <a href="#contact" class="nav-cta" data-i18n="nav_cta">Explore Fit</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ BEAT 1: HOOK ══ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow" data-i18n="hero_eyebrow">Fabian Spitzer &mdash; Operations + AI</div>
+    <h1 data-i18n="hero_h1">Between AI strategy and operational reality, there's a gap.<br><em>I close it.</em></h1>
+    <p class="hero-sub" data-i18n="hero_sub">I scaled real operations first &mdash; to &euro;4B+, 50+ teams, and P&amp;L turnaround responsibility. Then I built production AI systems myself. Now I help companies turn AI into shipped workflows, stronger operations, and measurable business leverage.</p>
+
+    <div class="hero-proof">
+      <div class="hero-proof-item">
+        <div class="hero-proof-val" data-count="4" data-prefix="&euro;" data-suffix="B+"><span>&euro;4B+</span></div>
+        <div class="hero-proof-label" data-i18n="m_volume">Ops Volume Scaled</div>
+      </div>
+      <div class="hero-proof-item">
+        <div class="hero-proof-val" data-count="400" data-prefix="+" data-suffix="%"><span>+400%</span></div>
+        <div class="hero-proof-label" data-i18n="m_growth">Revenue Growth (24mo)</div>
+      </div>
+      <div class="hero-proof-item">
+        <div class="hero-proof-val" data-count="1.3" data-prefix="&euro;" data-suffix="M"><span>&euro;1.3M</span></div>
+        <div class="hero-proof-label" data-i18n="m_ebitda">EBITDA Turnaround (6mo)</div>
+      </div>
+      <div class="hero-proof-item">
+        <div class="hero-proof-val" data-count="50" data-prefix="" data-suffix="+"><span>50+</span></div>
+        <div class="hero-proof-label" data-i18n="m_team">Team Built &amp; Led</div>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary" data-i18n="cta_explore">Explore Fit</a>
+      <a href="/career-site/cv-fabian-spitzer.pdf" download class="btn-secondary" data-i18n="cta_cv">Download CV</a>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Strip -->
+<div class="trust-strip reveal">
+  <div class="container">
+    <div class="trust-strip-inner">
+      <span class="trust-label" data-i18n="trust_label">Built &amp; scaled at</span>
+      <div class="trust-companies">
+        <span>CHECK24</span>
+        <span>DFKP</span>
+        <span>Interlead</span>
+        <span>AskProAI</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BEAT 2: THE GAP ══ -->
+<section class="the-gap" id="gap">
+  <div class="container">
+    <h2 class="gap-headline reveal" data-i18n="gap_hl">You've seen the AI demos.<br><em>Now what?</em></h2>
+
+    <div class="gap-grid reveal">
+      <div class="gap-card">
+        <div class="gap-icon">&empty;</div>
+        <div class="gap-title" data-i18n="g1_title">20 AI use cases identified. None in production.</div>
+        <div class="gap-desc" data-i18n="g1_desc">Your team brainstormed AI ideas. Consultants delivered a roadmap. But nothing shipped. The gap between vision and reality is execution &mdash; and nobody owns it.</div>
+      </div>
+      <div class="gap-card">
+        <div class="gap-icon">&rarr;</div>
+        <div class="gap-title" data-i18n="g2_title">Engineering can build AI. But who connects it to the business?</div>
+        <div class="gap-desc" data-i18n="g2_desc">Your engineers know LLMs. Your ops team knows the processes. But nobody sits between them, translating business needs into technical reality and back.</div>
+      </div>
+      <div class="gap-card">
+        <div class="gap-icon">&Delta;</div>
+        <div class="gap-title" data-i18n="g3_title">Growth is outpacing your operations.</div>
+        <div class="gap-desc" data-i18n="g3_desc">Revenue is up, but processes are breaking. You need structure, KPIs, and someone who builds the backbone &mdash; not another strategy deck.</div>
+      </div>
+      <div class="gap-card">
+        <div class="gap-icon">&infin;</div>
+        <div class="gap-title" data-i18n="g4_title">You need a senior operator. But one who actually understands AI.</div>
+        <div class="gap-desc" data-i18n="g4_desc">Classic COOs don't build systems. AI consultants don't run operations. You need someone who does both. That combination barely exists.</div>
+      </div>
+    </div>
+
+    <div class="gap-bridge reveal">
+      <div class="gap-bridge-text" data-i18n="gap_bridge">This is where I come in. Not as a consultant with a framework. As an <em>operator who builds.</em></div>
+      <div class="gap-bridge-sub" data-i18n="gap_bridge_sub">18 years in operational leadership &mdash; scaling to &euro;4B+, turning around P&amp;Ls, building teams of 50+. Then I went hands-on with AI: built production voice agents, workflow automation, and AI-native operations systems from scratch. I bring both worlds into your company.</div>
+    </div>
+
+    <!-- Why They Bring Me In -->
+    <div class="why-bringin reveal" style="margin-top:64px;">
+      <div class="sec-label" data-i18n="why_label">Why Companies Bring Me In</div>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-icon">&bull;</div>
+          <div class="why-text" data-i18n="why1">AI initiatives are stuck between leadership, operations, and engineering &mdash; and nobody owns the gap.</div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">&bull;</div>
+          <div class="why-text" data-i18n="why2">Teams need someone who understands both execution and systems &mdash; not another advisor who's never shipped.</div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">&bull;</div>
+          <div class="why-text" data-i18n="why3">Customer, support, or sales workflows need AI-enabled redesign &mdash; by someone who's built these systems in production.</div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">&bull;</div>
+          <div class="why-text" data-i18n="why4">They need AI progress tied to KPIs and shipped outcomes &mdash; not experimentation theater.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BEAT 3: HOW I WORK ══ -->
+<section class="how-work" id="how">
+  <div class="container">
+    <div class="sec-label reveal" data-i18n="hw_label">How I Work</div>
+    <h2 class="hw-headline reveal" data-i18n="hw_hl">One operator. Multiple modes.</h2>
+    <p class="hw-intro reveal" data-i18n="hw_intro">My core is the same regardless of format: senior execution, hands-on building, measurable results. The depth of engagement adapts to what your company needs.</p>
+
+    <div class="hw-columns reveal">
+      <div class="hw-approach">
+        <div class="hw-approach-item">
+          <div class="hw-approach-title" data-i18n="a1_title">AI into real operations</div>
+          <div class="hw-approach-desc" data-i18n="a1_desc">I take AI from proof-of-concept to production &mdash; embedded in actual business processes, measured by real KPIs, adopted by real teams. Not strategy. Shipped systems.</div>
+        </div>
+        <div class="hw-approach-item">
+          <div class="hw-approach-title" data-i18n="a2_title">Workflows that compound</div>
+          <div class="hw-approach-desc" data-i18n="a2_desc">From voice agents to process orchestration, I design and build automation that doesn't just save time &mdash; it changes how your teams operate.</div>
+        </div>
+        <div class="hw-approach-item">
+          <div class="hw-approach-title" data-i18n="a3_title">Operations that scale</div>
+          <div class="hw-approach-desc" data-i18n="a3_desc">KPIs, processes, team structures, P&amp;L management. The full stack of operational excellence &mdash; from startup chaos to structured growth.</div>
+        </div>
+        <div class="hw-approach-item">
+          <div class="hw-approach-title" data-i18n="a4_title">Business and tech, bridged</div>
+          <div class="hw-approach-desc" data-i18n="a4_desc">I speak boardroom and dev stand-up fluently. The gap between what the business needs and what engineering delivers &mdash; I close it by building both sides.</div>
+        </div>
+      </div>
+
+      <div class="hw-engage">
+        <div class="hw-engage-title" data-i18n="eng_title">Engagement Spectrum</div>
+        <div class="hw-engage-spectrum">
+          <div class="hw-engage-item" style="padding-bottom:16px; border-bottom:1px solid var(--border);">
+            <div class="hw-engage-dot" style="width:10px;height:10px;"></div>
+            <div>
+              <div class="hw-engage-tier" data-i18n="e1_tier">Primary</div>
+              <div class="hw-engage-mode" data-i18n="e1_mode">Full-time or embedded transformation role</div>
+              <div class="hw-engage-detail" data-i18n="e1_detail">COO, VP Operations, Head of Applied AI. Permanent team member. Full P&amp;L ownership.</div>
+            </div>
+          </div>
+          <div class="hw-engage-item" style="padding-bottom:16px; border-bottom:1px solid var(--border);">
+            <div class="hw-engage-dot" style="opacity:.65"></div>
+            <div>
+              <div class="hw-engage-tier" data-i18n="e2_tier">Secondary</div>
+              <div class="hw-engage-mode" data-i18n="e2_mode">Interim &amp; focused mandates</div>
+              <div class="hw-engage-detail" data-i18n="e2_detail">3&ndash;12 months. Transformation, turnarounds, or bridging leadership gaps. Fast, measurable impact.</div>
+            </div>
+          </div>
+          <div class="hw-engage-item">
+            <div class="hw-engage-dot" style="opacity:.35"></div>
+            <div>
+              <div class="hw-engage-tier" data-i18n="e3_tier">Selective</div>
+              <div class="hw-engage-mode" data-i18n="e3_mode">Advisory &amp; scoped AI builds</div>
+              <div class="hw-engage-detail" data-i18n="e3_detail">AI strategy, transformation roadmaps, or defined build projects. Practical guidance and shipped systems &mdash; not slide decks.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BEAT 4: PROOF ══ -->
+<section class="proof" id="proof">
+  <div class="container">
+    <div class="sec-label reveal" data-i18n="proof_label">Track Record</div>
+    <h2 class="proof-headline reveal" data-i18n="proof_hl">Problems I've solved. Numbers I've moved.</h2>
+
+    <div class="proof-cards reveal">
+      <div class="proof-card">
+        <div>
+          <div class="proof-context">CHECK24 &middot; 11 years</div>
+          <div class="proof-challenge" data-i18n="p1_challenge">"Build the operational backbone for Germany's largest loan comparison &mdash; from early stage."</div>
+          <div class="proof-action" data-i18n="p1_action">Full P&amp;L as Managing Director Consumer Loans. Built the team to 50+, structured enterprise partnerships, scaled the operational core through 11 years of growth.</div>
+        </div>
+        <div class="proof-result">
+          <div class="proof-result-val">&euro;4B+</div>
+          <div class="proof-result-label" data-i18n="p1_label">Annual Volume</div>
+        </div>
+      </div>
+
+      <div class="proof-card">
+        <div>
+          <div class="proof-context">DFKP &middot; 2 years</div>
+          <div class="proof-challenge" data-i18n="p2_challenge">"Struggling startup with &euro;38M volume. Turn it into a funded growth machine."</div>
+          <div class="proof-action" data-i18n="p2_action">Rebuilt operations, sales, and partner ecosystem as COO. Scaled financing volume to &euro;223M in 24 months.</div>
+        </div>
+        <div class="proof-result">
+          <div class="proof-result-val">+400%</div>
+          <div class="proof-result-label" data-i18n="p2_label">Volume Growth</div>
+        </div>
+      </div>
+
+      <div class="proof-card">
+        <div>
+          <div class="proof-context">Interlead &middot; 6 months</div>
+          <div class="proof-challenge" data-i18n="p3_challenge">"&euro;27M company bleeding cash. 6 months to turn it around."</div>
+          <div class="proof-action" data-i18n="p3_action">Operational restructuring, process automation, team realignment. Delivered &euro;1.3M EBITDA as Interim COO. Crisis to profit.</div>
+        </div>
+        <div class="proof-result">
+          <div class="proof-result-val">&euro;1.3M</div>
+          <div class="proof-result-label" data-i18n="p3_label">EBITDA in 6mo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Proof — evolution framing -->
+    <div class="proof-ai reveal">
+      <div class="proof-ai-label">AskProAI &middot; 2025&ndash;Present</div>
+      <div class="proof-ai-title" data-i18n="ai_title">From managing complexity to building systems that reduce it.</div>
+      <div class="proof-ai-desc" data-i18n="ai_desc">After years of scaling operations in high-growth environments, I moved hands-on into AI. Not as a side project &mdash; as a running business with paying clients. Production-grade voice agents, workflow automation, AI-native CRM. Built end-to-end. The shift from operator to builder was intentional &mdash; and it's what makes me different.</div>
+      <div class="proof-ai-caps">
+        <span class="proof-ai-cap" data-i18n="ai_t1">Voice AI Agents</span>
+        <span class="proof-ai-cap" data-i18n="ai_t2">Workflow Automation</span>
+        <span class="proof-ai-cap" data-i18n="ai_t3">LLM Orchestration</span>
+        <span class="proof-ai-cap" data-i18n="ai_t4">AI-Native CRM</span>
+        <span class="proof-ai-cap" data-i18n="ai_t5">Full-Stack Build</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHERE AI GETS STUCK — VISUAL ══ -->
+<section class="leverage" id="leverage">
+  <div class="container">
+    <div class="sec-label reveal" data-i18n="lev_label">Where AI Gets Stuck</div>
+    <h2 class="proof-headline reveal" data-i18n="lev_hl">Most companies stall in the middle.</h2>
+
+    <div class="leverage-flow reveal">
+      <div class="lev-step">
+        <div class="lev-step-num" data-i18n="ls1_num">Step 1</div>
+        <div class="lev-step-title" data-i18n="ls1_title">AI Strategy</div>
+        <div class="lev-step-desc" data-i18n="ls1_desc">Use cases identified, roadmap exists, budget approved</div>
+      </div>
+      <div class="lev-stuck">
+        <div class="lev-step-num" data-i18n="ls2_num">The Gap</div>
+        <div class="lev-step-title" data-i18n="ls2_title">Execution Ownership</div>
+        <div class="lev-step-desc" data-i18n="ls2_desc">Nobody bridges business logic, technical build, and operational adoption</div>
+      </div>
+      <div class="lev-step">
+        <div class="lev-step-num" data-i18n="ls3_num">Step 3</div>
+        <div class="lev-step-title" data-i18n="ls3_title">Shipped Workflows</div>
+        <div class="lev-step-desc" data-i18n="ls3_desc">AI in real processes, adopted by teams, measured by KPIs</div>
+      </div>
+      <div class="lev-step">
+        <div class="lev-step-num" data-i18n="ls4_num">Step 4</div>
+        <div class="lev-step-title" data-i18n="ls4_title">Business Leverage</div>
+        <div class="lev-step-desc" data-i18n="ls4_desc">Costs down, speed up, teams compounding with AI</div>
+      </div>
+    </div>
+    <div class="leverage-caption reveal" data-i18n="lev_caption">This is where I operate. I own <em>the gap</em> &mdash; and everything after it.</div>
+  </div>
+</section>
+
+<!-- ══ DIFFERENTIATOR ══ -->
+<section class="differentiator" style="padding:0 0 80px;">
+  <div class="container">
+    <div class="diff-block reveal">
+      <div class="diff-text" data-i18n="diff_text">Not a pure consultant. Not just an operator. Not an AI generalist.<br><em>I connect operational substance with real AI implementation.</em></div>
+      <div class="diff-sub" data-i18n="diff_sub">Most people who understand AI have never run a P&amp;L. Most operators have never built a production system. I've done both &mdash; and that's what makes the difference when AI needs to actually land in your organization.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SITUATIONS — narrative list, not grid ══ -->
+<section class="situations" id="fit">
+  <div class="container">
+    <div class="sec-label reveal" data-i18n="sit_label">Is This You?</div>
+    <h2 class="sit-headline reveal" data-i18n="sit_hl">Companies bring me in when&hellip;</h2>
+
+    <div class="sit-list reveal">
+      <div class="sit-item">
+        <div class="sit-q" data-i18n="s1_q">"We need AI in our operations, but nobody owns it."</div>
+        <div class="sit-a" data-i18n="s1_a">I embed AI into real business processes &mdash; not as theory, but as shipped systems your teams actually use.</div>
+      </div>
+      <div class="sit-item">
+        <div class="sit-q" data-i18n="s2_q">"We're scaling fast and operations can't keep up."</div>
+        <div class="sit-a" data-i18n="s2_a">I build the operational backbone: KPIs, processes, team structures. Done this 3 times from startup to scale-up.</div>
+      </div>
+      <div class="sit-item">
+        <div class="sit-q" data-i18n="s3_q">"The numbers aren't working. We need a turnaround."</div>
+        <div class="sit-a" data-i18n="s3_a">Restructuring, automation, team realignment. Proven: &euro;1.3M EBITDA in 6 months from a crisis situation.</div>
+      </div>
+      <div class="sit-item">
+        <div class="sit-q" data-i18n="s4_q">"Strategy is clear, but execution stalls between business and engineering."</div>
+        <div class="sit-a" data-i18n="s4_a">I sit between both sides and build. Not as a translator. As someone who speaks both languages natively.</div>
+      </div>
+      <div class="sit-item">
+        <div class="sit-q" data-i18n="s5_q">"We need someone who can lead AND build AI systems."</div>
+        <div class="sit-a" data-i18n="s5_a">That combination barely exists. I've done senior operational leadership for 18 years AND built production AI systems from scratch.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BEAT 5: CTA ══ -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div>
+        <h2 class="cta-headline" data-i18n="cta_hl">If AI is getting stuck<br>in your operations &mdash;<br><em>let's talk.</em></h2>
+        <p class="cta-sub" data-i18n="cta_sub">20 minutes. No pitch. Tell me where AI isn't landing, where operations are breaking, or where you need someone who builds &mdash; and I'll tell you honestly whether I can help.</p>
+        <div class="cta-avail" data-i18n="cta_avail">Available immediately</div>
+        <div class="cta-actions">
+          <a href="mailto:fabianspitzer@icloud.com" class="btn-primary" data-i18n="cta_btn">Send Email</a>
+          <a href="/career-site/cv-fabian-spitzer.pdf" download class="btn-secondary" data-i18n="cta_cv_btn">Download CV</a>
+        </div>
+      </div>
+      <div class="cta-contact">
+        <a href="mailto:fabianspitzer@icloud.com" class="cta-link">
+          <span class="cta-link-label">Email</span>
+          <span class="cta-link-value">fabianspitzer@icloud.com</span>
+        </a>
+        <a href="https://linkedin.com/in/fabian-spitzer/" target="_blank" rel="noopener" class="cta-link">
+          <span class="cta-link-label">LinkedIn</span>
+          <span class="cta-link-value">linkedin.com/in/fabian-spitzer</span>
+        </a>
+        <a href="tel:+491604366218" class="cta-link">
+          <span class="cta-link-label">Phone</span>
+          <span class="cta-link-value">+49 160 4366218</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <span class="footer-copy">&copy; 2026 Fabian Spitzer &middot; Berlin / Remote</span>
+    <span class="footer-copy" data-i18n="footer_cv">Let's find out if there's a fit.</span>
+  </div>
+</footer>
+
+<script>
+const T = {
+  de: {
+    nav_gap:'Die Lücke', nav_how:'Wie ich arbeite', nav_proof:'Beweis', nav_fit:'Passt es?', nav_contact:'Kontakt', nav_cta:'Passung prüfen',
+    hero_eyebrow:'Fabian Spitzer &mdash; Operations + AI',
+    hero_h1:'Zwischen AI-Strategie und operativer Realität liegt eine Lücke.<br><em>Ich schließe sie.</em>',
+    hero_sub:'Ich habe zuerst echte Operations skaliert &mdash; bis €4B+, Teams von 50+, P&L-Turnaround-Verantwortung. Dann habe ich selbst produktionsreife AI-Systeme gebaut. Jetzt helfe ich Unternehmen, AI in laufende Workflows, stärkere Operations und messbaren Business-Hebel zu verwandeln.',
+    m_volume:'Ops-Volumen skaliert', m_growth:'Umsatzwachstum (24Mo)', m_ebitda:'EBITDA-Turnaround (6Mo)', m_team:'Team aufgebaut',
+    cta_explore:'Passung prüfen', cta_cv:'CV herunterladen',
+    trust_label:'Gebaut & skaliert bei',
+    gap_hl:'Ihr habt die AI-Demos gesehen.<br><em>Und jetzt?</em>',
+    g1_title:'20 AI Use Cases identifiziert. Keiner in Produktion.', g1_desc:'Euer Team hat AI-Ideen gesammelt. Berater haben eine Roadmap geliefert. Aber nichts ist live. Die Lücke zwischen Vision und Realität ist Execution &mdash; und niemand ownt sie.',
+    g2_title:'Engineering kann AI bauen. Aber wer verbindet es mit dem Business?', g2_desc:'Eure Entwickler kennen LLMs. Euer Ops-Team kennt die Prozesse. Aber niemand sitzt dazwischen und übersetzt Business-Anforderungen in technische Realität.',
+    g3_title:'Das Wachstum überholt eure Operations.', g3_desc:'Der Umsatz steigt, aber Prozesse brechen. Ihr braucht Struktur, KPIs und jemanden der das Rückgrat baut &mdash; kein weiteres Strategy-Deck.',
+    g4_title:'Ihr braucht einen Senior Operator. Aber einen, der AI wirklich versteht.', g4_desc:'Klassische COOs bauen keine Systeme. AI-Berater führen keine Operations. Ihr braucht jemanden der beides kann. Diese Kombination gibt es kaum.',
+    gap_bridge:'Hier komme ich ins Spiel. Nicht als Berater mit Framework. Als <em>Operator, der baut.</em>',
+    gap_bridge_sub:'18 Jahre operative Führung &mdash; Skalierung bis €4B+, P&L-Turnarounds, Teams von 50+ aufgebaut. Dann bin ich hands-on in AI gegangen: produktionsreife Voice-Agents, Workflow-Automatisierung und AI-native Operations-Systeme von Grund auf gebaut. Ich bringe beide Welten in euer Unternehmen.',
+    why_label:'Warum Unternehmen mich holen',
+    why1:'AI-Initiativen stecken fest zwischen Führung, Operations und Engineering &mdash; und niemand ownt die Lücke.',
+    why2:'Teams brauchen jemanden, der Execution UND Systeme versteht &mdash; keinen weiteren Berater, der nie geliefert hat.',
+    why3:'Kunden-, Support- oder Sales-Workflows brauchen AI-gestütztes Redesign &mdash; von jemandem, der diese Systeme in Produktion gebaut hat.',
+    why4:'Sie brauchen AI-Fortschritt, der an KPIs und gelieferten Ergebnissen gemessen wird &mdash; kein Experimentier-Theater.',
+    hw_label:'Wie ich arbeite', hw_hl:'Ein Operator. Mehrere Modi.', hw_intro:'Mein Kern ist immer derselbe: Senior Execution, hands-on Building, messbare Ergebnisse. Die Tiefe des Engagements passt sich an, was euer Unternehmen braucht.',
+    a1_title:'AI in echte Operations bringen', a1_desc:'Ich bringe AI vom Proof-of-Concept in die Produktion &mdash; eingebettet in echte Geschäftsprozesse, gemessen an echten KPIs, adoptiert von echten Teams.',
+    a2_title:'Workflows, die sich potenzieren', a2_desc:'Von Voice-Agents bis Prozess-Orchestrierung: Automatisierung, die nicht nur Zeit spart, sondern verändert, wie eure Teams arbeiten.',
+    a3_title:'Operations, die skalieren', a3_desc:'KPIs, Prozesse, Teamstrukturen, P&L-Management. Der volle Stack operativer Exzellenz &mdash; von Startup-Chaos zu strukturiertem Wachstum.',
+    a4_title:'Business und Tech, verbunden', a4_desc:'Ich spreche Vorstandsraum und Dev-Standup fließend. Die Lücke zwischen Business-Bedarf und Engineering-Delivery &mdash; ich schließe sie, indem ich beide Seiten baue.',
+    eng_title:'Engagement-Spektrum',
+    e1_tier:'Primär', e1_mode:'Festanstellung oder eingebettete Transformationsrolle', e1_detail:'COO, VP Operations, Head of Applied AI. Permanentes Teammitglied. Volle P&L-Verantwortung.',
+    e2_tier:'Sekundär', e2_mode:'Interim- & fokussierte Mandate', e2_detail:'3–12 Monate. Transformation, Turnarounds oder Überbrückung. Schneller, messbarer Impact.',
+    e3_tier:'Selektiv', e3_mode:'Advisory & definierte AI-Builds', e3_detail:'AI-Strategie, Transformations-Roadmaps oder definierte Build-Projekte. Praktische Beratung und gelieferte Systeme &mdash; keine Slide-Decks.',
+    proof_label:'Track Record', proof_hl:'Probleme, die ich gelöst habe. Zahlen, die ich bewegt habe.',
+    p1_challenge:'„Das operative Rückgrat für Deutschlands größten Kreditvergleich aufbauen &mdash; von der frühen Phase."', p1_action:'Volle P&L als Managing Director Consumer Loans. Team auf 50+ aufgebaut, Enterprise-Partnerschaften strukturiert, operativen Kern über 11 Jahre Wachstum skaliert.', p1_label:'Jahresvolumen',
+    p2_challenge:'„Kämpfendes Startup mit €38M Volumen. Daraus eine Wachstumsmaschine machen."', p2_action:'Operations, Vertrieb und Partner-Ökosystem als COO neu aufgebaut. Finanzierungsvolumen auf €223M in 24 Monaten skaliert.', p2_label:'Volumen-Wachstum',
+    p3_challenge:'„€27M-Unternehmen verbrennt Cash. 6 Monate für den Turnaround."', p3_action:'Operative Restrukturierung, Prozessautomatisierung, Team-Neuausrichtung. €1.3M EBITDA als Interim COO. Von Krise zu Profit.', p3_label:'EBITDA in 6Mo',
+    ai_title:'Vom Managen von Komplexität zum Bauen von Systemen, die sie reduzieren.', ai_desc:'Nach Jahren der Operations-Skalierung in Wachstumsumgebungen bin ich hands-on in AI gegangen. Nicht als Nebenprojekt &mdash; als laufendes Geschäft mit zahlenden Kunden. Produktionsreife Voice-Agents, Workflow-Automatisierung, AI-natives CRM. End-to-end gebaut. Der Shift vom Operator zum Builder war bewusst &mdash; und genau das macht den Unterschied.',
+    ai_t1:'Voice-AI-Agents', ai_t2:'Workflow-Automatisierung', ai_t3:'LLM-Orchestrierung', ai_t4:'AI-natives CRM', ai_t5:'Full-Stack Build',
+    lev_label:'Wo AI stecken bleibt', lev_hl:'Die meisten Unternehmen bleiben in der Mitte stecken.',
+    ls1_num:'Schritt 1', ls1_title:'AI-Strategie', ls1_desc:'Use Cases identifiziert, Roadmap steht, Budget freigegeben',
+    ls2_num:'Die Lücke', ls2_title:'Execution Ownership', ls2_desc:'Niemand verbindet Business-Logik, technischen Build und operative Adoption',
+    ls3_num:'Schritt 3', ls3_title:'Laufende Workflows', ls3_desc:'AI in echten Prozessen, adoptiert von Teams, gemessen an KPIs',
+    ls4_num:'Schritt 4', ls4_title:'Business-Hebel', ls4_desc:'Kosten runter, Speed hoch, Teams arbeiten mit AI',
+    lev_caption:'Hier arbeite ich. Ich owne <em>die Lücke</em> &mdash; und alles danach.',
+    diff_text:'Kein reiner Berater. Nicht nur Operator. Kein AI-Generalist.<br><em>Ich verbinde operative Substanz mit echter AI-Implementierung.</em>',
+    diff_sub:'Die meisten, die AI verstehen, haben nie eine P&L geführt. Die meisten Operator haben nie ein Produktionssystem gebaut. Ich habe beides gemacht &mdash; und genau das macht den Unterschied, wenn AI wirklich in eurer Organisation landen soll.',
+    sit_label:'Passt das?', sit_hl:'Unternehmen holen mich, wenn&hellip;',
+    s1_q:'„Wir brauchen AI in unseren Operations, aber niemand ownt es."', s1_a:'Ich integriere AI in echte Geschäftsprozesse &mdash; nicht als Theorie, sondern als gelieferte Systeme, die eure Teams wirklich nutzen.',
+    s2_q:'„Wir wachsen schnell und die Operations kommen nicht hinterher."', s2_a:'Ich baue das operative Rückgrat: KPIs, Prozesse, Teamstrukturen. Das habe ich 3x gemacht, von Startup bis Scale-up.',
+    s3_q:'„Die Zahlen stimmen nicht. Wir brauchen einen Turnaround."', s3_a:'Restrukturierung, Automatisierung, Team-Neuausrichtung. Bewiesen: €1.3M EBITDA in 6 Monaten aus einer Krisensituation.',
+    s4_q:'„Strategie ist klar, aber die Umsetzung stockt zwischen Business und Engineering."', s4_a:'Ich sitze dazwischen und baue. Nicht als Übersetzer. Als jemand, der beide Sprachen muttersprachlich beherrscht.',
+    s5_q:'„Wir brauchen jemanden der führen UND AI-Systeme bauen kann."', s5_a:'Diese Kombination gibt es kaum. Ich habe 18 Jahre Senior Operations Leadership UND produktionsreife AI-Systeme von Grund auf gebaut.',
+    cta_hl:'Wenn AI in euren Operations<br>nicht landet &mdash;<br><em>reden wir.</em>', cta_sub:'20 Minuten. Kein Pitch. Erzählt mir, wo AI nicht ankommt, wo Operations brechen, oder wo ihr jemanden braucht der baut &mdash; und ich sage euch ehrlich, ob ich helfen kann.',
+    cta_avail:'Sofort verfügbar', cta_btn:'Email senden', cta_cv_btn:'CV herunterladen',
+    footer_cv:'Finden wir heraus, ob es passt.',
+  }
+};
+
+let currentLang = localStorage.getItem('fsLang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('fsLang', lang);
+  document.getElementById('langBtn').textContent = lang === 'en' ? 'DE' : 'EN';
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (lang === 'de' && T.de[key]) el.innerHTML = T.de[key];
+    else if (lang === 'en' && el._enOriginal) el.innerHTML = el._enOriginal;
+  });
+}
+
+function toggleLang() { setLang(currentLang === 'en' ? 'de' : 'en'); }
+
+// ── Counter animation ──
+function animateCounter(el, target, prefix, suffix, duration) {
+  const start = performance.now();
+  const isFloat = String(target).includes('.');
+  function step(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const current = isFloat ? (target * ease).toFixed(1) : Math.round(target * ease);
+    el.querySelector('span').textContent = prefix + current + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Store EN originals
+  document.querySelectorAll('[data-i18n]').forEach(el => { el._enOriginal = el.innerHTML; });
+  if (currentLang === 'de') setLang('de');
+
+  // Counter animation for hero proof values
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const target = parseFloat(el.dataset.count);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        animateCounter(el, target, prefix, suffix, 1200);
+        counterObs.unobserve(el);
+      }
+    });
+  }, { threshold:.5 });
+  document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+});
+
+// Scroll progress
+window.addEventListener('scroll', () => {
+  const p = document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+  document.getElementById('scrollLine').style.width = (p||0) + '%';
+});
+
+// Reveal on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold:.08, rootMargin:'0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) { e.preventDefault(); document.querySelector(this.getAttribute('href'))?.scrollIntoView({behavior:'smooth',block:'start'}); });
+});
+</script>
+
+</body>
+</html>

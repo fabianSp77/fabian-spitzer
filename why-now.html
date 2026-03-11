@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Now — Fabian Spitzer</title>
+  <meta name="description" content="94% AI capability vs 33% deployed. The gap is operational, not technical. Companies closing it now will lead — the rest will still be running pilots in 2027.">
+  <meta property="og:title" content="Why Now — Fabian Spitzer">
+  <meta property="og:description" content="AI can do the work. Nobody's wiring it in. The gap between capability and deployment is growing.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23d4a054'/><text x='6' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23060610'>FS</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="noise" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ═══ NAV ═══ -->
+<nav role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <a href="/career-site/" class="nav-name"><span>FS</span> / Fabian Spitzer</a>
+    <ul class="nav-links">
+      <li><a href="/career-site/track-record.html" data-i18n="nav_track">Track Record</a></li>
+      <li><a href="/career-site/approach.html" data-i18n="nav_approach">Approach</a></li>
+      <li><a href="/career-site/why-now.html" class="active" data-i18n="nav_why">Why Now</a></li>
+      <li><a href="/career-site/#contact" data-i18n="nav_contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langBtn" onclick="toggleLang()" aria-label="Switch language">DE</button>
+      <a href="/career-site/#contact" class="nav-cta" data-i18n="nav_cta">Let's Talk</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══ PAGE HERO ═══ -->
+<section class="subpage-hero">
+  <div class="container">
+    <div class="sec-label r" data-i18n="wn_label">Why Now</div>
+    <h1 class="r" data-i18n="whynow_hero_h1">AI can do the work.<br><em>Nobody's wiring it in.</em></h1>
+    <p class="r r-d1" data-i18n="whynow_hero_sub">The gap between AI capability and actual deployment is operational — not technical. And it's growing.</p>
+  </div>
+</section>
+
+<!-- ═══ WHY NOW ═══ -->
+<section class="why-now" style="padding-top:40px;">
+  <div class="container">
+    <div class="why-now-grid">
+      <div class="why-now-content r">
+        <div class="why-now-stat">
+          <div class="why-now-numbers">
+            <div class="why-now-number">
+              <span class="why-now-val" data-count="94" data-prefix="" data-suffix="%"><span>94%</span></span>
+              <span class="why-now-desc" data-i18n="wn_cap">Theoretical AI capability</span>
+            </div>
+            <div class="why-now-vs">vs</div>
+            <div class="why-now-number">
+              <span class="why-now-val dim" data-count="33" data-prefix="" data-suffix="%"><span>33%</span></span>
+              <span class="why-now-desc" data-i18n="wn_actual">Actually deployed in companies</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="why-now-text r r-d1" data-i18n="wn_text">Most companies have an AI strategy. Few have someone who can actually wire it into their operations — across teams, processes, and existing workflows. The gap between what AI can do and what organizations actually deploy isn't technical. It's operational. And it's growing.</p>
+        <div class="why-now-cite r r-d1">Source: <a href="https://www.anthropic.com/research/labor-market-impacts" target="_blank" rel="noopener">Anthropic — Labor Market Impacts of AI, 2025</a></div>
+        <p class="why-now-kicker r r-d2" data-i18n="wn_kicker">The companies closing this gap now will lead. The rest will still be <em>running pilots in 2027.</em></p>
+      </div>
+
+      <!-- Gap Visualization -->
+      <div class="why-now-visual r r-d2">
+        <div class="gap-bar-group">
+          <div class="gap-bar-row">
+            <span class="gap-bar-label" data-i18n="wn_bar_ops">Operations</span>
+            <div class="gap-bar-track">
+              <div class="gap-bar-fill amber" style="--bar-w:90%"><span>90%</span></div>
+              <div class="gap-bar-fill dim" style="--bar-w:28%"><span>28%</span></div>
+            </div>
+          </div>
+          <div class="gap-bar-row">
+            <span class="gap-bar-label" data-i18n="wn_bar_fin">Finance</span>
+            <div class="gap-bar-track">
+              <div class="gap-bar-fill amber" style="--bar-w:80%"><span>80%</span></div>
+              <div class="gap-bar-fill dim" style="--bar-w:25%"><span>25%</span></div>
+            </div>
+          </div>
+          <div class="gap-bar-row">
+            <span class="gap-bar-label" data-i18n="wn_bar_mgmt">Management</span>
+            <div class="gap-bar-track">
+              <div class="gap-bar-fill amber" style="--bar-w:65%"><span>65%</span></div>
+              <div class="gap-bar-fill dim" style="--bar-w:20%"><span>20%</span></div>
+            </div>
+          </div>
+          <div class="gap-bar-row">
+            <span class="gap-bar-label" data-i18n="wn_bar_sales">Sales</span>
+            <div class="gap-bar-track">
+              <div class="gap-bar-fill amber" style="--bar-w:55%"><span>55%</span></div>
+              <div class="gap-bar-fill dim" style="--bar-w:18%"><span>18%</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="gap-bar-legend">
+          <span class="gap-legend-item"><span class="gap-legend-dot amber"></span><span data-i18n="wn_leg_th">AI Capability</span></span>
+          <span class="gap-legend-item"><span class="gap-legend-dot dim"></span><span data-i18n="wn_leg_ob">Actually Deployed</span></span>
+        </div>
+        <div class="gap-bar-tagline" data-i18n="wn_chart_label">The <em>gap</em> is an operations problem — not a technology one.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAGE CTA ═══ -->
+<section class="page-cta r">
+  <div class="container">
+    <p data-i18n="page_cta">Ready to talk? <em>Let's connect.</em></p>
+    <a href="/career-site/#contact" class="btn-primary" data-i18n="page_cta_btn">Let's Talk</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <span class="footer-left">© 2026 Fabian Spitzer · Berlin / Remote</span>
+    <div class="footer-right">
+      <a href="https://linkedin.com/in/fabian-spitzer/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/career-site/cv-fabian-spitzer.pdf" download data-i18n="footer_cv">Download CV</a>
+      <a href="/career-site/one-pager.html" target="_blank" data-i18n="footer_op">One-Pager</a>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

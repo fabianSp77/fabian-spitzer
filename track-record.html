@@ -23,15 +23,20 @@
 <nav role="navigation" aria-label="Main navigation">
   <div class="container">
     <a href="/fabian-spitzer/" class="nav-name"><span>FS</span> / Fabian Spitzer</a>
-    <ul class="nav-links">
-      <li><a href="/fabian-spitzer/track-record.html" class="active" data-i18n="nav_track">Track Record</a></li>
-      <li><a href="/fabian-spitzer/approach.html" data-i18n="nav_approach">Approach</a></li>
-      <li><a href="/fabian-spitzer/why-now.html" data-i18n="nav_why">Why Now</a></li>
-      <li><a href="/fabian-spitzer/#contact" data-i18n="nav_contact">Contact</a></li>
-    </ul>
-    <div class="nav-right">
-      <button class="lang-toggle" id="langBtn" onclick="toggleLang()" aria-label="Switch language">DE</button>
-      <a href="/fabian-spitzer/#contact" class="nav-cta" data-i18n="nav_cta">Let's Talk</a>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <ul class="nav-links">
+        <li><a href="/fabian-spitzer/track-record.html" class="active" data-i18n="nav_track">Track Record</a></li>
+        <li><a href="/fabian-spitzer/approach.html" data-i18n="nav_approach">Approach</a></li>
+        <li><a href="/fabian-spitzer/why-now.html" data-i18n="nav_why">Why Now</a></li>
+        <li><a href="/fabian-spitzer/#contact" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langBtn" onclick="toggleLang()" aria-label="Switch language">DE</button>
+        <a href="/fabian-spitzer/#contact" class="nav-cta" data-i18n="nav_cta">Let's Talk</a>
+      </div>
     </div>
   </div>
 </nav>

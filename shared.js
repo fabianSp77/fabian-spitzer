@@ -159,6 +159,66 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // ── Mobile menu ──
+  const burger = document.getElementById('navBurger');
+  const navEl = document.querySelector('nav');
+  if (burger && navEl) {
+    const menu = document.getElementById('navMenu');
+
+    function toggleMenu(force) {
+      const opening = force !== undefined ? force : !navEl.classList.contains('menu-open');
+      navEl.classList.toggle('menu-open', opening);
+      burger.setAttribute('aria-expanded', String(opening));
+      burger.setAttribute('aria-label', opening ? 'Close menu' : 'Open menu');
+      document.body.classList.toggle('menu-locked', opening);
+      if (opening && menu) {
+        const first = menu.querySelector('a');
+        if (first) setTimeout(() => first.focus(), 100);
+      }
+    }
+
+    burger.addEventListener('click', () => toggleMenu());
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && navEl.classList.contains('menu-open')) {
+        toggleMenu(false);
+        burger.focus();
+      }
+    });
+
+    if (menu) {
+      menu.addEventListener('click', e => {
+        if (e.target.matches('a')) toggleMenu(false);
+      });
+    }
+
+    document.addEventListener('click', e => {
+      if (navEl.classList.contains('menu-open') && !navEl.contains(e.target)) {
+        toggleMenu(false);
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && navEl.classList.contains('menu-open')) {
+        toggleMenu(false);
+      }
+    }, { passive: true });
+
+    if (menu) {
+      menu.addEventListener('keydown', e => {
+        if (e.key !== 'Tab' || !navEl.classList.contains('menu-open')) return;
+        const focusable = [burger, ...menu.querySelectorAll('a, button')];
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
+      });
+    }
+  }
+
   // Contact form (AJAX submit)
   const form = document.getElementById('contactForm');
   const success = document.getElementById('formSuccess');

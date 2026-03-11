@@ -252,110 +252,19 @@
     }
 
     /* ══════════════════════════════════
-       PRINT / PDF — A4 Sidebar Layout
+       PRINT / PDF — prints the web layout
     ══════════════════════════════════ */
     @media print{
       *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important;}
-      body{background:var(--bg)!important;overflow:hidden;}
-      .noise,.scroll-progress,.controls,.back-link{display:none!important;}
-
-      .container{max-width:none;padding:0;}
-
-      /* Convert to A4 sidebar grid */
-      .print-wrapper{
-        width:210mm;min-height:297mm;max-height:297mm;overflow:hidden;
-        display:grid!important;grid-template-columns:58mm 1fr;grid-template-rows:1fr auto;
-        margin:0 auto;
-      }
-
-      /* ── Print Sidebar ── */
-      .print-sidebar{
-        display:flex!important;flex-direction:column;gap:0;
-        grid-row:1/-1;background:var(--bg-elevated)!important;
-        padding:14mm 4mm 10mm 5mm;border-right:1px solid var(--border);
-      }
-      .ps-identity{margin-bottom:4mm;}
-      .ps-monogram{
-        font-family:var(--mono);font-size:24px;font-weight:600;color:var(--amber);
-        width:12mm;height:12mm;display:flex;align-items:center;justify-content:center;
-        border:2px solid var(--amber);margin-bottom:2mm;letter-spacing:-.02em;
-      }
-      .ps-name{font-family:var(--serif);font-size:13px;font-weight:400;line-height:1.15;}
-      .ps-tagline{font-family:var(--mono);font-size:6.5px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-top:1mm;}
-
-      .ps-section{margin-bottom:3.5mm;}
-      .ps-label{font-family:var(--mono);font-size:6px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:1.5mm;}
-      .ps-text{font-size:7px;color:var(--muted);font-weight:300;line-height:1.6;letter-spacing:.01em;}
-      .ps-text a{color:var(--muted);text-decoration:none;}
-      .ps-text strong{color:var(--amber);font-weight:500;}
-
-      .ps-fit-group{margin-bottom:2mm;}
-      .ps-fit-label{font-family:var(--mono);font-size:5.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:1mm;}
-      .ps-tags{display:flex;flex-wrap:wrap;gap:1mm;}
-      .ps-tag{font-family:var(--mono);font-size:6px;font-weight:400;color:var(--amber);border:1px solid rgba(212,160,84,.25);padding:.6mm 1.5mm;letter-spacing:.02em;}
-
-      .ps-engage{display:flex;flex-direction:column;gap:1.5mm;}
-      .ps-engage-item{display:grid;grid-template-columns:2mm 1fr;gap:1mm;align-items:start;}
-      .ps-engage-dot{width:2mm;height:2mm;background:var(--amber);margin-top:.4mm;}
-      .ps-engage-title{font-family:var(--mono);font-size:6.5px;font-weight:500;letter-spacing:.04em;color:var(--text);}
-      .ps-engage-desc{font-size:6.5px;color:var(--muted);font-weight:300;line-height:1.3;}
-
-      /* ── Print Content ── */
-      .print-content{
-        padding:14mm 12mm 8mm 8mm;position:relative;overflow:hidden;
-      }
-      .print-content .vp h1{font-size:16px;margin-bottom:1.5mm;line-height:1.25;}
-      .print-content .vp p{font-size:8px;line-height:1.5;margin-bottom:0;}
-      .print-content .vp{margin-bottom:3mm;}
-
-      .print-content .metrics{margin-bottom:3.5mm;border:1px solid var(--border);gap:1px;}
-      .print-content .metrics .metric{padding:2.5mm 2mm;}
-      .print-content .metrics .metric-val{font-size:18px;}
-      .print-content .metrics .metric-label{font-size:5.5px;margin-top:1mm;}
-
-      .print-content .sec-label{font-size:6.5px;margin-bottom:1.5mm;}
-
-      .print-content .gap-grid{margin-bottom:3.5mm;gap:1px;border:1px solid var(--border);}
-      .print-content .gap-item{padding:2mm 2.5mm;}
-      .print-content .gap-problem{font-size:8.5px;margin-bottom:.5mm;}
-      .print-content .gap-desc{font-size:6.5px;line-height:1.35;}
-
-      .print-content .records{margin-bottom:3mm;gap:1px;border:1px solid var(--border);}
-      .print-content .record{padding:2mm 2.5mm;grid-template-columns:1fr auto;gap:2mm;}
-      .print-content .record-company{font-size:6px;margin-bottom:.5mm;}
-      .print-content .record-narrative{font-size:7.5px;margin-bottom:.5mm;}
-      .print-content .record-desc{font-size:6.5px;line-height:1.3;}
-      .print-content .record-stat-val{font-size:15px;}
-      .print-content .record-stat-sub{font-size:5px;margin-top:.5mm;}
-      .print-content .record-stat{min-width:16mm;}
-
-      .print-content .ai-card{padding:2.5mm 3mm;margin-bottom:0;border-left:2px solid var(--amber);}
-      .print-content .ai-header{font-size:6px;margin-bottom:1mm;}
-      .print-content .ai-title{font-size:10px;margin-bottom:1mm;}
-      .print-content .ai-desc{font-size:7px;line-height:1.35;margin-bottom:1.5mm;}
-      .print-content .ai-card::before{display:none;}
-      .print-content .tech-tag{font-size:5.5px;padding:.6mm 1.5mm;}
-      .print-content .tech-tags{gap:1mm;}
-
-      /* ── Print Footer ── */
-      .print-footer{
-        grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;
-        padding:2mm 12mm 2mm 5mm;border-top:1px solid var(--border);
-      }
-      .print-footer span{font-family:var(--mono);font-size:6px;color:var(--dim);letter-spacing:.04em;}
-
-      /* Hide web-only elements in print */
-      .web-only{display:none!important;}
-      .print-only{display:flex!important;}
-
-      /* Reset reveal */
+      body{background:var(--bg)!important;}
+      .noise,.scroll-progress,.controls{display:none!important;}
+      .container{max-width:680px;padding:0 10mm;}
       .r{opacity:1!important;transform:none!important;transition:none!important;}
+      .metrics{grid-template-columns:repeat(4,1fr);}
+      .gap-grid{grid-template-columns:repeat(3,1fr);}
+      .record{grid-template-columns:1fr auto;}
+      .info-grid{grid-template-columns:1fr 1fr;}
     }
-
-    /* Hide print elements on screen */
-    .print-sidebar,.print-footer{display:none;}
-    .print-wrapper{display:block;}
-    @media not print{.print-only{display:none!important;}}
   </style>
 </head>
 <body>
@@ -363,95 +272,11 @@
 <div class="noise" aria-hidden="true"></div>
 <div class="scroll-progress" aria-hidden="true"></div>
 
-<!-- ═══ PRINT-ONLY: Sidebar ═══ -->
-<div class="print-wrapper">
-<aside class="print-sidebar print-only">
-  <div class="ps-identity">
-    <div class="ps-monogram">FS</div>
-    <div class="ps-name">Fabian Spitzer</div>
-    <div class="ps-tagline" data-i18n="op_tagline">Operations + AI</div>
-  </div>
-
-  <div class="ps-section">
-    <div class="ps-label" data-i18n="op_contact">Contact</div>
-    <div class="ps-text">
-      <strong>fabianspitzer@icloud.com</strong><br>
-      <a href="https://www.linkedin.com/in/fabian-spitzer/">linkedin.com/in/fabian-spitzer</a><br>
-      +49 160 4366218<br>
-      Berlin
-    </div>
-  </div>
-
-  <div class="ps-section">
-    <div class="ps-label" data-i18n="op_bestfit">Best Fit</div>
-    <div class="ps-fit-group">
-      <div class="ps-fit-label" data-i18n="op_env_label">Environment</div>
-      <div class="ps-tags">
-        <span class="ps-tag">AI-First</span>
-        <span class="ps-tag">Scale-Up (50-500)</span>
-      </div>
-    </div>
-    <div class="ps-fit-group">
-      <div class="ps-fit-label" data-i18n="op_leverage_label">Where I Add Most Leverage</div>
-      <div class="ps-tags">
-        <span class="ps-tag" data-i18n="op_leverage_aiprod">AI &rarr; Production</span>
-        <span class="ps-tag" data-i18n="op_leverage_ops">Ops Transformation</span>
-        <span class="ps-tag">Turnarounds</span>
-        <span class="ps-tag" data-i18n="op_leverage_gap">Business-Tech Gap</span>
-      </div>
-    </div>
-    <div class="ps-fit-group">
-      <div class="ps-fit-label" data-i18n="op_ind_label">Industries</div>
-      <div class="ps-tags">
-        <span class="ps-tag">FinTech</span>
-        <span class="ps-tag">AI / SaaS</span>
-        <span class="ps-tag">Marketplace</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="ps-section">
-    <div class="ps-label" data-i18n="op_engage">Engagement</div>
-    <div class="ps-engage">
-      <div class="ps-engage-item">
-        <div class="ps-engage-dot"></div>
-        <div>
-          <div class="ps-engage-title" data-i18n="op_e1_title">Full-Time Leadership</div>
-          <div class="ps-engage-desc" data-i18n="op_e1_desc">COO, VP Operations, Head of Applied AI.</div>
-        </div>
-      </div>
-      <div class="ps-engage-item">
-        <div class="ps-engage-dot" style="opacity:.7"></div>
-        <div>
-          <div class="ps-engage-title" data-i18n="op_e2_title">Interim Mandates</div>
-          <div class="ps-engage-desc" data-i18n="op_e2_desc">3-12 months. Transformation &amp; turnarounds.</div>
-        </div>
-      </div>
-      <div class="ps-engage-item">
-        <div class="ps-engage-dot" style="opacity:.5"></div>
-        <div>
-          <div class="ps-engage-title" data-i18n="op_e3_title">Advisory &amp; Sparring</div>
-          <div class="ps-engage-desc" data-i18n="op_e3_desc">AI strategy, operational design, roadmaps.</div>
-        </div>
-      </div>
-      <div class="ps-engage-item">
-        <div class="ps-engage-dot" style="opacity:.35"></div>
-        <div>
-          <div class="ps-engage-title" data-i18n="op_e4_title">Project-Based AI Builds</div>
-          <div class="ps-engage-desc" data-i18n="op_e4_desc">Workflow systems, automation, infrastructure.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</aside>
-
-<!-- ═══ WEB CONTENT (also used for print main column) ═══ -->
-<main class="print-content">
+<main>
   <div class="container">
 
-    <!-- Back link (web only) -->
-    <header class="op-header web-only">
+    <!-- Back link -->
+    <header class="op-header">
       <a href="/fabian-spitzer/" class="back-link r">
         <svg viewBox="0 0 24 24"><path d="M19 12H5M5 12l6-6M5 12l6 6"/></svg>
         fabianspitzer.com
@@ -572,8 +397,8 @@
       </div>
     </div>
 
-    <!-- Best Fit + Engagement (web only) -->
-    <div class="info-grid web-only r">
+    <!-- Best Fit + Engagement -->
+    <div class="info-grid r">
       <div class="info-panel">
         <div class="sec-label" data-i18n="op_bestfit">Best Fit</div>
         <div class="fit-group">
@@ -637,20 +462,13 @@
     </div>
 
     <!-- Footer -->
-    <div class="op-footer web-only r">
+    <div class="op-footer r">
       <span class="footer-note" data-i18n="op_footer_cv">Full CV &amp; references available on request</span>
     </div>
 
   </div>
 </main>
 
-<!-- ═══ PRINT-ONLY: Footer ═══ -->
-<footer class="print-footer print-only">
-  <span>&copy; 2026 Fabian Spitzer &middot; Berlin</span>
-  <span data-i18n="op_footer_cv">Full CV &amp; references available on request</span>
-</footer>
-
-</div><!-- /print-wrapper -->
 
 <!-- ═══ CONTROLS ═══ -->
 <div class="controls">

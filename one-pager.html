@@ -6,694 +6,447 @@
   <title>Fabian Spitzer — AI Operations & Transformation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=JetBrains+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    @page {
-      size: A4;
-      margin: 0;
-    }
+    @page { size:A4; margin:0; }
 
     :root {
-      --bg: #08080e;
-      --card: #0d0d15;
-      --border: rgba(255,255,255,.08);
-      --border-solid: #1a1a24;
-      --text: #e8e6e3;
-      --muted: #7a7888;
-      --dim: #3d3b47;
-      --amber: #d4a054;
-      --amber-light: #e8b86d;
-      --green: #4ade80;
-      --serif: 'DM Serif Display', Georgia, serif;
-      --mono: 'JetBrains Mono', monospace;
-      --body: 'Outfit', sans-serif;
+      --bg:#060610;
+      --bg-elevated:#0b0b18;
+      --card:#0e0e1a;
+      --border:rgba(255,255,255,.07);
+      --text:#eceae7;
+      --text-sec:#c8c6c2;
+      --muted:#8e8c98;
+      --dim:#555362;
+      --amber:#d4a054;
+      --amber-bright:#e8b86d;
+      --green:#4ade80;
+      --serif:'DM Serif Display', Georgia, serif;
+      --mono:'JetBrains Mono', monospace;
+      --body:'Outfit', -apple-system, sans-serif;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:var(--bg);color:var(--text);font-family:var(--body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--body);
-      -webkit-font-smoothing: antialiased;
+    /* ── Page (A4) ── */
+    .page{
+      width:210mm;min-height:297mm;max-height:297mm;margin:0 auto;overflow:hidden;position:relative;
+      display:grid;grid-template-columns:60mm 1fr;grid-template-rows:1fr auto;
     }
 
-    .page {
-      width: 210mm;
-      min-height: 297mm;
-      max-height: 297mm;
-      margin: 0 auto;
-      padding: 20mm 22mm 16mm;
-      overflow: hidden;
-      position: relative;
+    /* ── Sidebar ── */
+    .sidebar{
+      grid-row:1/-1;background:var(--bg-elevated);
+      padding:18mm 5mm 12mm 6mm;border-right:1px solid var(--border);
+      display:flex;flex-direction:column;gap:0;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact;
     }
 
-    /* Grid accent */
-    .page::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: .12;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 40mm 40mm;
-      mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 10%, transparent 70%);
-      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 10%, transparent 70%);
+    .sb-identity{margin-bottom:5mm;}
+    .monogram{
+      font-family:var(--mono);font-size:28px;font-weight:600;color:var(--amber);
+      width:14mm;height:14mm;display:flex;align-items:center;justify-content:center;
+      border:2px solid var(--amber);margin-bottom:3mm;letter-spacing:-.02em;
+    }
+    .sb-name{font-family:var(--serif);font-size:15px;font-weight:400;line-height:1.15;}
+    .sb-tagline{font-family:var(--mono);font-size:7px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-top:1.5mm;}
+
+    .sb-section{margin-bottom:4mm;}
+    .sb-label{font-family:var(--mono);font-size:6.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:2mm;}
+    .sb-text{font-size:7.5px;color:var(--muted);font-weight:300;line-height:1.6;letter-spacing:.01em;}
+    .sb-text a{color:var(--muted);text-decoration:none;}
+    .sb-text strong{color:var(--amber);font-weight:500;}
+
+    /* Sidebar: Fit tags */
+    .sb-fit-group{margin-bottom:2.5mm;}
+    .sb-fit-label{font-family:var(--mono);font-size:6px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:1.5mm;}
+    .sb-tags{display:flex;flex-wrap:wrap;gap:1.5mm;}
+    .sb-tag{font-family:var(--mono);font-size:6.5px;font-weight:400;color:var(--amber);border:1px solid rgba(212,160,84,.25);padding:.8mm 2mm;letter-spacing:.02em;}
+
+    /* Sidebar: Engagement */
+    .sb-engage{display:flex;flex-direction:column;gap:2mm;}
+    .sb-engage-item{display:grid;grid-template-columns:2.5mm 1fr;gap:1.5mm;align-items:start;}
+    .sb-engage-dot{width:2.5mm;height:2.5mm;background:var(--amber);margin-top:.4mm;flex-shrink:0;}
+    .sb-engage-title{font-family:var(--mono);font-size:7px;font-weight:500;letter-spacing:.04em;color:var(--text);}
+    .sb-engage-desc{font-size:7px;color:var(--muted);font-weight:300;line-height:1.3;}
+
+    /* Sidebar: Available */
+    .sb-available{
+      font-family:var(--mono);font-size:8px;font-weight:500;color:var(--green);letter-spacing:.03em;margin-top:auto;padding-top:3mm;
+    }
+    .sb-available::before{content:'';display:inline-block;width:5px;height:5px;background:var(--green);border-radius:50%;margin-right:1.5mm;vertical-align:middle;}
+
+    /* ── Content ── */
+    .content{
+      padding:18mm 16mm 10mm 10mm;position:relative;overflow:hidden;
+    }
+    .content::before{
+      content:'';position:absolute;inset:0;pointer-events:none;opacity:.08;
+      background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+      background-size:32mm 32mm;
+      mask-image:radial-gradient(ellipse 70% 50% at 30% 20%,black 10%,transparent 70%);
+      -webkit-mask-image:radial-gradient(ellipse 70% 50% at 30% 20%,black 10%,transparent 70%);
     }
 
-    /* ── Header ── */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 3mm;
-      position: relative;
-      z-index: 1;
+    /* Value Prop */
+    .vp{position:relative;z-index:1;margin-bottom:4mm;}
+    .vp h1{font-family:var(--serif);font-size:18px;font-weight:400;line-height:1.3;margin-bottom:2mm;}
+    .vp h1 em{color:var(--amber);font-style:italic;}
+    .vp p{font-size:8.5px;color:var(--muted);font-weight:300;line-height:1.5;max-width:125mm;}
+
+    /* Metrics */
+    .metrics{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);
+      margin-bottom:4.5mm;position:relative;z-index:1;
     }
+    .metric{background:var(--bg);padding:3mm 2.5mm;text-align:center;}
+    .metric-val{font-family:var(--mono);font-size:20px;font-weight:600;color:var(--amber);line-height:1;letter-spacing:-.02em;}
+    .metric-label{font-family:var(--mono);font-size:6px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-top:1.5mm;}
 
-    .name {
-      font-family: var(--serif);
-      font-size: 28px;
-      font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: -.01em;
+    /* Section label */
+    .sec-label{font-family:var(--mono);font-size:7px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:2mm;position:relative;z-index:1;}
+
+    /* Gap Cards */
+    .gap-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);
+      margin-bottom:4.5mm;position:relative;z-index:1;
     }
+    .gap-item{background:var(--bg);padding:2.5mm 3mm;}
+    .gap-problem{font-family:var(--serif);font-size:9.5px;font-weight:400;line-height:1.25;margin-bottom:1mm;}
+    .gap-desc{font-size:7px;color:var(--muted);font-weight:300;line-height:1.4;}
 
-    .tagline {
-      font-family: var(--mono);
-      font-size: 8px;
-      font-weight: 400;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-top: 1.5mm;
+    /* Track Record */
+    .records{
+      display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);
+      margin-bottom:4mm;position:relative;z-index:1;
     }
+    .record{background:var(--bg);padding:2.5mm 3mm;display:grid;grid-template-columns:1fr auto;gap:3mm;align-items:center;}
+    .record-company{font-family:var(--mono);font-size:6.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);}
+    .record-narrative{font-size:8px;color:var(--text);font-weight:400;line-height:1.3;font-style:italic;}
+    .record-desc{font-size:7px;color:var(--muted);font-weight:300;margin-top:.5mm;line-height:1.35;}
+    .record-stat{text-align:right;min-width:20mm;}
+    .record-stat-val{font-family:var(--mono);font-size:17px;font-weight:600;color:var(--amber);line-height:1;letter-spacing:-.02em;}
+    .record-stat-sub{font-family:var(--mono);font-size:5.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);margin-top:1mm;}
 
-    .contact {
-      text-align: right;
-      font-family: var(--mono);
-      font-size: 8px;
-      color: var(--muted);
-      letter-spacing: .02em;
-      line-height: 1.9;
+    /* AI Card */
+    .ai-card{
+      background:var(--card);border:1px solid var(--border);padding:3mm 3.5mm;position:relative;z-index:1;
+      border-left:2px solid var(--amber);
     }
+    .ai-header{font-family:var(--mono);font-size:6.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:1mm;}
+    .ai-title{font-family:var(--serif);font-size:11px;font-weight:400;margin-bottom:1mm;line-height:1.3;}
+    .ai-desc{font-size:7.5px;color:var(--muted);font-weight:300;line-height:1.4;margin-bottom:2mm;}
+    .tech-tags{display:flex;flex-wrap:wrap;gap:1.5mm;}
+    .tech-tag{font-family:var(--mono);font-size:6px;font-weight:400;color:var(--muted);border:1px solid var(--border);padding:.8mm 2mm;letter-spacing:.03em;}
 
-    .contact a { color: var(--muted); text-decoration: none; }
-    .contact strong { color: var(--amber); font-weight: 500; }
-
-    /* ── Dividers ── */
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 3.5mm 0;
-      position: relative;
-      z-index: 1;
+    /* Footer */
+    .page-footer{
+      grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;
+      padding:2.5mm 16mm 2.5mm 6mm;border-top:1px solid var(--border);
+      position:relative;z-index:1;
     }
+    .footer-text{font-family:var(--mono);font-size:6.5px;color:var(--dim);letter-spacing:.04em;}
+    .footer-text a{color:var(--dim);text-decoration:none;}
 
-    .divider-amber {
-      height: 2px;
-      background: linear-gradient(90deg, var(--amber), transparent 70%);
-      margin: 3.5mm 0;
-      position: relative;
-      z-index: 1;
+    /* ── Controls (floating, no-print) ── */
+    .controls{
+      position:fixed;bottom:24px;right:24px;display:flex;gap:8px;align-items:center;z-index:100;
     }
-
-    /* ── Value Prop ── */
-    .value-prop {
-      position: relative;
-      z-index: 1;
-      margin-bottom: 3.5mm;
+    .lang-btn{
+      font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;
+      color:var(--muted);background:none;border:1px solid var(--border);
+      padding:8px 14px;cursor:pointer;transition:all .25s;
     }
-
-    .value-prop h2 {
-      font-family: var(--serif);
-      font-size: 17px;
-      font-weight: 400;
-      line-height: 1.35;
-      margin-bottom: 2mm;
+    .lang-btn:hover{border-color:var(--muted);color:var(--text);}
+    .print-btn{
+      font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--bg);background:var(--amber);border:none;padding:10px 24px;cursor:pointer;transition:all .2s;
     }
-
-    .value-prop h2 em {
-      color: var(--amber);
-      font-style: italic;
-    }
-
-    .value-prop p {
-      font-size: 9px;
-      color: var(--muted);
-      font-weight: 300;
-      line-height: 1.5;
-      max-width: 135mm;
-    }
-
-    /* ── Metrics ── */
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      margin-bottom: 4.5mm;
-      position: relative;
-      z-index: 1;
-    }
-
-    .metric {
-      background: var(--bg);
-      padding: 3mm 2.5mm;
-      text-align: center;
-    }
-
-    .metric-value {
-      font-family: var(--mono);
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--amber);
-      line-height: 1;
-      letter-spacing: -.02em;
-    }
-
-    .metric-label {
-      font-family: var(--mono);
-      font-size: 6.5px;
-      font-weight: 400;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-top: 1.5mm;
-    }
-
-    /* ── Section label ── */
-    .section-label {
-      font-family: var(--mono);
-      font-size: 7px;
-      font-weight: 500;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 2mm;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ── The Gap (problem cards) ── */
-    .gap-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      margin-bottom: 4.5mm;
-      position: relative;
-      z-index: 1;
-    }
-
-    .gap-item {
-      background: var(--bg);
-      padding: 2.5mm 3mm;
-    }
-
-    .gap-problem {
-      font-family: var(--serif);
-      font-size: 10px;
-      font-weight: 400;
-      line-height: 1.25;
-      margin-bottom: 1mm;
-    }
-
-    .gap-desc {
-      font-size: 7.5px;
-      color: var(--muted);
-      font-weight: 300;
-      line-height: 1.4;
-    }
-
-    /* ── Track Record ── */
-    .records {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      margin-bottom: 4mm;
-      position: relative;
-      z-index: 1;
-    }
-
-    .record {
-      background: var(--bg);
-      padding: 2.5mm 3mm;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 3mm;
-      align-items: center;
-    }
-
-    .record-company {
-      font-family: var(--mono);
-      font-size: 7px;
-      font-weight: 500;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--amber);
-    }
-
-    .record-narrative {
-      font-size: 8.5px;
-      color: var(--text);
-      font-weight: 400;
-      line-height: 1.35;
-      font-style: italic;
-    }
-
-    .record-desc {
-      font-size: 7.5px;
-      color: var(--muted);
-      font-weight: 300;
-      margin-top: .5mm;
-      line-height: 1.35;
-    }
-
-    .record-stat {
-      text-align: right;
-      min-width: 22mm;
-    }
-
-    .record-stat-value {
-      font-family: var(--mono);
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--amber);
-      line-height: 1;
-      letter-spacing: -.02em;
-    }
-
-    .record-stat-sub {
-      font-family: var(--mono);
-      font-size: 6px;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-top: 1mm;
-    }
-
-    /* ── AI card ── */
-    .ai-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 3mm 3.5mm;
-      margin-bottom: 4mm;
-      position: relative;
-      z-index: 1;
-    }
-
-    .ai-card-header {
-      font-family: var(--mono);
-      font-size: 7px;
-      font-weight: 500;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 1mm;
-    }
-
-    .ai-card-title {
-      font-family: var(--serif);
-      font-size: 12px;
-      font-weight: 400;
-      margin-bottom: 1mm;
-    }
-
-    .ai-card-desc {
-      font-size: 8px;
-      color: var(--muted);
-      font-weight: 300;
-      line-height: 1.4;
-      margin-bottom: 2mm;
-    }
-
-    .tech-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5mm;
-    }
-
-    .tech-tag {
-      font-family: var(--mono);
-      font-size: 6.5px;
-      font-weight: 400;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: .8mm 2mm;
-      letter-spacing: .03em;
-    }
-
-    /* ── Bottom grid ── */
-    .bottom-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5mm;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ── Engagement Spectrum ── */
-    .engage-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2mm;
-    }
-
-    .engage-item {
-      display: grid;
-      grid-template-columns: 2.5mm 1fr;
-      gap: 2mm;
-      align-items: start;
-    }
-
-    .engage-dot {
-      width: 2.5mm;
-      height: 2.5mm;
-      background: var(--amber);
-      margin-top: .6mm;
-    }
-
-    .engage-title {
-      font-family: var(--mono);
-      font-size: 8px;
-      font-weight: 500;
-      letter-spacing: .04em;
-      color: var(--text);
-    }
-
-    .engage-desc {
-      font-size: 7.5px;
-      color: var(--muted);
-      font-weight: 300;
-      line-height: 1.3;
-    }
-
-    /* ── Best Fit ── */
-    .fit-block {
-      margin-bottom: 2.5mm;
-    }
-
-    .fit-label {
-      font-family: var(--mono);
-      font-size: 6.5px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 1.5mm;
-    }
-
-    .fit-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5mm;
-    }
-
-    .fit-tag {
-      font-family: var(--mono);
-      font-size: 7.5px;
-      font-weight: 400;
-      color: var(--amber);
-      border: 1px solid rgba(212,160,84,.25);
-      padding: 1mm 2mm;
-      letter-spacing: .02em;
-    }
-
-    .available {
-      font-family: var(--mono);
-      font-size: 9px;
-      font-weight: 500;
-      color: var(--green);
-      letter-spacing: .03em;
-      margin-top: 2mm;
-    }
-
-    .available::before {
-      content: '';
-      display: inline-block;
-      width: 5px;
-      height: 5px;
-      background: var(--green);
-      border-radius: 50%;
-      margin-right: 1.5mm;
-      vertical-align: middle;
-    }
-
-    /* ── Footer ── */
-    .page-footer {
-      position: absolute;
-      bottom: 9mm;
-      left: 22mm;
-      right: 22mm;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 2.5mm;
-      border-top: 1px solid var(--border);
-      z-index: 1;
-    }
-
-    .footer-text {
-      font-family: var(--mono);
-      font-size: 7px;
-      color: var(--dim);
-      letter-spacing: .04em;
-    }
-
-    .footer-text a { color: var(--dim); text-decoration: none; }
+    .print-btn:hover{background:var(--amber-bright);transform:translateY(-2px);box-shadow:0 6px 24px rgba(212,160,84,.25);}
 
     /* ── Print ── */
-    @media print {
-      body { background: var(--bg); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .page { width: 100%; padding: 16mm 16mm 14mm; }
-      .print-btn { display: none !important; }
-    }
-
-    .print-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--bg);
-      background: var(--amber);
-      border: none;
-      padding: 12px 28px;
-      cursor: pointer;
-      z-index: 100;
-      transition: all .2s;
-    }
-
-    .print-btn:hover {
-      background: var(--amber-light);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(212,160,84,.25);
+    @media print{
+      body{background:var(--bg);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .page{width:100%;}
+      .controls{display:none!important;}
+      .sidebar{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .metric,.gap-item,.record,.ai-card{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
     }
   </style>
 </head>
 <body>
 
-  <div class="page">
-    <!-- Header -->
-    <div class="header">
-      <div>
-        <div class="name">Fabian Spitzer</div>
-        <div class="tagline">Operations + AI &middot; The Gap Between Strategy and Reality</div>
-      </div>
-      <div class="contact">
+<div class="page">
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <div class="sb-identity">
+      <div class="monogram">FS</div>
+      <div class="sb-name">Fabian Spitzer</div>
+      <div class="sb-tagline" data-i18n="op_tagline">Operations + AI</div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-label" data-i18n="op_contact">Contact</div>
+      <div class="sb-text">
         <strong>fabianspitzer@icloud.com</strong><br>
         <a href="https://linkedin.com/in/fabian-spitzer/">linkedin.com/in/fabian-spitzer</a><br>
-        +49 160 4366218 &middot; Berlin / Remote
+        +49 160 4366218<br>
+        Berlin / Remote
       </div>
     </div>
 
-    <div class="divider-amber"></div>
+    <div class="sb-section">
+      <div class="sb-label" data-i18n="op_bestfit">Best Fit</div>
+      <div class="sb-fit-group">
+        <div class="sb-fit-label" data-i18n="op_env_label">Environment</div>
+        <div class="sb-tags">
+          <span class="sb-tag">AI-First</span>
+          <span class="sb-tag">Scale-Up (50–500)</span>
+          <span class="sb-tag" data-i18n="op_env_remote">Remote-compatible</span>
+        </div>
+      </div>
+      <div class="sb-fit-group">
+        <div class="sb-fit-label" data-i18n="op_leverage_label">Where I Add Most Leverage</div>
+        <div class="sb-tags">
+          <span class="sb-tag" data-i18n="op_leverage_aiprod">AI → Production</span>
+          <span class="sb-tag" data-i18n="op_leverage_ops">Ops Transformation</span>
+          <span class="sb-tag">Turnarounds</span>
+          <span class="sb-tag" data-i18n="op_leverage_gap">Business-Tech Gap</span>
+        </div>
+      </div>
+      <div class="sb-fit-group">
+        <div class="sb-fit-label" data-i18n="op_ind_label">Industries</div>
+        <div class="sb-tags">
+          <span class="sb-tag">FinTech</span>
+          <span class="sb-tag">AI / SaaS</span>
+          <span class="sb-tag">Marketplace</span>
+        </div>
+      </div>
+    </div>
 
-    <!-- Value Prop: Gap framing -->
-    <div class="value-prop">
-      <h2>Between AI strategy and operational reality, there's a gap. <em>I close it.</em></h2>
-      <p>18 years scaling operations to &euro;4B+. Then I built production AI systems myself. Now I help companies make AI work inside real teams, workflows, and processes.</p>
+    <div class="sb-section">
+      <div class="sb-label" data-i18n="op_engage">Engagement</div>
+      <div class="sb-engage">
+        <div class="sb-engage-item">
+          <div class="sb-engage-dot"></div>
+          <div>
+            <div class="sb-engage-title" data-i18n="op_e1_title">Full-Time Leadership</div>
+            <div class="sb-engage-desc" data-i18n="op_e1_desc">COO, VP Operations, Head of Applied AI.</div>
+          </div>
+        </div>
+        <div class="sb-engage-item">
+          <div class="sb-engage-dot" style="opacity:.7"></div>
+          <div>
+            <div class="sb-engage-title" data-i18n="op_e2_title">Interim Mandates</div>
+            <div class="sb-engage-desc" data-i18n="op_e2_desc">3–12 months. Transformation &amp; turnarounds.</div>
+          </div>
+        </div>
+        <div class="sb-engage-item">
+          <div class="sb-engage-dot" style="opacity:.5"></div>
+          <div>
+            <div class="sb-engage-title" data-i18n="op_e3_title">Advisory &amp; Sparring</div>
+            <div class="sb-engage-desc" data-i18n="op_e3_desc">AI strategy, operational design, roadmaps.</div>
+          </div>
+        </div>
+        <div class="sb-engage-item">
+          <div class="sb-engage-dot" style="opacity:.35"></div>
+          <div>
+            <div class="sb-engage-title" data-i18n="op_e4_title">Project-Based AI Builds</div>
+            <div class="sb-engage-desc" data-i18n="op_e4_desc">Workflow systems, automation, infrastructure.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sb-available" data-i18n="op_available">Available immediately</div>
+  </aside>
+
+  <!-- ═══ CONTENT ═══ -->
+  <main class="content">
+    <!-- Value Proposition -->
+    <div class="vp">
+      <h1 data-i18n="op_h1">Between AI strategy and operational reality, there's a gap. <em>I close it.</em></h1>
+      <p data-i18n="op_sub">18 years scaling operations to &euro;4B+. Then I built production AI systems myself. Now I bring both worlds together &mdash; inside real teams, workflows, and processes.</p>
     </div>
 
     <!-- Metrics -->
     <div class="metrics">
       <div class="metric">
-        <div class="metric-value">&euro;4B+</div>
-        <div class="metric-label">Ops Volume Scaled</div>
+        <div class="metric-val">&euro;4B+</div>
+        <div class="metric-label" data-i18n="op_m1">Ops Volume Scaled</div>
       </div>
       <div class="metric">
-        <div class="metric-value">+400%</div>
-        <div class="metric-label">Revenue Growth</div>
+        <div class="metric-val">+400%</div>
+        <div class="metric-label" data-i18n="op_m2">Revenue Growth</div>
       </div>
       <div class="metric">
-        <div class="metric-value">&euro;1.3M</div>
-        <div class="metric-label">EBITDA Turnaround</div>
+        <div class="metric-val">&euro;1.3M</div>
+        <div class="metric-label" data-i18n="op_m3">EBITDA Turnaround</div>
       </div>
       <div class="metric">
-        <div class="metric-value">50+</div>
-        <div class="metric-label">Team Built & Led</div>
+        <div class="metric-val">50+</div>
+        <div class="metric-label" data-i18n="op_m4">Team Built &amp; Led</div>
       </div>
     </div>
 
-    <!-- The Gap: Problem framing -->
-    <div class="section-label">The Gap I Close</div>
+    <!-- The Gap -->
+    <div class="sec-label" data-i18n="op_gap_label">The Gap I Close</div>
     <div class="gap-grid">
       <div class="gap-item">
-        <div class="gap-problem">AI use cases identified. None in production.</div>
-        <div class="gap-desc">The gap between vision and reality is execution &mdash; and nobody owns it.</div>
+        <div class="gap-problem" data-i18n="op_g1_problem">AI use cases identified. None in production.</div>
+        <div class="gap-desc" data-i18n="op_g1_desc">The gap between vision and reality is execution &mdash; and nobody owns it.</div>
       </div>
       <div class="gap-item">
-        <div class="gap-problem">Engineering builds AI. But who connects it to the business?</div>
-        <div class="gap-desc">Nobody translates business needs into technical reality and back.</div>
+        <div class="gap-problem" data-i18n="op_g2_problem">Engineering builds AI. But who connects it to the business?</div>
+        <div class="gap-desc" data-i18n="op_g2_desc">Nobody translates business needs into technical reality and back.</div>
       </div>
       <div class="gap-item">
-        <div class="gap-problem">Growth is outpacing your operations.</div>
-        <div class="gap-desc">You need structure, KPIs, and someone who builds the backbone.</div>
+        <div class="gap-problem" data-i18n="op_g3_problem">Growth is outpacing your operations.</div>
+        <div class="gap-desc" data-i18n="op_g3_desc">You need structure, KPIs, and someone who builds the backbone.</div>
       </div>
     </div>
 
     <!-- Track Record -->
-    <div class="section-label">Problems I've Solved</div>
+    <div class="sec-label" data-i18n="op_track_label">Problems I've Solved</div>
     <div class="records">
       <div class="record">
         <div>
           <div class="record-company">CHECK24 &middot; 11 Years</div>
-          <div class="record-narrative">"Build the operational backbone for Germany's largest loan comparison."</div>
-          <div class="record-desc">Full P&amp;L as MD. Built team to 50+, scaled operational core through 11 years of growth.</div>
+          <div class="record-narrative" data-i18n="op_t1_narrative">&ldquo;Build the operational backbone for Germany&rsquo;s largest loan comparison.&rdquo;</div>
+          <div class="record-desc" data-i18n="op_t1_desc">Full P&amp;L as MD. Built team to 50+, scaled operational core through 11 years of growth.</div>
         </div>
         <div class="record-stat">
-          <div class="record-stat-value">&euro;4B+</div>
-          <div class="record-stat-sub">Annual Volume</div>
+          <div class="record-stat-val">&euro;4B+</div>
+          <div class="record-stat-sub" data-i18n="op_t1_stat_sub">Annual Volume</div>
         </div>
       </div>
       <div class="record">
         <div>
           <div class="record-company">DFKP &middot; 24 Months</div>
-          <div class="record-narrative">"Scale a fintech from &euro;38M to &euro;223M in two years."</div>
-          <div class="record-desc">Rebuilt operations, sales, and partner ecosystem as COO.</div>
+          <div class="record-narrative" data-i18n="op_t2_narrative">&ldquo;Scale a fintech from &euro;38M to &euro;223M in two years.&rdquo;</div>
+          <div class="record-desc" data-i18n="op_t2_desc">Rebuilt operations, sales, and partner ecosystem as COO.</div>
         </div>
         <div class="record-stat">
-          <div class="record-stat-value">+400%</div>
-          <div class="record-stat-sub">Volume Growth</div>
+          <div class="record-stat-val">+400%</div>
+          <div class="record-stat-sub" data-i18n="op_t2_stat_sub">Volume Growth</div>
         </div>
       </div>
       <div class="record">
         <div>
           <div class="record-company">Interlead &middot; 6 Months</div>
-          <div class="record-narrative">"Turn around a &euro;27M company bleeding cash."</div>
-          <div class="record-desc">Restructuring, process automation, team realignment. Crisis to profit.</div>
+          <div class="record-narrative" data-i18n="op_t3_narrative">&ldquo;Turn around a &euro;27M company bleeding cash.&rdquo;</div>
+          <div class="record-desc" data-i18n="op_t3_desc">Restructuring, process automation, team realignment. Crisis to profit.</div>
         </div>
         <div class="record-stat">
-          <div class="record-stat-value">&euro;1.3M</div>
-          <div class="record-stat-sub">EBITDA in 6mo</div>
+          <div class="record-stat-val">&euro;1.3M</div>
+          <div class="record-stat-sub" data-i18n="op_t3_stat_sub">EBITDA in 6mo</div>
         </div>
       </div>
     </div>
 
     <!-- AI Proof -->
     <div class="ai-card">
-      <div class="ai-card-header">AskProAI &middot; 2025&ndash;Present</div>
-      <div class="ai-card-title">Then I built AI systems myself.</div>
-      <div class="ai-card-desc">Production-grade AI automation for SMEs. Voice agents, workflow systems, AI-native CRM. Built end-to-end. Proof that I don't just manage AI &mdash; I build it.</div>
+      <div class="ai-header" data-i18n="op_ai_header">AskProAI &middot; 2025&ndash;Present</div>
+      <div class="ai-title" data-i18n="op_ai_title">Then I went hands-on &mdash; to understand what operationalization really takes.</div>
+      <div class="ai-desc" data-i18n="op_ai_desc">Production-grade AI automation for SMEs. Voice agents, workflow systems, AI-native CRM. Built end-to-end. Proof that I don&rsquo;t just manage AI &mdash; I build it.</div>
       <div class="tech-tags">
         <span class="tech-tag">Voice AI Agents</span>
         <span class="tech-tag">Workflow Automation</span>
         <span class="tech-tag">LLM Orchestration</span>
         <span class="tech-tag">AI-Native CRM</span>
-        <span class="tech-tag">Full-Stack Build</span>
       </div>
     </div>
+  </main>
 
-    <div class="divider"></div>
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="page-footer">
+    <span class="footer-text">&copy; 2026 Fabian Spitzer &middot; Berlin</span>
+    <span class="footer-text" data-i18n="op_footer_cv">Full CV &amp; references available on request</span>
+  </footer>
+</div>
 
-    <!-- Bottom grid -->
-    <div class="bottom-grid">
-      <!-- Left: Engagement Spectrum -->
-      <div>
-        <div class="section-label">Engagement Spectrum</div>
-        <div class="engage-list">
-          <div class="engage-item">
-            <div class="engage-dot"></div>
-            <div>
-              <div class="engage-title">Full-Time Leadership</div>
-              <div class="engage-desc">COO, VP Operations, Head of Applied AI. Permanent team member.</div>
-            </div>
-          </div>
-          <div class="engage-item">
-            <div class="engage-dot" style="opacity:.7"></div>
-            <div>
-              <div class="engage-title">Interim Mandates</div>
-              <div class="engage-desc">3&ndash;12 months. Transformation, turnarounds, bridging leadership gaps.</div>
-            </div>
-          </div>
-          <div class="engage-item">
-            <div class="engage-dot" style="opacity:.5"></div>
-            <div>
-              <div class="engage-title">Advisory & Sparring</div>
-              <div class="engage-desc">AI strategy, operational design, transformation roadmaps.</div>
-            </div>
-          </div>
-          <div class="engage-item">
-            <div class="engage-dot" style="opacity:.35"></div>
-            <div>
-              <div class="engage-title">Project-Based AI Builds</div>
-              <div class="engage-desc">Scoped AI automation, workflow systems, operational infrastructure.</div>
-            </div>
-          </div>
-        </div>
-      </div>
+<!-- ═══ CONTROLS ═══ -->
+<div class="controls">
+  <button class="lang-btn" id="langToggle" onclick="toggleLang()">DE</button>
+  <button class="print-btn" onclick="window.print()" data-i18n="op_print">Save as PDF</button>
+</div>
 
-      <!-- Right: Best Fit -->
-      <div>
-        <div class="section-label">Best Fit</div>
-        <div class="fit-block">
-          <div class="fit-label">Environment</div>
-          <div class="fit-tags">
-            <span class="fit-tag">AI-First</span>
-            <span class="fit-tag">Scale-Up (50&ndash;500)</span>
-            <span class="fit-tag">Remote-compatible</span>
-          </div>
-        </div>
-        <div class="fit-block">
-          <div class="fit-label">Where I Add Most Leverage</div>
-          <div class="fit-tags">
-            <span class="fit-tag">AI &rarr; Production</span>
-            <span class="fit-tag">Ops Transformation</span>
-            <span class="fit-tag">Turnarounds</span>
-            <span class="fit-tag">Business-Tech Gap</span>
-          </div>
-        </div>
-        <div class="fit-block">
-          <div class="fit-label">Industries</div>
-          <div class="fit-tags">
-            <span class="fit-tag">FinTech</span>
-            <span class="fit-tag">AI / SaaS</span>
-            <span class="fit-tag">Marketplace</span>
-          </div>
-        </div>
-        <div class="fit-block" style="margin-top:2.5mm">
-          <div class="available">Available immediately</div>
-        </div>
-      </div>
-    </div>
+<script>
+(function(){
+  var T={
+    op_tagline:'Operations + AI',
+    op_contact:'Kontakt',
+    op_bestfit:'Best Fit',
+    op_engage:'Engagement',
+    op_available:'Sofort verf\u00fcgbar',
+    op_env_label:'Umfeld',
+    op_env_remote:'Remote-kompatibel',
+    op_leverage_label:'Wo ich den gr\u00f6\u00dften Hebel habe',
+    op_leverage_aiprod:'AI \u2192 Produktion',
+    op_leverage_ops:'Ops-Transformation',
+    op_leverage_gap:'Business-Tech-Br\u00fccke',
+    op_ind_label:'Branchen',
+    op_e1_title:'Festanstellung',
+    op_e1_desc:'COO, VP Operations, Head of Applied AI.',
+    op_e2_title:'Interim-Mandate',
+    op_e2_desc:'3\u201312 Monate. Transformation & Turnarounds.',
+    op_e3_title:'Beratung & Sparring',
+    op_e3_desc:'AI-Strategie, Operations-Design, Roadmaps.',
+    op_e4_title:'AI-Projekte',
+    op_e4_desc:'Workflow-Systeme, Automatisierung, Infrastruktur.',
+    op_h1:'Zwischen AI-Strategie und operativer Realit\u00e4t liegt eine L\u00fccke. <em>Ich schlie\u00dfe sie.</em>',
+    op_sub:'18 Jahre Operations auf \u20ac4B+ skaliert. Dann habe ich selbst AI-Systeme gebaut. Jetzt bringe ich beides zusammen \u2014 in echten Teams, Workflows und Prozessen.',
+    op_m1:'Ops-Volumen skaliert',
+    op_m2:'Umsatzwachstum',
+    op_m3:'EBITDA-Turnaround',
+    op_m4:'Team aufgebaut & gef\u00fchrt',
+    op_gap_label:'Die L\u00fccke, die ich schlie\u00dfe',
+    op_g1_problem:'AI Use Cases identifiziert. Nichts davon in Produktion.',
+    op_g1_desc:'Die L\u00fccke zwischen Vision und Realit\u00e4t ist Execution \u2014 und niemand verantwortet sie.',
+    op_g2_problem:'Engineering baut AI. Aber wer verbindet es mit dem Business?',
+    op_g2_desc:'Niemand \u00fcbersetzt Business-Anforderungen in technische Realit\u00e4t und zur\u00fcck.',
+    op_g3_problem:'Das Wachstum \u00fcberholt eure Operations.',
+    op_g3_desc:'Ihr braucht Struktur, KPIs und jemanden, der das R\u00fcckgrat aufbaut.',
+    op_track_label:'Probleme, die ich gel\u00f6st habe',
+    op_t1_narrative:'\u201eDas operative R\u00fcckgrat f\u00fcr Deutschlands gr\u00f6\u00dften Kreditvergleich aufbauen.\u201c',
+    op_t1_desc:'Volle P&L als MD. Team auf 50+ aufgebaut, operativen Kern \u00fcber 11 Jahre Wachstum skaliert.',
+    op_t1_stat_sub:'Jahresvolumen',
+    op_t2_narrative:'\u201e\u20ac38M-Startup in 24 Monaten auf \u20ac223M skalieren.\u201c',
+    op_t2_desc:'Operations, Vertrieb und Partner-\u00d6kosystem als COO neu aufgebaut.',
+    op_t2_stat_sub:'Volumen-Wachstum',
+    op_t3_narrative:'\u201e\u20ac27M-Unternehmen verbrennt Cash. Sechs Monate Zeit.\u201c',
+    op_t3_desc:'Restrukturierung, Prozessautomatisierung, Team-Neuausrichtung. Krise zu Profit.',
+    op_t3_stat_sub:'EBITDA in 6Mo',
+    op_ai_header:'AskProAI \u00b7 2025\u2013Heute',
+    op_ai_title:'Dann bin ich hands-on gegangen \u2014 um zu verstehen, was Operationalisierung wirklich braucht.',
+    op_ai_desc:'Production-grade AI-Automatisierung f\u00fcr KMUs. Voice Agents, Workflow-Systeme, AI-natives CRM. End-to-End aufgebaut. Der Beweis, dass ich AI nicht nur manage \u2014 sondern baue.',
+    op_footer_cv:'Vollst\u00e4ndiger CV & Referenzen auf Anfrage',
+    op_print:'Als PDF speichern'
+  };
 
-    <!-- Footer -->
-    <div class="page-footer">
-      <span class="footer-text">&copy; 2026 Fabian Spitzer &middot; Berlin</span>
-      <span class="footer-text">Full CV available on request</span>
-    </div>
-  </div>
+  var lang=localStorage.getItem('fsLang')||'en';
 
-  <button class="print-btn" onclick="window.print()">Save as PDF</button>
+  function apply(l){
+    lang=l;
+    localStorage.setItem('fsLang',l);
+    document.documentElement.lang=l;
+    var btn=document.getElementById('langToggle');
+    if(btn)btn.textContent=l==='en'?'DE':'EN';
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k=el.getAttribute('data-i18n');
+      if(l==='de'&&T[k])el.innerHTML=T[k];
+      else if(l==='en'&&el._en!==undefined)el.innerHTML=el._en;
+    });
+  }
+
+  document.querySelectorAll('[data-i18n]').forEach(function(el){el._en=el.innerHTML;});
+  if(lang==='de')apply('de');
+
+  window.toggleLang=function(){apply(lang==='en'?'de':'en');};
+})();
+</script>
 
 </body>
 </html>

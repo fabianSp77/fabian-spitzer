@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const path = location.pathname;
   document.querySelectorAll('.nav-links a').forEach(a => {
     const href = a.getAttribute('href');
-    if (href && !href.startsWith('#') && path.includes(href.replace('/career-site/', ''))) {
+    if (href && !href.startsWith('#') && path.includes(href.replace('/fabian-spitzer/', ''))) {
       a.classList.add('active');
     }
   });

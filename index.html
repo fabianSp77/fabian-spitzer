@@ -219,16 +219,38 @@
     .cta h2 { font-family:var(--serif); font-size:clamp(30px, 3.8vw, 48px); font-weight:400; line-height:1.1; margin-bottom:20px; }
     .cta h2 em { color:var(--amber); font-style:italic; }
     .cta-sub { font-size:16px; color:var(--text-secondary); font-weight:300; line-height:1.7; margin-bottom:28px; max-width:420px; }
-    .cta-actions { display:flex; gap:12px; flex-wrap:wrap; }
 
-    /* Contact links */
-    .cta-contact { display:flex; flex-direction:column; gap:0; }
-    .cta-link { display:flex; gap:16px; align-items:center; text-decoration:none; padding:18px 0; border-bottom:1px solid var(--border); transition:all .3s var(--ease); }
-    .cta-link:first-child { border-top:1px solid var(--border); }
-    .cta-link:hover { padding-left:8px; }
-    .cta-link-label { font-family:var(--mono); font-size:10px; font-weight:400; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); min-width:64px; }
-    .cta-link-value { font-family:var(--mono); font-size:13px; font-weight:400; color:var(--text-muted); transition:color .3s; }
-    .cta-link:hover .cta-link-value { color:var(--text); }
+    /* Contact Form */
+    .cta-form { display:flex; flex-direction:column; gap:0; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); }
+    .form-row.full { grid-template-columns:1fr; }
+    .form-group { background:var(--bg); padding:0; position:relative; }
+    .form-group label { position:absolute; top:14px; left:16px; font-family:var(--mono); font-size:9px; font-weight:400;
+      letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); pointer-events:none; transition:all .25s var(--ease); }
+    .form-group input, .form-group textarea { width:100%; background:transparent; border:none; outline:none; color:var(--text);
+      font-family:var(--body); font-size:14px; font-weight:300; padding:34px 16px 12px; line-height:1.5; resize:none; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color:var(--text-dim); font-weight:300; }
+    .form-group input:focus, .form-group textarea:focus { background:var(--bg-elevated); }
+    .form-group input:focus ~ label, .form-group textarea:focus ~ label { color:var(--amber); }
+    .form-group textarea { min-height:100px; }
+    .form-border { border:1px solid var(--border); overflow:hidden; transition:border-color .35s var(--ease); }
+    .form-border:focus-within { border-color:rgba(212,160,84,.25); }
+    .form-actions { display:flex; justify-content:space-between; align-items:center; margin-top:20px; }
+    .form-alt { font-family:var(--mono); font-size:11px; color:var(--text-dim); letter-spacing:.03em; }
+    .form-alt a { color:var(--text-muted); text-decoration:none; border-bottom:1px solid var(--border); padding-bottom:1px; transition:all .3s; }
+    .form-alt a:hover { color:var(--amber); border-color:var(--amber); }
+    .form-submit { font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.06em; text-transform:uppercase;
+      color:var(--bg); background:var(--amber); padding:14px 36px; border:none; cursor:pointer; transition:all .35s var(--ease); }
+    .form-submit:hover { background:var(--amber-bright); transform:translateY(-1px); box-shadow:0 12px 40px rgba(212,160,84,.2); }
+    .form-submit:disabled { opacity:.5; cursor:not-allowed; transform:none; box-shadow:none; }
+    /* Honeypot */
+    .form-hp { position:absolute; left:-9999px; opacity:0; height:0; width:0; }
+    /* Success state */
+    .form-success { display:none; padding:48px 32px; border:1px solid rgba(212,160,84,.2); background:var(--bg-elevated); text-align:center; }
+    .form-success.show { display:block; }
+    .form-success-icon { font-family:var(--mono); font-size:32px; color:var(--amber); margin-bottom:16px; line-height:1; }
+    .form-success h3 { font-family:var(--serif); font-size:20px; font-weight:400; margin-bottom:10px; }
+    .form-success p { font-size:14px; color:var(--text-secondary); font-weight:300; line-height:1.65; }
 
     /* ── Footer ── */
     footer { padding:32px 0; border-top:1px solid var(--border); }
@@ -257,6 +279,7 @@
       .how-grid { grid-template-columns:1fr; gap:48px; }
       .fit-item { grid-template-columns:1fr; gap:12px; }
       .cta-grid { grid-template-columns:1fr; gap:48px; }
+      .form-row { grid-template-columns:1fr; }
       .cta::before { height:48px; }
       footer .container { flex-direction:column; gap:12px; text-align:center; }
       .footer-right { justify-content:center; }
@@ -520,24 +543,47 @@
       <div>
         <h2 data-i18n="cta_h2">If AI isn't landing in<br>your operations —<br><em>let's talk.</em></h2>
         <p class="cta-sub" data-i18n="cta_sub">20 minutes. No pitch. Tell me where things are stuck — and I'll tell you honestly whether there's a fit.</p>
-        <div class="cta-actions">
-          <a href="mailto:fabianspitzer@icloud.com" class="btn-primary" data-i18n="cta_btn">Send Email</a>
-          <a href="https://linkedin.com/in/fabian-spitzer/" target="_blank" rel="noopener" class="btn-secondary" data-i18n="cta_li">LinkedIn</a>
-        </div>
       </div>
-      <div class="cta-contact">
-        <a href="mailto:fabianspitzer@icloud.com" class="cta-link">
-          <span class="cta-link-label">Email</span>
-          <span class="cta-link-value">fabianspitzer@icloud.com</span>
-        </a>
-        <a href="https://linkedin.com/in/fabian-spitzer/" target="_blank" rel="noopener" class="cta-link">
-          <span class="cta-link-label">LinkedIn</span>
-          <span class="cta-link-value">linkedin.com/in/fabian-spitzer</span>
-        </a>
-        <a href="tel:+491604366218" class="cta-link">
-          <span class="cta-link-label">Phone</span>
-          <span class="cta-link-value">+49 160 4366218</span>
-        </a>
+      <div class="cta-form">
+        <form id="contactForm" action="https://formsubmit.co/fabianspitzer@icloud.com" method="POST">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_subject" value="Website: New conversation request">
+          <input type="text" name="_honey" class="form-hp" tabindex="-1" autocomplete="off">
+          <div class="form-border">
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" name="name" id="f-name" required placeholder="Jane Miller" autocomplete="name">
+                <label for="f-name" data-i18n="form_name">Name</label>
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" id="f-email" required placeholder="jane@company.com" autocomplete="email">
+                <label for="f-email">Email</label>
+              </div>
+            </div>
+            <div class="form-row full">
+              <div class="form-group">
+                <input type="text" name="company" id="f-company" placeholder="Acme Inc. — VP Operations">
+                <label for="f-company" data-i18n="form_company">Company + Role</label>
+              </div>
+            </div>
+            <div class="form-row full">
+              <div class="form-group">
+                <textarea name="message" id="f-message" required placeholder="We're looking for…" rows="3"></textarea>
+                <label for="f-message" data-i18n="form_message">What's on your mind?</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <span class="form-alt" data-i18n="form_alt">Or connect on <a href="https://linkedin.com/in/fabian-spitzer/" target="_blank" rel="noopener">LinkedIn</a></span>
+            <button type="submit" class="form-submit" data-i18n="form_btn">Send Message</button>
+          </div>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="form-success-icon">&#10003;</div>
+          <h3 data-i18n="form_ok_h">Message received.</h3>
+          <p data-i18n="form_ok_p">I'll get back to you within 24 hours. Looking forward to the conversation.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -550,6 +596,7 @@
   <div class="container">
     <span class="footer-left">© 2026 Fabian Spitzer · Berlin / Remote</span>
     <div class="footer-right">
+      <a href="https://linkedin.com/in/fabian-spitzer/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="/career-site/cv-fabian-spitzer.pdf" download data-i18n="footer_cv">Download CV</a>
       <a href="/career-site/one-pager.html" target="_blank" data-i18n="footer_op">One-Pager</a>
     </div>
@@ -596,7 +643,10 @@ const T = {
     f3_q:'„Die Zahlen stimmen nicht. Wir brauchen einen Turnaround."', f3_a:'Restrukturierung, Automatisierung, Team-Neuausrichtung. Bewiesen: €1.3M EBITDA in 6 Monaten aus einer Krise.',
     f4_q:'„Wir brauchen keinen weiteren Berater. Wir brauchen jemanden, der sich einbettet."', f4_a:'Ich werde Teil eures Teams, nicht Beobachter. Ich richte Führung, Engineering und Ops aufeinander aus — und bleibe, bis die Veränderung real ist.',
     cta_h2:'Wenn AI in euren Operations nicht landet —<br><em>reden wir.</em>', cta_sub:'20 Minuten. Kein Pitch. Erzählt mir, wo es hakt — und ich sage euch ehrlich, ob es passt.',
-    cta_btn:'Email senden', cta_li:'LinkedIn',
+    form_name:'Name', form_company:'Unternehmen + Rolle', form_message:'Was beschäftigt euch?',
+    form_alt:'Oder auf <a href="https://linkedin.com/in/fabian-spitzer/" target="_blank" rel="noopener">LinkedIn</a> vernetzen',
+    form_btn:'Nachricht senden',
+    form_ok_h:'Nachricht erhalten.', form_ok_p:'Ich melde mich innerhalb von 24 Stunden. Freue mich auf das Gespräch.',
     footer_cv:'CV herunterladen', footer_op:'One-Pager',
   }
 };
@@ -660,6 +710,31 @@ document.addEventListener('DOMContentLoaded', () => {
       if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
+
+  // Contact form (AJAX submit)
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('.form-submit');
+      const orig = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = '...';
+      try {
+        const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
+        if (res.ok || res.status === 200) {
+          form.style.display = 'none';
+          success.classList.add('show');
+        } else { throw new Error(); }
+      } catch {
+        // Fallback: native submit
+        btn.disabled = false;
+        btn.textContent = orig;
+        form.submit();
+      }
+    });
+  }
 });
 </script>
 

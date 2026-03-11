@@ -252,6 +252,33 @@
     .form-success h3 { font-family:var(--serif); font-size:20px; font-weight:400; margin-bottom:10px; }
     .form-success p { font-size:14px; color:var(--text-secondary); font-weight:300; line-height:1.65; }
 
+    /* ── Scroll progress ── */
+    .scroll-progress { position:fixed; top:0; left:0; width:0; height:2px; background:var(--amber); z-index:200; pointer-events:none; }
+
+    /* ══════════════════════════════════
+       WHY NOW
+    ══════════════════════════════════ */
+    .why-now { padding:100px 0 80px; position:relative; overflow:hidden; }
+    .why-now::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(212,160,84,.04) 0%, transparent 60%); pointer-events:none; }
+    .why-now-content { position:relative; }
+    .why-now-stat { margin:44px 0 40px; }
+    .why-now-numbers { display:flex; align-items:flex-end; gap:36px; }
+    .why-now-number { display:flex; flex-direction:column; gap:6px; }
+    .why-now-val { font-family:var(--mono); font-size:clamp(48px, 6vw, 72px); font-weight:600; color:var(--amber); line-height:1; letter-spacing:-.03em; }
+    .why-now-val.dim { color:var(--text-dim); }
+    .why-now-vs { font-family:var(--mono); font-size:13px; color:var(--text-dim); letter-spacing:.1em; text-transform:uppercase; padding-bottom:12px; }
+    .why-now-desc { font-family:var(--mono); font-size:10px; font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--text-muted); }
+    .why-now-text { font-size:16px; color:var(--text-secondary); font-weight:300; line-height:1.7; max-width:620px; }
+    .why-now-cite { font-family:var(--mono); font-size:10px; color:var(--text-dim); letter-spacing:.04em; margin-top:8px; }
+    .why-now-cite a { color:var(--text-dim); text-decoration:none; border-bottom:1px solid var(--border); padding-bottom:1px; transition:all .3s; }
+    .why-now-cite a:hover { color:var(--amber); border-color:var(--amber); }
+    .why-now-kicker { font-family:var(--serif); font-size:clamp(18px, 2.2vw, 24px); font-weight:400; line-height:1.35; color:var(--text); margin-top:32px; max-width:560px; }
+    .why-now-kicker em { color:var(--amber); font-style:italic; }
+
+    /* ── Mid-page CTA ── */
+    .mid-cta { padding:44px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); display:flex; justify-content:center; align-items:center; gap:32px; }
+    .mid-cta p { font-family:var(--mono); font-size:12px; color:var(--text-muted); letter-spacing:.04em; }
+
     /* ── Footer ── */
     footer { padding:32px 0; border-top:1px solid var(--border); }
     footer .container { display:flex; justify-content:space-between; align-items:center; }
@@ -281,6 +308,9 @@
       .cta-grid { grid-template-columns:1fr; gap:48px; }
       .form-row { grid-template-columns:1fr; }
       .cta::before { height:48px; }
+      .why-now-numbers { flex-direction:column; align-items:flex-start; gap:16px; }
+      .why-now-vs { padding-bottom:0; }
+      .mid-cta { flex-direction:column; gap:16px; text-align:center; }
       footer .container { flex-direction:column; gap:12px; text-align:center; }
       .footer-right { justify-content:center; }
     }
@@ -289,6 +319,7 @@
 <body>
 
 <div class="noise" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"></div>
 
 <!-- ═══ NAV ═══ -->
 <nav role="navigation" aria-label="Main navigation">
@@ -296,6 +327,7 @@
     <div class="nav-name"><span>FS</span> / Fabian Spitzer</div>
     <ul class="nav-links">
       <li><a href="#gap" data-i18n="nav_gap">The Gap</a></li>
+      <li><a href="#why-now" data-i18n="nav_why">Why Now</a></li>
       <li><a href="#proof" data-i18n="nav_proof">Track Record</a></li>
       <li><a href="#how" data-i18n="nav_how">How I Work</a></li>
       <li><a href="#fit" data-i18n="nav_fit">Right Fit</a></li>
@@ -315,7 +347,7 @@
   <div class="container">
     <div class="hero-eyebrow" data-i18n="hero_eyebrow">Fabian Spitzer — Operations + AI</div>
     <h1 data-i18n="hero_h1">Between AI strategy and<br>operational reality, there's a gap.<br><em>I close it.</em></h1>
-    <p class="hero-sub" data-i18n="hero_sub">18 years scaling operations to €4B+. Then I built production AI systems myself. Now I help companies make AI work — inside their teams, processes, and reality.</p>
+    <p class="hero-sub" data-i18n="hero_sub">18 years scaling operations to €4B+. Then I built AI systems myself. Now I make them work inside yours.</p>
 
     <div class="hero-metrics">
       <div class="hero-metric">
@@ -403,6 +435,34 @@
   </div>
 </section>
 
+<!-- ═══ WHY NOW ═══ -->
+<section class="why-now" id="why-now">
+  <div class="container">
+    <div class="why-now-content r">
+      <div class="sec-label" data-i18n="wn_label">Why Now</div>
+      <h2 style="font-family:var(--serif); font-size:clamp(26px, 3.2vw, 40px); font-weight:400; line-height:1.15;" data-i18n="wn_h2">AI can do the work. <em style="color:var(--amber); font-style:italic;">Nobody's wiring it in.</em></h2>
+
+      <div class="why-now-stat r r-d1">
+        <div class="why-now-numbers">
+          <div class="why-now-number">
+            <span class="why-now-val" data-count="94" data-prefix="" data-suffix="%"><span>94%</span></span>
+            <span class="why-now-desc" data-i18n="wn_cap">Theoretical AI capability</span>
+          </div>
+          <div class="why-now-vs">vs</div>
+          <div class="why-now-number">
+            <span class="why-now-val dim" data-count="33" data-prefix="" data-suffix="%"><span>33%</span></span>
+            <span class="why-now-desc" data-i18n="wn_actual">Actually deployed in companies</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="why-now-text r r-d2" data-i18n="wn_text">Anthropic's 2025 research confirms what operators see daily: AI capability isn't the bottleneck. Deployment is. The 61-point gap between what AI can do and what companies actually use isn't a technology problem — it's an operations problem. And it's widening.</p>
+      <div class="why-now-cite r r-d2">Source: <a href="https://www.anthropic.com/research/labor-market-impacts" target="_blank" rel="noopener">Anthropic — The Model Spec, Economic Impact Assessment 2025</a></div>
+      <p class="why-now-kicker r r-d3" data-i18n="wn_kicker">The companies closing this gap now will lead. The rest will <em>hire consultants to explain why they didn't.</em></p>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ TRACK RECORD ═══ -->
 <section class="track" id="proof">
   <div class="container">
@@ -459,6 +519,14 @@
     </div>
   </div>
 </section>
+
+<!-- ═══ MID CTA ═══ -->
+<div class="mid-cta r">
+  <div class="container" style="display:flex; justify-content:center; align-items:center; gap:32px; flex-wrap:wrap;">
+    <p data-i18n="mid_cta_text">Seen enough? Skip to the conversation.</p>
+    <a href="#contact" class="btn-primary" style="padding:10px 28px; font-size:11px;" data-i18n="mid_cta_btn">Let's Talk</a>
+  </div>
+</div>
 
 <!-- ═══ HOW I WORK ═══ -->
 <section class="how" id="how">
@@ -608,10 +676,10 @@
 /* ── i18n ── */
 const T = {
   de: {
-    nav_gap:'Die Lücke', nav_proof:'Track Record', nav_how:'Arbeitsweise', nav_fit:'Passt es?', nav_contact:'Kontakt', nav_cta:'Gespräch',
+    nav_gap:'Die Lücke', nav_why:'Warum jetzt', nav_proof:'Track Record', nav_how:'Arbeitsweise', nav_fit:'Passt es?', nav_contact:'Kontakt', nav_cta:'Gespräch',
     hero_eyebrow:'Fabian Spitzer — Operations + AI',
     hero_h1:'Zwischen AI-Strategie und operativer Realität liegt eine Lücke.<br><em>Ich schließe sie.</em>',
-    hero_sub:'18 Jahre Operations auf €4B+ skaliert. Dann habe ich selbst produktionsreife AI-Systeme gebaut. Heute helfe ich Unternehmen, AI operativ wirksam zu machen — in bestehenden Teams, Prozessen und Strukturen.',
+    hero_sub:'18 Jahre Operations auf €4B+ skaliert. Dann habe ich selbst AI-Systeme gebaut. Jetzt mache ich sie in euren wirksam.',
     m_volume:'Ops-Volumen skaliert', m_growth:'Umsatzwachstum (24Mo)', m_ebitda:'EBITDA-Turnaround (6Mo)', m_team:'Team aufgebaut & geführt',
     cta_talk:'Gespräch vereinbaren',
     strip_label:'Gebaut & skaliert bei',
@@ -623,6 +691,11 @@ const T = {
     g4_t:'Ihr braucht einen Operator, der AI wirklich versteht.', g4_d:'Klassische COOs bauen keine Systeme. AI-Berater führen keine Operations. Ihr braucht jemanden, der beides kann. Diese Kombination gibt es kaum.',
     gap_bridge:'Hier komme ich ins Spiel. Nicht als Berater mit Framework. Als <em>Operator, der baut, sich einbettet und ausrichtet.</em>',
     gap_bridge_sub:'18 Jahre operative Führung — Skalierung auf €4B+, P&L-Turnarounds, Teams von 50+ aufgebaut. Dann bin ich selbst in die AI-Entwicklung gegangen. Ich ersetze euer Team nicht — ich mache es stärker, indem ich die Lücke schließe zwischen dem, was AI kann, und dem, was eure Operations tatsächlich brauchen.',
+    wn_label:'Warum jetzt', wn_h2:'AI kann die Arbeit erledigen. <em style="color:var(--amber); font-style:italic;">Niemand verankert es.</em>',
+    wn_cap:'Theoretische AI-Fähigkeit', wn_actual:'Tatsächlich in Unternehmen im Einsatz',
+    wn_text:'Anthropics Forschung von 2025 bestätigt, was Operators täglich sehen: AI-Fähigkeit ist nicht der Engpass. Die Implementierung ist es. Die 61-Punkte-Lücke zwischen dem, was AI kann, und dem, was Unternehmen tatsächlich nutzen, ist kein Technologieproblem — es ist ein Operations-Problem. Und die Lücke wächst.',
+    wn_kicker:'Die Unternehmen, die diese Lücke jetzt schließen, werden führen. Der Rest wird <em>Berater beauftragen, die erklären, warum nicht.</em>',
+    mid_cta_text:'Genug gesehen? Direkt zum Gespräch.', mid_cta_btn:'Gespräch vereinbaren',
     track_label:'Track Record', track_h2:'Probleme, die ich gelöst habe. Zahlen, die ich bewegt habe.',
     t1_c:'„Das operative Rückgrat für Deutschlands größten Kreditvergleich aufbauen."', t1_a:'Volle P&L-Verantwortung als Managing Director. Team auf 50+ aufgebaut, Enterprise-Partnerschaften strukturiert, operativen Kern über ein Jahrzehnt Wachstum skaliert.', t1_l:'Jahresvolumen',
     t2_c:'„€38M-Startup. Daraus eine Wachstumsmaschine machen."', t2_a:'Operations, Vertrieb und Partner-Ökosystem als COO neu aufgebaut. Finanzierungsvolumen auf €223M in 24 Monaten skaliert.', t2_l:'Volumen-Wachstum',
@@ -683,6 +756,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Store EN originals
   document.querySelectorAll('[data-i18n]').forEach(el => { el._en = el.innerHTML; });
   if (lang === 'de') setLang('de');
+
+  // Scroll progress
+  const prog = document.querySelector('.scroll-progress');
+  if (prog) {
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0';
+    }, { passive: true });
+  }
 
   // Counter animation
   const cObs = new IntersectionObserver(entries => {

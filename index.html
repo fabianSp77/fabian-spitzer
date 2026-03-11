@@ -275,6 +275,24 @@
     .why-now-kicker { font-family:var(--serif); font-size:clamp(18px, 2.2vw, 24px); font-weight:400; line-height:1.35; color:var(--text); margin-top:32px; max-width:560px; }
     .why-now-kicker em { color:var(--amber); font-style:italic; }
 
+    /* ── Radar Chart ── */
+    .why-now-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+    .why-now-chart { position:relative; }
+    .radar-svg { width:100%; max-width:380px; height:auto; display:block; margin:0 auto; }
+    .radar-theoretical, .radar-observed {
+      transform-origin: 220px 220px; transform: scale(0); opacity:0;
+      transition: transform 1.2s cubic-bezier(.22,1,.36,1), opacity .5s ease;
+    }
+    .radar-observed { transition-delay: .5s; }
+    .why-now-chart.v .radar-theoretical, .why-now-chart.v .radar-observed { transform: scale(1); opacity:1; }
+    .radar-legend { display:flex; gap:20px; justify-content:center; margin-top:16px; }
+    .radar-legend-item { display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); }
+    .radar-legend-dot { width:8px; height:8px; border-radius:50%; }
+    .radar-legend-dot.th { background:var(--amber); }
+    .radar-legend-dot.ob { background:#6b6880; }
+    .radar-chart-label { font-family:var(--mono); font-size:10px; letter-spacing:.04em; color:var(--text-muted); text-align:center; margin-top:6px; }
+    .radar-chart-label em { color:var(--amber); font-style:normal; }
+
     /* ── Mid-page CTA ── */
     .mid-cta { padding:44px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); display:flex; justify-content:center; align-items:center; gap:32px; }
     .mid-cta p { font-family:var(--mono); font-size:12px; color:var(--text-muted); letter-spacing:.04em; }
@@ -308,6 +326,9 @@
       .cta-grid { grid-template-columns:1fr; gap:48px; }
       .form-row { grid-template-columns:1fr; }
       .cta::before { height:48px; }
+      .why-now-grid { grid-template-columns:1fr; gap:24px; }
+      .why-now-chart { order:-1; }
+      .radar-svg { max-width:280px; }
       .why-now-numbers { flex-direction:column; align-items:flex-start; gap:16px; }
       .why-now-vs { padding-bottom:0; }
       .mid-cta { flex-direction:column; gap:16px; text-align:center; }
@@ -438,27 +459,89 @@
 <!-- ═══ WHY NOW ═══ -->
 <section class="why-now" id="why-now">
   <div class="container">
-    <div class="why-now-content r">
-      <div class="sec-label" data-i18n="wn_label">Why Now</div>
-      <h2 style="font-family:var(--serif); font-size:clamp(26px, 3.2vw, 40px); font-weight:400; line-height:1.15;" data-i18n="wn_h2">AI can do the work. <em style="color:var(--amber); font-style:italic;">Nobody's wiring it in.</em></h2>
+    <div class="why-now-grid">
+      <div class="why-now-content r">
+        <div class="sec-label" data-i18n="wn_label">Why Now</div>
+        <h2 style="font-family:var(--serif); font-size:clamp(26px, 3.2vw, 40px); font-weight:400; line-height:1.15;" data-i18n="wn_h2">AI can do the work. <em style="color:var(--amber); font-style:italic;">Nobody's wiring it in.</em></h2>
 
-      <div class="why-now-stat r r-d1">
-        <div class="why-now-numbers">
-          <div class="why-now-number">
-            <span class="why-now-val" data-count="94" data-prefix="" data-suffix="%"><span>94%</span></span>
-            <span class="why-now-desc" data-i18n="wn_cap">Theoretical AI capability</span>
-          </div>
-          <div class="why-now-vs">vs</div>
-          <div class="why-now-number">
-            <span class="why-now-val dim" data-count="33" data-prefix="" data-suffix="%"><span>33%</span></span>
-            <span class="why-now-desc" data-i18n="wn_actual">Actually deployed in companies</span>
+        <div class="why-now-stat r r-d1">
+          <div class="why-now-numbers">
+            <div class="why-now-number">
+              <span class="why-now-val" data-count="94" data-prefix="" data-suffix="%"><span>94%</span></span>
+              <span class="why-now-desc" data-i18n="wn_cap">Theoretical AI capability</span>
+            </div>
+            <div class="why-now-vs">vs</div>
+            <div class="why-now-number">
+              <span class="why-now-val dim" data-count="33" data-prefix="" data-suffix="%"><span>33%</span></span>
+              <span class="why-now-desc" data-i18n="wn_actual">Actually deployed in companies</span>
+            </div>
           </div>
         </div>
+
+        <p class="why-now-text r r-d2" data-i18n="wn_text">Anthropic's 2025 research confirms what operators see daily: AI capability isn't the bottleneck. Deployment is. The 61-point gap between what AI can do and what companies actually use isn't a technology problem — it's an operations problem. And it's widening.</p>
+        <div class="why-now-cite r r-d2">Source: <a href="https://www.anthropic.com/research/labor-market-impacts" target="_blank" rel="noopener">Anthropic — Labor Market Impacts of AI, 2025</a></div>
+        <p class="why-now-kicker r r-d3" data-i18n="wn_kicker">The companies closing this gap now will lead. The rest will <em>hire consultants to explain why they didn't.</em></p>
       </div>
 
-      <p class="why-now-text r r-d2" data-i18n="wn_text">Anthropic's 2025 research confirms what operators see daily: AI capability isn't the bottleneck. Deployment is. The 61-point gap between what AI can do and what companies actually use isn't a technology problem — it's an operations problem. And it's widening.</p>
-      <div class="why-now-cite r r-d2">Source: <a href="https://www.anthropic.com/research/labor-market-impacts" target="_blank" rel="noopener">Anthropic — The Model Spec, Economic Impact Assessment 2025</a></div>
-      <p class="why-now-kicker r r-d3" data-i18n="wn_kicker">The companies closing this gap now will lead. The rest will <em>hire consultants to explain why they didn't.</em></p>
+      <!-- Radar Chart: Figure 2 from Anthropic's Labor Market Report -->
+      <div class="why-now-chart r r-d2">
+        <svg class="radar-svg" viewBox="-30 -5 500 450" xmlns="http://www.w3.org/2000/svg" aria-label="Radar chart showing gap between AI theoretical capability and actual deployment across occupations">
+          <!-- Grid circles -->
+          <circle cx="220" cy="220" r="37.5" fill="none" stroke="rgba(255,255,255,.04)" stroke-width=".5"/>
+          <circle cx="220" cy="220" r="75" fill="none" stroke="rgba(255,255,255,.04)" stroke-width=".5"/>
+          <circle cx="220" cy="220" r="112.5" fill="none" stroke="rgba(255,255,255,.04)" stroke-width=".5"/>
+          <circle cx="220" cy="220" r="150" fill="none" stroke="rgba(255,255,255,.07)" stroke-width=".5"/>
+          <!-- Axis lines -->
+          <line x1="220" y1="220" x2="220" y2="70" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
+          <line x1="220" y1="220" x2="326" y2="114" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
+          <line x1="220" y1="220" x2="370" y2="220" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
+          <line x1="220" y1="220" x2="326" y2="326" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
+          <line x1="220" y1="220" x2="220" y2="370" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
+          <line x1="220" y1="220" x2="114" y2="326" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
+          <line x1="220" y1="220" x2="70" y2="220" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
+          <line x1="220" y1="220" x2="114" y2="114" stroke="rgba(255,255,255,.05)" stroke-width=".5"/>
+          <!-- Theoretical capability polygon (amber) — data from Anthropic report Figure 2 -->
+          <g class="radar-theoretical">
+            <polygon points="220,79 305,135 355,220 284,284 220,303 175,265 153,220 151,151"
+                     fill="rgba(212,160,84,.14)" stroke="#d4a054" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="220" cy="79" r="2.5" fill="#d4a054"/>
+            <circle cx="305" cy="135" r="2.5" fill="#d4a054"/>
+            <circle cx="355" cy="220" r="2.5" fill="#d4a054"/>
+            <circle cx="284" cy="284" r="2.5" fill="#d4a054"/>
+            <circle cx="220" cy="303" r="2.5" fill="#d4a054"/>
+            <circle cx="175" cy="265" r="2.5" fill="#d4a054"/>
+            <circle cx="153" cy="220" r="2.5" fill="#d4a054"/>
+            <circle cx="151" cy="151" r="2.5" fill="#d4a054"/>
+          </g>
+          <!-- Observed deployment polygon (dim) -->
+          <g class="radar-observed">
+            <polygon points="220,171 247,194 262,220 252,252 220,247 209,231 202,220 199,199"
+                     fill="rgba(107,104,128,.15)" stroke="#6b6880" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="220" cy="171" r="2.5" fill="#6b6880"/>
+            <circle cx="247" cy="194" r="2.5" fill="#6b6880"/>
+            <circle cx="262" cy="220" r="2.5" fill="#6b6880"/>
+            <circle cx="252" cy="252" r="2.5" fill="#6b6880"/>
+            <circle cx="220" cy="247" r="2.5" fill="#6b6880"/>
+            <circle cx="209" cy="231" r="2.5" fill="#6b6880"/>
+            <circle cx="202" cy="220" r="2.5" fill="#6b6880"/>
+            <circle cx="199" cy="199" r="2.5" fill="#6b6880"/>
+          </g>
+          <!-- Category labels -->
+          <text x="220" y="58" text-anchor="middle" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Tech &amp; Math</text>
+          <text x="336" y="110" text-anchor="start" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Finance</text>
+          <text x="380" y="224" text-anchor="start" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Office &amp; Admin</text>
+          <text x="336" y="340" text-anchor="start" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Legal</text>
+          <text x="220" y="393" text-anchor="middle" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Sales</text>
+          <text x="104" y="340" text-anchor="end" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Education</text>
+          <text x="60" y="224" text-anchor="end" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Arts &amp; Media</text>
+          <text x="104" y="110" text-anchor="end" fill="#8e8c98" font-family="'JetBrains Mono',monospace" font-size="10" letter-spacing=".5">Management</text>
+        </svg>
+        <div class="radar-legend">
+          <span class="radar-legend-item"><span class="radar-legend-dot th"></span><span data-i18n="wn_leg_th">Theoretical</span></span>
+          <span class="radar-legend-item"><span class="radar-legend-dot ob"></span><span data-i18n="wn_leg_ob">Observed</span></span>
+        </div>
+        <div class="radar-chart-label" data-i18n="wn_chart_label">The <em>gap</em> is the opportunity.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -695,6 +778,7 @@ const T = {
     wn_cap:'Theoretische AI-Fähigkeit', wn_actual:'Tatsächlich in Unternehmen im Einsatz',
     wn_text:'Anthropics Forschung von 2025 bestätigt, was Operators täglich sehen: AI-Fähigkeit ist nicht der Engpass. Die Implementierung ist es. Die 61-Punkte-Lücke zwischen dem, was AI kann, und dem, was Unternehmen tatsächlich nutzen, ist kein Technologieproblem — es ist ein Operations-Problem. Und die Lücke wächst.',
     wn_kicker:'Die Unternehmen, die diese Lücke jetzt schließen, werden führen. Der Rest wird <em>Berater beauftragen, die erklären, warum nicht.</em>',
+    wn_leg_th:'Theoretisch', wn_leg_ob:'Tatsächlich', wn_chart_label:'Die <em>Lücke</em> ist die Chance.',
     mid_cta_text:'Genug gesehen? Direkt zum Gespräch.', mid_cta_btn:'Gespräch vereinbaren',
     track_label:'Track Record', track_h2:'Probleme, die ich gelöst habe. Zahlen, die ich bewegt habe.',
     t1_c:'„Das operative Rückgrat für Deutschlands größten Kreditvergleich aufbauen."', t1_a:'Volle P&L-Verantwortung als Managing Director. Team auf 50+ aufgebaut, Enterprise-Partnerschaften strukturiert, operativen Kern über ein Jahrzehnt Wachstum skaliert.', t1_l:'Jahresvolumen',

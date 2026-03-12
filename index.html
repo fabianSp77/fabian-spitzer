@@ -158,28 +158,26 @@
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_subject" value="Website: New conversation request">
           <input type="text" name="_honey" class="form-hp" tabindex="-1" autocomplete="off">
-          <div class="form-border">
-            <div class="form-row">
-              <div class="form-group">
-                <input type="text" name="name" id="f-name" required placeholder="Jane Miller" autocomplete="name">
-                <label for="f-name" data-i18n="form_name">Name</label>
-              </div>
-              <div class="form-group">
-                <input type="email" name="email" id="f-email" required placeholder="jane@company.com" autocomplete="email">
-                <label for="f-email">Email</label>
-              </div>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" name="name" id="f-name" required placeholder="Jane Miller" autocomplete="name">
+              <label for="f-name" data-i18n="form_name">Name</label>
             </div>
-            <div class="form-row full">
-              <div class="form-group">
-                <input type="text" name="company" id="f-company" placeholder="Acme Inc. — VP Operations">
-                <label for="f-company" data-i18n="form_company">Company + Role</label>
-              </div>
+            <div class="form-group">
+              <input type="email" name="email" id="f-email" required placeholder="jane@company.com" autocomplete="email">
+              <label for="f-email">Email</label>
             </div>
-            <div class="form-row full">
-              <div class="form-group">
-                <textarea name="message" id="f-message" required placeholder="We're looking for…" rows="3"></textarea>
-                <label for="f-message" data-i18n="form_message">What's on your mind?</label>
-              </div>
+          </div>
+          <div class="form-row full">
+            <div class="form-group">
+              <input type="text" name="company" id="f-company" placeholder="Acme Inc. — VP Operations">
+              <label for="f-company" data-i18n="form_company">Company + Role</label>
+            </div>
+          </div>
+          <div class="form-row full">
+            <div class="form-group">
+              <textarea name="message" id="f-message" required placeholder="We're looking for…" rows="3"></textarea>
+              <label for="f-message" data-i18n="form_message">What's on your mind?</label>
             </div>
           </div>
           <div class="form-actions">
@@ -188,7 +186,7 @@
           </div>
         </form>
         <div class="form-success" id="formSuccess">
-          <div class="form-success-icon">&#10003;</div>
+          <div class="form-success-icon">&#10004;</div>
           <h3 data-i18n="form_ok_h">Message received.</h3>
           <p data-i18n="form_ok_p">I'll get back to you within 24 hours. Looking forward to the conversation.</p>
         </div>

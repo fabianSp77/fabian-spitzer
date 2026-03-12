@@ -49,6 +49,9 @@ nav .container { display:flex; justify-content:space-between; align-items:center
 .lang-toggle { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.04em; color:var(--text-muted);
   background:none; border:1px solid var(--border); padding:5px 12px; cursor:pointer; transition:all .25s; }
 .lang-toggle:hover { border-color:var(--text-muted); color:var(--text); }
+.nav-cv { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.04em;
+  color:var(--text-muted); border:1px solid var(--border); padding:5px 12px; text-decoration:none; transition:all .25s; }
+.nav-cv:hover { border-color:var(--amber); color:var(--amber); }
 .nav-cta { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.06em; text-transform:uppercase;
   color:var(--bg); background:var(--amber); padding:8px 20px; text-decoration:none; transition:all .3s var(--ease); }
 .nav-cta:hover { background:var(--amber-bright); }
@@ -385,6 +388,7 @@ footer .container { display:flex; justify-content:space-between; align-items:cen
     display:flex; flex-direction:row; align-items:center; gap:12px;
     padding:16px 28px 24px; border-top:1px solid var(--border);
   }
+  .nav-right .nav-cv { padding:12px 20px; font-size:12px; flex-shrink:0; text-align:center; }
   .nav-right .lang-toggle { padding:12px 20px; font-size:12px; flex-shrink:0; }
   .nav-right .nav-cta { flex:1; text-align:center; padding:12px 20px; }
 

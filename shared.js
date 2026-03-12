@@ -64,7 +64,8 @@ const T = {
     form_alt:'Oder auf <a href="https://www.linkedin.com/in/fabian-spitzer/" target="_blank" rel="noopener">LinkedIn</a> vernetzen',
     form_btn:'Nachricht senden',
     form_ok_h:'Nachricht erhalten.', form_ok_p:'Ich melde mich innerhalb von 24 Stunden. Freue mich auf das Gespräch.',
-    footer_cv:'CV herunterladen', footer_op:'One-Pager',
+    nav_dl:'CV ↓',
+    footer_cv:'CV herunterladen (PDF)',
 
     /* Page CTA (subpages) */
     page_cta:'Bereit zu sprechen? <em>Zum Kontakt.</em>',

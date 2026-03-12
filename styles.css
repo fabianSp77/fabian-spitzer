@@ -239,8 +239,8 @@ nav .container { display:flex; justify-content:space-between; align-items:center
 
 /* Contact Form — Glass Card */
 .cta-form { display:flex; flex-direction:column; gap:0;
-  background:rgba(255,255,255,.03); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,.06); border-radius:16px;
+  background:rgba(255,255,255,.04); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.08); border-radius:16px;
   padding:36px 32px 32px; position:relative; overflow:hidden;
   box-shadow:0 8px 32px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.04);
   transition:border-color .5s var(--ease), box-shadow .5s var(--ease); }
@@ -253,14 +253,14 @@ nav .container { display:flex; justify-content:space-between; align-items:center
 .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
 .form-row.full { grid-template-columns:1fr; }
 .form-group { position:relative; }
-.form-group label { position:absolute; top:12px; left:16px; font-family:var(--mono); font-size:9px; font-weight:400;
-  letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); pointer-events:none;
+.form-group label { position:absolute; top:12px; left:16px; font-family:var(--mono); font-size:9px; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.45); pointer-events:none;
   transition:all .3s var(--ease); }
-.form-group input, .form-group textarea { width:100%; background:rgba(255,255,255,.025);
-  border:1px solid rgba(255,255,255,.06); border-radius:10px; outline:none; color:var(--text);
+.form-group input, .form-group textarea { width:100%; background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1); border-radius:10px; outline:none; color:var(--text);
   font-family:var(--body); font-size:14px; font-weight:300; padding:32px 16px 12px; line-height:1.5; resize:none;
   transition:all .3s var(--ease); }
-.form-group input::placeholder, .form-group textarea::placeholder { color:rgba(255,255,255,.15); font-weight:300; }
+.form-group input::placeholder, .form-group textarea::placeholder { color:rgba(255,255,255,.3); font-weight:300; }
 .form-group input:focus, .form-group textarea:focus { background:rgba(255,255,255,.045);
   border-color:rgba(212,160,84,.3); box-shadow:0 0 0 3px rgba(212,160,84,.06); }
 .form-group input:focus ~ label, .form-group textarea:focus ~ label { color:var(--amber); }

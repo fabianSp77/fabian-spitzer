@@ -357,6 +357,155 @@ nav .container { display:flex; justify-content:space-between; align-items:center
 .subpage-hero h1 em { color:var(--amber); font-style:italic; }
 .subpage-hero p { font-size:16px; color:var(--text-secondary); font-weight:300; line-height:1.7; margin-top:16px; max-width:560px; }
 
+/* ══════════════════════════════════
+   USP SECTION — "Was Unternehmen bekommen"
+   Editorial 5-block layout with numbered rows,
+   metric chips, hover-shift accent.
+══════════════════════════════════ */
+.usp { padding:120px 0 100px; position:relative; }
+.usp::before {
+  content:''; position:absolute; left:50%; top:0;
+  width:1px; height:60px; background:linear-gradient(180deg, transparent, var(--amber)); pointer-events:none;
+}
+.usp-eyebrow { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); margin-bottom:24px; }
+.usp-headline { font-family:var(--serif); font-size:clamp(28px, 3.6vw, 46px); font-weight:400; line-height:1.1; letter-spacing:-.025em; max-width:880px; }
+.usp-headline em { color:var(--amber); font-style:italic; }
+.usp-bridge { font-size:16px; color:var(--text-secondary); font-weight:300; line-height:1.7; margin-top:24px; max-width:640px; }
+
+.usp-list { display:flex; flex-direction:column; margin:80px 0 0; }
+.usp-item {
+  display:grid; grid-template-columns:60px 1fr auto;
+  gap:48px; padding:44px 0;
+  border-top:1px solid var(--border);
+  position:relative;
+  transition: padding-left .35s var(--ease), background .35s var(--ease);
+}
+.usp-item:last-child { border-bottom:1px solid var(--border); }
+.usp-item::before {
+  content:''; position:absolute; left:0; top:0; bottom:0;
+  width:0; background:var(--amber);
+  transition: width .35s var(--ease);
+}
+.usp-item:hover { padding-left:24px; }
+.usp-item:hover::before { width:3px; }
+.usp-item:hover .usp-num { color:var(--amber); }
+.usp-item:hover .usp-num::before { background:var(--amber); }
+
+.usp-num {
+  font-family:var(--mono); font-size:13px; font-weight:600;
+  letter-spacing:.06em; color:var(--text-dim);
+  padding-top:8px; line-height:1;
+  display:flex; align-items:baseline; gap:8px;
+  transition:color .35s var(--ease);
+}
+.usp-num::before {
+  content:''; display:inline-block; width:24px; height:1px;
+  background:var(--text-dim); flex-shrink:0;
+  transform:translateY(-3px);
+  transition:background .35s var(--ease);
+}
+
+.usp-content { min-width:0; }
+.usp-title {
+  font-family:var(--serif); font-size:clamp(20px, 2.4vw, 28px);
+  font-weight:400; line-height:1.2; letter-spacing:-.02em;
+  margin-bottom:18px;
+}
+.usp-title em { color:var(--amber); font-style:italic; }
+.usp-claim {
+  font-size:15px; color:var(--text-secondary); font-weight:300;
+  line-height:1.7; max-width:640px;
+}
+.usp-proof {
+  font-family:var(--mono); font-size:12px; font-weight:400;
+  letter-spacing:.02em; color:var(--text-muted);
+  margin-top:18px; padding-top:14px;
+  border-top:1px dashed rgba(212,160,84,.18);
+  line-height:1.55;
+}
+.usp-proof strong { color:var(--amber); font-weight:600; letter-spacing:0; }
+
+.usp-aside {
+  display:flex; flex-direction:column; gap:6px;
+  align-items:flex-end; padding-top:6px;
+  min-width:120px;
+}
+.usp-metric {
+  font-family:var(--mono); font-size:clamp(20px, 2.2vw, 28px);
+  font-weight:600; color:var(--amber);
+  letter-spacing:-.02em; line-height:1;
+}
+.usp-metric-label {
+  font-family:var(--mono); font-size:9px; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--text-dim); text-align:right; line-height:1.4;
+}
+
+/* Filter — "Was Sie nicht bekommen" */
+.usp-filter {
+  margin-top:64px; padding:36px 40px;
+  border:1px solid var(--border);
+  background:var(--bg-elevated);
+  position:relative;
+}
+.usp-filter::before {
+  content:''; position:absolute; top:0; left:0;
+  width:3px; height:64%; background:var(--amber);
+}
+.usp-filter-eyebrow {
+  font-family:var(--mono); font-size:10px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--amber); margin-bottom:14px;
+}
+.usp-filter h3 {
+  font-family:var(--serif); font-size:clamp(18px, 2vw, 22px);
+  font-weight:400; line-height:1.35; margin-bottom:14px;
+  letter-spacing:-.01em;
+}
+.usp-filter h3 em { color:var(--amber); font-style:italic; }
+.usp-filter p {
+  font-size:14px; color:var(--text-secondary); font-weight:300;
+  line-height:1.7; max-width:680px;
+}
+
+/* Sweet Spot */
+.usp-sweet { margin-top:48px; padding-top:48px; border-top:1px solid var(--border); }
+.usp-sweet-label {
+  font-family:var(--mono); font-size:11px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--amber); margin-bottom:24px;
+}
+.usp-sweet-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px 40px; }
+.usp-sweet-key {
+  font-family:var(--mono); font-size:10px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--text-dim);
+  margin-bottom:8px;
+}
+.usp-sweet-val {
+  font-family:var(--body); font-size:14px; font-weight:400;
+  color:var(--text); line-height:1.55;
+}
+
+/* Mobile */
+@media (max-width:768px) {
+  .usp { padding:80px 0 60px; }
+  .usp-list { margin-top:48px; }
+  .usp-item { grid-template-columns:1fr; gap:16px; padding:32px 0; }
+  .usp-item:hover { padding-left:14px; }
+  .usp-num { padding-top:0; }
+  .usp-aside {
+    flex-direction:row;
+    align-items:baseline;
+    gap:12px;
+    padding-top:6px;
+    align-self:flex-start;
+  }
+  .usp-metric-label { text-align:left; }
+  .usp-filter { padding:28px 24px; margin-top:48px; }
+  .usp-sweet { margin-top:36px; padding-top:36px; }
+  .usp-sweet-grid { grid-template-columns:1fr; gap:20px; }
+}
+
 /* ── Footer ── */
 footer { padding:32px 0; border-top:1px solid var(--border); }
 footer .container { display:flex; justify-content:space-between; align-items:center; }

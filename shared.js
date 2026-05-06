@@ -34,9 +34,12 @@ const T = {
 
     /* Track Record */
     track_label:'Track Record',
-    t1_c:'„Das operative Rückgrat für Deutschlands größten Kreditvergleich aufbauen."', t1_a:'Volle P&L-Verantwortung als Managing Director. Team auf 50+ aufgebaut, Enterprise-Partnerschaften strukturiert, operativen Kern über ein Jahrzehnt Wachstum skaliert.', t1_l:'Jahresvolumen',
+    t1_c:'„Das operative Rückgrat für Deutschlands größten Kreditvergleich aufbauen."', t1_a:'Volle P&L-Verantwortung als Managing Director. Organisation auf 100+ aufgebaut · 50+ direkte Reports auf Führungsebene · Enterprise-Partnerschaften strukturiert · operativen Kern über ein Jahrzehnt skaliert.', t1_l:'Jahresvolumen',
     t2_c:'„€38M-Startup. Daraus eine Wachstumsmaschine machen."', t2_a:'Operations, Vertrieb und Partner-Ökosystem als COO neu aufgebaut. Finanzierungsvolumen auf €223M in 24 Monaten skaliert.', t2_l:'Volumen-Wachstum',
     t3_c:'„€27M-Unternehmen verbrennt Cash. Sechs Monate Zeit."', t3_a:'Operative Restrukturierung, Prozessautomatisierung, Team-Neuausrichtung. €1.3M EBITDA als Interim COO geliefert.', t3_l:'EBITDA in 6Mo',
+    track_earlier_label:'Frühere Stationen',
+    t4_c:'„B2B-Vertriebskanäle für KMU-Finanzierung von null aufbauen."', t4_a:'Direktvertrieb und Partnervertrieb von Grund auf aufgebaut. HubSpot, Partner-Scoring und gebührenbasierte Monetarisierung eingeführt. Teams in Sales, Partner Management und Customer Support rekrutiert und geführt.',
+    t5_c:'„EduTech vom Konzept zur Marktvalidierung."', t5_a:'Mitgegründet und geführt: Produkt, Business Development und erste Pilotpartnerschaften im deutschen Eltern-Schul-Kommunikationsmarkt.',
     ai_h3:'Dann bin ich hands-on gegangen, um zu verstehen, was Operationalisierung wirklich braucht.', ai_p:'Nach Jahren operativer Führung habe ich eine Applied-AI-Firma von Grund auf aufgebaut — Voice-Agents, Workflow-Automatisierung, AI-natives CRM. Nicht um Entwickler zu werden, sondern um tief zu verstehen, was es braucht, AI vom Prototyp in die Produktion realer Organisationen zu bringen.',
 
     /* How I Work */

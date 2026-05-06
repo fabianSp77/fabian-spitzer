@@ -35,5 +35,15 @@
     <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="de" href="https://fabian-spitzer.de/was-unternehmen-bekommen.html"/>
+    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="en" href="https://fabian-spitzer.de/what-companies-get.html"/>
+  </url>
+  <url>
+    <loc>https://fabian-spitzer.de/what-companies-get.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="de" href="https://fabian-spitzer.de/was-unternehmen-bekommen.html"/>
+    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="en" href="https://fabian-spitzer.de/what-companies-get.html"/>
   </url>
 </urlset>

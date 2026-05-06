@@ -384,6 +384,11 @@
   <button class="print-btn" onclick="window.print()">Als PDF speichern</button>
 </div>
 
+
+<script>
+  // Pin the lang preference to DE BEFORE shared.js reads localStorage
+  try { localStorage.setItem('fsLang', 'de'); } catch (e) {}
+</script>
 <script src="/shared.js"></script>
 <script>
   // Single-language brief: lang-toggle navigates to the other-language URL
@@ -391,13 +396,6 @@
   window.toggleLang = function () {
     window.location.href = '/what-companies-get.html';
   };
-  // Reflect current page as DE in the lang button label
-  document.addEventListener('DOMContentLoaded', function () {
-    var btn = document.getElementById('langBtn');
-    if (btn) btn.textContent = 'EN';
-    document.documentElement.lang = 'de';
-    try { localStorage.setItem('fsLang', 'de'); } catch (e) {}
-  });
 </script>
 
 </body>

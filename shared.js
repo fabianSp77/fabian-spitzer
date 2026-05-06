@@ -78,6 +78,50 @@ const T = {
     approach_hero_sub:'Operative Führung, eigenhändiger Aufbau, messbare Ergebnisse — angepasst an das, was ihr braucht.',
     whynow_hero_h1:'AI kann die Arbeit erledigen.<br><em>Niemand verankert es.</em>',
     whynow_hero_sub:'Die Lücke zwischen AI-Fähigkeit und tatsächlichem Einsatz ist operativ — nicht technisch. Und sie wächst.',
+
+    /* USP — Was Unternehmen bekommen */
+    usp_eyebrow:'Was Unternehmen bekommen',
+    usp_headline:'Strategie ist nicht das Problem.<br><em>Umsetzung ist das Problem.</em>',
+    usp_bridge:'Wenn der CEO heute schlecht schläft, dann selten wegen fehlender Strategie — sondern wegen der Frage, ob sie zwischen Folie 12 und der Realität versickert. Genau dort liegt der Wert. Fabian ist der Operator, dem die nächste Führungsebene die Umsetzung blind überlassen kann.',
+
+    usp1_title:'Strategie wird Realität — nicht <em>Roadmap</em>.',
+    usp1_claim:'Ein Operator, der Strategie tatsächlich auf den Boden bringt — durch klare Ziele, kleinteilige Schritte, klare Verantwortlichkeiten und ein Team, das versteht, wofür es jeden Tag aufsteht.',
+    usp1_proof:'<strong>DFKP:</strong> €38M → €223M (+400 %) in 24 Monaten · Konversion +34 % &nbsp;·&nbsp; <strong>Interlead:</strong> €27M Umsatz, €1,3M EBITDA in 6 Monaten',
+    usp1_metric_label:'DFKP · 24 Monate',
+
+    usp2_title:'Sie können es ihm <em>überlassen</em>.',
+    usp2_claim:'Eine Führungskraft, der Sie die gesamte Operationsverantwortung übergeben können, ohne wöchentlich kontrollieren zu müssen. Sie geben Ziele — er holt das Team, die Prozesse und die KPI-Steuerung dorthin, wo sie hin müssen.',
+    usp2_proof:'<strong>DFKP-Scope:</strong> Sales · Operations · HR · Lead Management · Partner Management · interne Akademie. Klare Wochenstatusberichte, messbare Bewegung — kein Excel-Theater.',
+    usp2_metric_label:'volle Verantwortung',
+
+    usp3_title:'Restrukturierungen, die <em>halten</em>.',
+    usp3_claim:'Umbauten, die nicht nach drei Monaten wieder zerfallen, weil die Leistungsträger sie mitgetragen haben. Performance-Tracking, offene Fehlerkultur, klare Verantwortlichkeiten — Operations-Kultur, die das Mandat überlebt.',
+    usp3_proof:'<strong>DFKP:</strong> Vertriebsrollen entflochten, spezialisierte Operations-Teams aufgebaut → +34 % Konversion und eine Struktur, die nach dem Mandat weiterläuft.',
+    usp3_metric_label:'Konversion',
+
+    usp4_title:'KPI-Härte ohne <em>Team-Verschleiß</em>.',
+    usp4_claim:'Zahlen ernst nehmen, ohne die Mitarbeiter zu verbrennen, die diese Zahlen liefern. Tägliche Stand-ups, wöchentliche Reviews, Performance-Transparenz für das ganze Unternehmen — Klarheit als Rhythmus, nicht als Druck-Theater.',
+    usp4_proof:'<strong>CHECK24:</strong> 11 Jahre Aufbau einer Sparte zur Marktführerschaft. €4B+ Volumen. 100+ Mitarbeitende. Eine Kultur, die diesen Aufbau überlebt hat.',
+    usp4_metric_label:'CHECK24 · 11 Jahre',
+
+    usp5_title:'AI ist Werkzeug, kein <em>Buzzword</em>.',
+    usp5_claim:'Eine Führungskraft, die AI nicht beauftragt, sondern verwendet. AI-Initiativen werden operationalisiert — nicht an externe Berater delegiert und in PowerPoints abgelegt.',
+    usp5_proof:'<strong>AskProAI:</strong> DSGVO-konforme Voice-AI-Plattform für den Mittelstand. Allein gebaut auf Retell AI · Claude Code · OpenAI Codex. Live-System, kein Foliensatz.',
+    usp5_metric_label:'end-to-end gebaut',
+
+    usp_filter_eyebrow:'Filter — Was Sie nicht bekommen',
+    usp_filter_h3:'Politisches Stakeholder-Management auf Vorstandsebene, in dem die operative Wahrheit hinter politischer Sprache zurücktreten muss. <em>Das ist nicht die richtige Wahl.</em>',
+    usp_filter_p:'Das ist nicht Schwäche, das ist Auswahl. Wer Klartext sucht und inhaltliche Substanz die Entscheidung tragen lässt, bekommt mit Fabian die richtige Person.',
+
+    usp_sweet_label:'Sweet Spot',
+    usp_sweet_size_key:'Unternehmensgröße',
+    usp_sweet_size_val:'Scale-Ups und Mittelstand · 30–200 Mitarbeitende',
+    usp_sweet_model_key:'Geschäftsmodell',
+    usp_sweet_model_val:'Vertriebs- und service-getrieben · PE/VC-Portfolios mit klarem Lieferauftrag',
+    usp_sweet_format_key:'Format',
+    usp_sweet_format_val:'Festanstellung als COO / VP Operations · oder Interim-Mandat 3–12 Monate',
+    usp_sweet_loc_key:'Standort',
+    usp_sweet_loc_val:'Remote-first · DACH-fokussiert · präsenzfähig in Berlin',
   }
 };
 

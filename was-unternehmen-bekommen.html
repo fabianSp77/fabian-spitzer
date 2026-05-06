@@ -19,6 +19,7 @@
   <link rel="alternate" hreflang="x-default" href="https://fabian-spitzer.de/what-companies-get.html">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23d4a054'/><text x='6' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23060610'>FS</text></svg>">
   <link rel="stylesheet" href="/fonts.css">
+  <link rel="stylesheet" href="/styles.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -93,23 +94,18 @@
       background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size:200px;}
 
-    /* Container — A4-width */
-    .container{max-width:780px;margin:0 auto;padding:0 28px;position:relative;z-index:2;}
+    /* Container — A4-width (only main, NOT nav) */
+    main.container{max-width:780px;margin:0 auto;padding:0 28px;position:relative;z-index:2;}
 
     /* ── HEADER ── */
-    .pp-header{padding:44px 0 0;position:relative;}
+    .pp-header{padding:104px 0 0;position:relative;}
     .pp-header::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.07;
       background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
       background-size:48px 48px;
       mask-image:radial-gradient(ellipse 60% 80% at 30% 40%,black 10%,transparent 70%);
       -webkit-mask-image:radial-gradient(ellipse 60% 80% at 30% 40%,black 10%,transparent 70%);}
 
-    .pp-toprow{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
-    .pp-back{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:.04em;transition:color .25s;}
-    .pp-back:hover{color:var(--amber);}
-    .pp-back svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
-    .pp-lang{font-family:var(--mono);font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:.04em;border:1px solid var(--border);padding:5px 10px;transition:all .25s;}
-    .pp-lang:hover{border-color:var(--amber);color:var(--amber);}
+    /* (.pp-toprow / .pp-back / .pp-lang removed — main nav handles back-to-home + lang switch) */
 
     .pp-id{display:flex;align-items:center;gap:18px;margin-bottom:10px;}
     .pp-mono{
@@ -206,7 +202,7 @@
 
     /* ── RESPONSIVE — Mobile ── */
     @media(max-width:520px){
-      .container{padding:0 18px;}
+      main.container{padding:0 18px;}
       .pp-header{padding-top:28px;}
       .pp-mono{width:40px;height:40px;font-size:18px;}
       .pp-name{font-size:20px;}
@@ -223,10 +219,9 @@
     @media print{
       *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important;}
       html, body{background:var(--bg)!important;font-size:12px;}
-      .noise, .controls{display:none!important;}
-      .container{max-width:680px;padding:0 12mm;}
+      .noise, .controls, nav{display:none!important;}
+      main.container{max-width:680px;padding:0 12mm;}
       .pp-header{padding-top:14mm;}
-      .pp-toprow{display:none;}
       .pp-id{margin-bottom:6px;}
       .pp-meta{margin-bottom:14px;}
       .pp-lead{padding:16px 0 10px;margin-bottom:14px;}
@@ -247,16 +242,33 @@
 
 <div class="noise" aria-hidden="true"></div>
 
+<!-- ═══ MAIN NAV ═══ -->
+<nav role="navigation" aria-label="Hauptnavigation">
+  <div class="container">
+    <a href="/" class="nav-name"><span>FS</span> / Fabian Spitzer</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <ul class="nav-links">
+        <li><a href="/track-record.html" data-i18n="nav_track">Track Record</a></li>
+        <li><a href="/approach.html" data-i18n="nav_approach">Approach</a></li>
+        <li><a href="/why-now.html" data-i18n="nav_why">Why Now</a></li>
+        <li><a href="/was-unternehmen-bekommen.html" class="active" data-i18n="nav_for_companies" data-i18n-href="footer_1pager_href">For Companies</a></li>
+        <li><a href="/#contact" data-i18n="nav_contact">Contact</a></li>
+        <li><a href="/Fabian_Spitzer.pdf" download data-i18n="nav_dl">CV ↓</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langBtn" onclick="toggleLang()" aria-label="Switch language">EN</button>
+        <a href="/#contact" class="nav-cta" data-i18n="nav_cta">Let's Talk</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
 <main class="container">
 
   <header class="pp-header">
-    <div class="pp-toprow">
-      <a href="/" class="pp-back">
-        <svg viewBox="0 0 24 24"><path d="M19 12H5M5 12l6-6M5 12l6 6"/></svg>
-        fabian-spitzer.de
-      </a>
-      <a href="/what-companies-get.html" class="pp-lang" hreflang="en">EN ↗</a>
-    </div>
     <div class="pp-id">
       <div class="pp-mono">FS</div>
       <div>
@@ -371,6 +383,22 @@
 <div class="controls">
   <button class="print-btn" onclick="window.print()">Als PDF speichern</button>
 </div>
+
+<script src="/shared.js"></script>
+<script>
+  // Single-language brief: lang-toggle navigates to the other-language URL
+  // instead of swapping content (which would do nothing on a non-i18n page).
+  window.toggleLang = function () {
+    window.location.href = '/what-companies-get.html';
+  };
+  // Reflect current page as DE in the lang button label
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('langBtn');
+    if (btn) btn.textContent = 'EN';
+    document.documentElement.lang = 'de';
+    try { localStorage.setItem('fsLang', 'de'); } catch (e) {}
+  });
+</script>
 
 </body>
 </html>

@@ -67,6 +67,9 @@ const T = {
     nav_dl:'CV ↓',
     footer_cv:'CV herunterladen (PDF)',
     footer_1pager:'1-Pager',
+    footer_1pager_href:'/was-unternehmen-bekommen.html',
+    hero_brief_label:'Was Unternehmen bekommen →',
+    hero_brief_href:'/was-unternehmen-bekommen.html',
 
     /* Page CTA (subpages) */
     page_cta:'Bereit zu sprechen? <em>Zum Kontakt.</em>',
@@ -139,6 +142,11 @@ function setLang(l) {
     if (l === 'de' && T.de[k]) el.innerHTML = T.de[k];
     else if (l === 'en' && el._en) el.innerHTML = el._en;
   });
+  document.querySelectorAll('[data-i18n-href]').forEach(el => {
+    const k = el.getAttribute('data-i18n-href');
+    if (l === 'de' && T.de[k]) el.setAttribute('href', T.de[k]);
+    else if (l === 'en' && el._enHref) el.setAttribute('href', el._enHref);
+  });
 }
 function toggleLang() { setLang(lang === 'en' ? 'de' : 'en'); }
 
@@ -158,6 +166,7 @@ function counter(el, target, pre, suf, dur) {
 document.addEventListener('DOMContentLoaded', () => {
   // Store EN originals
   document.querySelectorAll('[data-i18n]').forEach(el => { el._en = el.innerHTML; });
+  document.querySelectorAll('[data-i18n-href]').forEach(el => { el._enHref = el.getAttribute('href'); });
   if (lang === 'de') setLang('de');
 
   // Scroll progress

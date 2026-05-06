@@ -6,7 +6,7 @@
 const T = {
   de: {
     /* Nav */
-    nav_track:'Track Record', nav_approach:'Arbeitsweise', nav_why:'Warum jetzt', nav_contact:'Kontakt', nav_cta:'Gespräch',
+    nav_track:'Track Record', nav_approach:'Arbeitsweise', nav_why:'Warum jetzt', nav_for_companies:'Für Unternehmen', nav_contact:'Kontakt', nav_cta:'Gespräch',
 
     /* Hero */
     hero_eyebrow:'Fabian Spitzer — Operations + AI',

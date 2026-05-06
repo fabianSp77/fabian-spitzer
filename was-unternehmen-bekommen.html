@@ -197,8 +197,10 @@
     .print-btn{
       font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
       color:var(--bg);background:var(--amber);border:none;padding:10px 20px;cursor:pointer;transition:all .2s;
+      text-decoration:none;display:inline-flex;align-items:center;gap:7px;
     }
-    .print-btn:hover{background:var(--amber-bright);transform:translateY(-2px);box-shadow:0 6px 24px rgba(212,160,84,.25);}
+    .print-btn:hover{background:var(--amber-bright);transform:translateY(-2px);box-shadow:0 6px 24px rgba(212,160,84,.25);color:var(--bg);}
+    .print-btn-pages{font-family:var(--mono);font-size:9px;font-weight:400;letter-spacing:.04em;text-transform:none;opacity:.75;color:var(--bg);}
 
     /* ── RESPONSIVE — Mobile ── */
     @media(max-width:520px){
@@ -419,55 +421,6 @@
     </div>
   </section>
 
-  <!-- ═══ CV / Werdegang (zweite A4-Seite im Print) ═══ -->
-  <section class="pp-cv" aria-label="Werdegang">
-
-    <h2 class="pp-cv-section-label">Werdegang</h2>
-    <div class="pp-cv-list">
-      <div class="pp-cv-row">
-        <div class="pp-cv-period">2025 – heute</div>
-        <div class="pp-cv-content">
-          <div class="pp-cv-role">Founder &amp; CEO · AskProAI</div>
-          <div class="pp-cv-desc">DSGVO-konforme Voice-AI-Plattform für den Mittelstand. Solo gebaut auf Retell AI, Claude Code und OpenAI Codex. Voice Agents · Workflow-Orchestrierung · AI-natives CRM. <strong>Live-System, kein Foliensatz.</strong></div>
-        </div>
-      </div>
-      <div class="pp-cv-row">
-        <div class="pp-cv-period">6 Monate</div>
-        <div class="pp-cv-content">
-          <div class="pp-cv-role">Interim COO · Interlead</div>
-          <div class="pp-cv-desc">€27M Umsatz, von Krise zu Profit: <strong>€1,3M EBITDA-Turnaround in 6 Monaten.</strong> Operative Restrukturierung, Prozessautomatisierung, Team-Neuausrichtung.</div>
-        </div>
-      </div>
-      <div class="pp-cv-row">
-        <div class="pp-cv-period">24 Monate</div>
-        <div class="pp-cv-content">
-          <div class="pp-cv-role">COO · DFKP</div>
-          <div class="pp-cv-desc">Finanzierungsvolumen von €38M auf <strong>€223M skaliert (+400 %)</strong> in 24 Monaten. Konversion +34 % durch Vertriebsrollen-Entflechtung. Operations, Vertrieb und Partner-Ökosystem neu aufgebaut.</div>
-        </div>
-      </div>
-      <div class="pp-cv-row">
-        <div class="pp-cv-period">11 Jahre</div>
-        <div class="pp-cv-content">
-          <div class="pp-cv-role">Managing Director · CHECK24</div>
-          <div class="pp-cv-desc">Aufbau einer Sparte zur Marktführerschaft. <strong>€4B+ Jahresvolumen, 100+ Mitarbeitende.</strong> Volle P&amp;L-Verantwortung. Enterprise-Partnerschaften strukturiert, operativen Kern über ein Jahrzehnt skaliert.</div>
-        </div>
-      </div>
-      <div class="pp-cv-note">Frühere Stationen auf Anfrage.</div>
-    </div>
-
-    <h2 class="pp-cv-section-label">Kompetenzen</h2>
-    <div class="pp-cv-skills">
-      <div><strong>Operations</strong> <span>P&amp;L · KPI-Steuerung · Restrukturierung · Skalierung · Interim-Mandate · Turnarounds</span></div>
-      <div><strong>AI</strong> <span>Voice AI · Workflow-Automatisierung · LLM-Orchestration · AI-natives CRM · GDPR-Compliance</span></div>
-      <div><strong>Branchen</strong> <span>Marketplace · FinTech · AI / SaaS · Lead-Generation · Mittelstand</span></div>
-      <div><strong>Tech-Stack</strong> <span>Retell AI · Claude · OpenAI Codex · GPT · LLM-Tooling</span></div>
-    </div>
-
-    <h2 class="pp-cv-section-label">Sprachen</h2>
-    <div class="pp-cv-langs">Deutsch (Muttersprache) · Englisch (verhandlungssicher)</div>
-
-  </section>
-
   <!-- Footer -->
   <footer class="pp-foot">
     <div class="pp-foot-l">
@@ -482,9 +435,12 @@
 
 </main>
 
-<!-- Print button (hidden on print) -->
+<!-- Combined PDF download (hidden on print) -->
 <div class="controls">
-  <button class="print-btn" onclick="window.print()">Als PDF speichern</button>
+  <a class="print-btn" href="/Fabian_Spitzer_Brief.pdf" download>
+    Als PDF speichern
+    <span class="print-btn-pages">Brief&nbsp;+&nbsp;CV · 2&nbsp;Seiten</span>
+  </a>
 </div>
 
 

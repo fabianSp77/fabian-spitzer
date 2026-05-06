@@ -1,20 +1,20 @@
 #!/usr/bin/env node
 /**
- * build-combined-pdf.mjs
+ * build-brief-pdf.mjs
  *
  * Renders /was-unternehmen-bekommen.html + /what-companies-get.html to PDF
- * (light-mode print CSS, A4) and appends Fabian_Spitzer.pdf to each, producing:
+ * (light-mode print CSS, A4) and writes them to:
  *
- *   /Fabian_Spitzer_Brief.pdf      (DE)  Brief page 1 + CV page 2
- *   /Fabian_Spitzer_Brief_EN.pdf   (EN)  same, English brief
+ *   /Fabian_Spitzer_Brief.pdf      (DE)  Brief only, 1 page
+ *   /Fabian_Spitzer_Brief_EN.pdf   (EN)  Brief only, 1 page
  *
- * Run after editing the brief content or replacing Fabian_Spitzer.pdf.
+ * The CV is a separate download (/Fabian_Spitzer.pdf) — never merged here.
  *
  * Setup (once):
  *   npm install puppeteer-core pdf-lib
  *
  * Run:
- *   node scripts/build-combined-pdf.mjs
+ *   node scripts/build-brief-pdf.mjs
  *
  * Requires Chromium installed at /usr/bin/chromium (Linux) or adjust
  * CHROMIUM_PATH below.
@@ -32,8 +32,6 @@ const REPO = path.resolve(__dirname, '..');
 const CHROMIUM_PATH = process.env.CHROMIUM_PATH || '/usr/bin/chromium';
 const PORT = 8765;
 
-// 1. Start a local HTTP server serving the repo so puppeteer can fetch
-//    /styles.css, /fonts.css, /shared.js, /fonts/*.woff2 etc.
 const server = spawn('python3', ['-m', 'http.server', String(PORT), '--directory', REPO], {
   stdio: 'ignore',
   detached: false
@@ -47,20 +45,18 @@ try {
     headless: 'new'
   });
 
-  const cvBytes = fs.readFileSync(path.join(REPO, 'Fabian_Spitzer.pdf'));
-
   const targets = [
     {
       url: `http://127.0.0.1:${PORT}/was-unternehmen-bekommen.html`,
       out: path.join(REPO, 'Fabian_Spitzer_Brief.pdf'),
       label: 'DE',
-      title: 'Fabian Spitzer — Was Unternehmen bekommen + CV'
+      title: 'Fabian Spitzer — Was Unternehmen bekommen'
     },
     {
       url: `http://127.0.0.1:${PORT}/what-companies-get.html`,
       out: path.join(REPO, 'Fabian_Spitzer_Brief_EN.pdf'),
       label: 'EN',
-      title: 'Fabian Spitzer — What companies get + CV'
+      title: 'Fabian Spitzer — What companies get'
     }
   ];
 
@@ -69,7 +65,6 @@ try {
     await page.goto(t.url, { waitUntil: 'networkidle0' });
     await page.emulateMediaType('print');
     await new Promise(r => setTimeout(r, 800));
-    // Force-show reveal-on-scroll elements that may not have triggered headless
     await page.evaluate(() => document.querySelectorAll('.r').forEach(el => el.classList.add('v')));
     await new Promise(r => setTimeout(r, 400));
 
@@ -80,21 +75,15 @@ try {
       preferCSSPageSize: true
     });
 
-    const merged = await PDFDocument.create();
-    const briefDoc = await PDFDocument.load(briefBytes);
-    const cvDoc = await PDFDocument.load(cvBytes);
-    const briefPages = await merged.copyPages(briefDoc, briefDoc.getPageIndices());
-    briefPages.forEach(p => merged.addPage(p));
-    const cvPages = await merged.copyPages(cvDoc, cvDoc.getPageIndices());
-    cvPages.forEach(p => merged.addPage(p));
+    // Re-load via pdf-lib only to set metadata (no merging)
+    const doc = await PDFDocument.load(briefBytes);
+    doc.setTitle(t.title);
+    doc.setAuthor('Fabian Spitzer');
+    doc.setSubject('Senior Operations Executive · 1-page brief');
+    doc.setKeywords(['COO', 'Interim COO', 'Operations', 'AI', 'Berlin', 'Fabian Spitzer']);
+    doc.setProducer('build-brief-pdf.mjs');
 
-    merged.setTitle(t.title);
-    merged.setAuthor('Fabian Spitzer');
-    merged.setSubject('Senior Operations Executive · Brief + CV');
-    merged.setKeywords(['COO', 'Interim COO', 'Operations', 'AI', 'Berlin', 'Fabian Spitzer']);
-    merged.setProducer('build-combined-pdf.mjs');
-
-    const finalBytes = await merged.save();
+    const finalBytes = await doc.save();
     fs.writeFileSync(t.out, finalBytes);
     const reload = await PDFDocument.load(finalBytes);
     console.log(`${t.label}: ${path.relative(REPO, t.out)} — ${(finalBytes.length / 1024).toFixed(1)} KB · ${reload.getPageCount()} pages`);

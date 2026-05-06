@@ -216,10 +216,56 @@
     /* ══════════════════════════════════
        PRINT — A4 paper layout
     ══════════════════════════════════ */
+    /* ── CV SECTION (Werdegang, sichtbar online + print) ── */
+    .pp-cv{padding-top:32px;margin-top:32px;border-top:2px solid var(--border);}
+    .pp-cv-section-label{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin:28px 0 14px;}
+    .pp-cv-section-label:first-of-type{margin-top:0;}
+    .pp-cv-list{display:flex;flex-direction:column;}
+    .pp-cv-row{display:grid;grid-template-columns:96px 1fr;gap:18px;padding:14px 0;border-top:1px solid var(--border);page-break-inside:avoid;}
+    .pp-cv-row:first-child{border-top:none;padding-top:6px;}
+    .pp-cv-period{font-family:var(--mono);font-size:10.5px;font-weight:500;color:var(--amber);padding-top:4px;line-height:1.4;letter-spacing:.04em;}
+    .pp-cv-content{min-width:0;}
+    .pp-cv-role{font-family:var(--serif);font-size:15px;font-weight:400;line-height:1.25;letter-spacing:-.01em;}
+    .pp-cv-desc{font-size:12px;color:var(--text-sec);font-weight:300;line-height:1.6;margin-top:6px;max-width:560px;}
+    .pp-cv-desc strong{color:var(--amber);font-weight:600;font-family:var(--mono);font-size:11px;letter-spacing:.02em;}
+    .pp-cv-note{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:14px;padding-top:11px;border-top:1px dashed rgba(212,160,84,.2);}
+    .pp-cv-skills{display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--text-sec);line-height:1.6;}
+    .pp-cv-skills > div{display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:baseline;}
+    .pp-cv-skills strong{color:var(--amber);font-weight:600;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;}
+    .pp-cv-langs{font-size:12px;color:var(--text-sec);line-height:1.6;}
+
+    @media (max-width:520px){
+      .pp-cv-row{grid-template-columns:1fr;gap:6px;padding:12px 0;}
+      .pp-cv-skills > div{grid-template-columns:1fr;gap:2px;}
+    }
+
+    /* ══════════════════════════════════
+       PRINT — A4, LIGHT MODE
+       (dark theme is bad for paper: toner cost + low contrast)
+    ══════════════════════════════════ */
     @media print{
       *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important;}
-      html, body{background:var(--bg)!important;font-size:12px;}
+      :root{
+        --bg:#ffffff;
+        --bg-elevated:#f6f4ef;
+        --border:rgba(0,0,0,.14);
+        --border-amber:rgba(176,124,60,.35);
+        --text:#1a1a1a;
+        --text-sec:#3a3a3a;
+        --muted:#5a5a5a;
+        --dim:#8a8a8a;
+        --amber:#a8702f;
+        --amber-bright:#c08540;
+      }
+      html, body{background:#ffffff!important;color:#1a1a1a!important;font-size:12px;}
       .noise, .controls, nav{display:none!important;}
+      ::selection{background:rgba(168,112,47,.25);color:#1a1a1a;}
+      /* Force light backgrounds where dark vars would bleed through */
+      .pp-filter{background:#f6f4ef!important;border-left-color:#a8702f!important;}
+      .pp-sweet{background:rgba(0,0,0,.14)!important;border-color:rgba(0,0,0,.14)!important;}
+      .pp-sweet-cell{background:#ffffff!important;}
+      .pp-cv{border-top-color:rgba(0,0,0,.14)!important;}
+      /* Layout */
       main.container{max-width:680px;padding:0 12mm;}
       .pp-header{padding-top:14mm;}
       .pp-id{margin-bottom:6px;}
@@ -235,6 +281,14 @@
       .pp-sweet-cell{padding:9px 14px;}
       .pp-sweet-val{font-size:10.5px;}
       .pp-foot{padding-bottom:8mm;}
+      /* CV starts on a new A4 page */
+      .pp-cv{page-break-before:always;border-top:none!important;padding-top:14mm;margin-top:0;}
+      .pp-cv-section-label{margin-top:18px;}
+      .pp-cv-section-label:first-of-type{margin-top:0;}
+      .pp-cv-row{padding:9px 0;}
+      .pp-cv-role{font-size:13px;}
+      .pp-cv-desc{font-size:10.5px;}
+      .pp-cv-skills, .pp-cv-langs{font-size:10.5px;}
     }
   </style>
 </head>
@@ -363,6 +417,55 @@
       <div class="pp-sweet-key">Standort</div>
       <div class="pp-sweet-val">Remote-first · DACH-fokussiert · präsenzfähig in Berlin</div>
     </div>
+  </section>
+
+  <!-- ═══ CV / Werdegang (zweite A4-Seite im Print) ═══ -->
+  <section class="pp-cv" aria-label="Werdegang">
+
+    <h2 class="pp-cv-section-label">Werdegang</h2>
+    <div class="pp-cv-list">
+      <div class="pp-cv-row">
+        <div class="pp-cv-period">2025 – heute</div>
+        <div class="pp-cv-content">
+          <div class="pp-cv-role">Founder &amp; CEO · AskProAI</div>
+          <div class="pp-cv-desc">DSGVO-konforme Voice-AI-Plattform für den Mittelstand. Solo gebaut auf Retell AI, Claude Code und OpenAI Codex. Voice Agents · Workflow-Orchestrierung · AI-natives CRM. <strong>Live-System, kein Foliensatz.</strong></div>
+        </div>
+      </div>
+      <div class="pp-cv-row">
+        <div class="pp-cv-period">6 Monate</div>
+        <div class="pp-cv-content">
+          <div class="pp-cv-role">Interim COO · Interlead</div>
+          <div class="pp-cv-desc">€27M Umsatz, von Krise zu Profit: <strong>€1,3M EBITDA-Turnaround in 6 Monaten.</strong> Operative Restrukturierung, Prozessautomatisierung, Team-Neuausrichtung.</div>
+        </div>
+      </div>
+      <div class="pp-cv-row">
+        <div class="pp-cv-period">24 Monate</div>
+        <div class="pp-cv-content">
+          <div class="pp-cv-role">COO · DFKP</div>
+          <div class="pp-cv-desc">Finanzierungsvolumen von €38M auf <strong>€223M skaliert (+400 %)</strong> in 24 Monaten. Konversion +34 % durch Vertriebsrollen-Entflechtung. Operations, Vertrieb und Partner-Ökosystem neu aufgebaut.</div>
+        </div>
+      </div>
+      <div class="pp-cv-row">
+        <div class="pp-cv-period">11 Jahre</div>
+        <div class="pp-cv-content">
+          <div class="pp-cv-role">Managing Director · CHECK24</div>
+          <div class="pp-cv-desc">Aufbau einer Sparte zur Marktführerschaft. <strong>€4B+ Jahresvolumen, 100+ Mitarbeitende.</strong> Volle P&amp;L-Verantwortung. Enterprise-Partnerschaften strukturiert, operativen Kern über ein Jahrzehnt skaliert.</div>
+        </div>
+      </div>
+      <div class="pp-cv-note">Frühere Stationen auf Anfrage.</div>
+    </div>
+
+    <h2 class="pp-cv-section-label">Kompetenzen</h2>
+    <div class="pp-cv-skills">
+      <div><strong>Operations</strong> <span>P&amp;L · KPI-Steuerung · Restrukturierung · Skalierung · Interim-Mandate · Turnarounds</span></div>
+      <div><strong>AI</strong> <span>Voice AI · Workflow-Automatisierung · LLM-Orchestration · AI-natives CRM · GDPR-Compliance</span></div>
+      <div><strong>Branchen</strong> <span>Marketplace · FinTech · AI / SaaS · Lead-Generation · Mittelstand</span></div>
+      <div><strong>Tech-Stack</strong> <span>Retell AI · Claude · OpenAI Codex · GPT · LLM-Tooling</span></div>
+    </div>
+
+    <h2 class="pp-cv-section-label">Sprachen</h2>
+    <div class="pp-cv-langs">Deutsch (Muttersprache) · Englisch (verhandlungssicher)</div>
+
   </section>
 
   <!-- Footer -->

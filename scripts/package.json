@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build-pdf": "node build-combined-pdf.mjs"
+    "build-pdf": "node build-brief-pdf.mjs"
   },
   "dependencies": {
     "puppeteer-core": "^23.0.0",

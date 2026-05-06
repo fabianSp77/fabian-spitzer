@@ -1,0 +1,12 @@
+{
+  "name": "fabian-spitzer-de-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build-pdf": "node build-combined-pdf.mjs"
+  },
+  "dependencies": {
+    "puppeteer-core": "^23.0.0",
+    "pdf-lib": "^1.17.1"
+  }
+}

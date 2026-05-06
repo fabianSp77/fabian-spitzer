@@ -1,0 +1,11 @@
+# Dependencies (build-time only)
+scripts/node_modules/
+node_modules/
+
+# Build artifacts
+.cache/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

@@ -188,8 +188,10 @@
     .print-btn{
       font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
       color:var(--bg);background:var(--amber);border:none;padding:10px 20px;cursor:pointer;transition:all .2s;
+      text-decoration:none;display:inline-flex;align-items:center;gap:7px;
     }
-    .print-btn:hover{background:var(--amber-bright);transform:translateY(-2px);box-shadow:0 6px 24px rgba(212,160,84,.25);}
+    .print-btn:hover{background:var(--amber-bright);transform:translateY(-2px);box-shadow:0 6px 24px rgba(212,160,84,.25);color:var(--bg);}
+    .print-btn-pages{font-family:var(--mono);font-size:9px;font-weight:400;letter-spacing:.04em;text-transform:none;opacity:.75;color:var(--bg);}
 
     @media(max-width:520px){
       main.container{padding:0 18px;}
@@ -403,55 +405,6 @@
     </div>
   </section>
 
-  <!-- ═══ CV / Career (second A4 page in print) ═══ -->
-  <section class="pp-cv" aria-label="Career">
-
-    <h2 class="pp-cv-section-label">Career</h2>
-    <div class="pp-cv-list">
-      <div class="pp-cv-row">
-        <div class="pp-cv-period">2025 – present</div>
-        <div class="pp-cv-content">
-          <div class="pp-cv-role">Founder &amp; CEO · AskProAI</div>
-          <div class="pp-cv-desc">GDPR-compliant Voice-AI platform for SMBs. Built solo on Retell AI, Claude Code, and OpenAI Codex. Voice agents · workflow orchestration · AI-native CRM. <strong>A live system, not a deck.</strong></div>
-        </div>
-      </div>
-      <div class="pp-cv-row">
-        <div class="pp-cv-period">6 months</div>
-        <div class="pp-cv-content">
-          <div class="pp-cv-role">Interim COO · Interlead</div>
-          <div class="pp-cv-desc">€27M revenue, crisis to profit: <strong>€1.3M EBITDA turnaround in 6 months.</strong> Operational restructuring, process automation, team realignment.</div>
-        </div>
-      </div>
-      <div class="pp-cv-row">
-        <div class="pp-cv-period">24 months</div>
-        <div class="pp-cv-content">
-          <div class="pp-cv-role">COO · DFKP</div>
-          <div class="pp-cv-desc">Financing volume scaled from €38M to <strong>€223M (+400%)</strong> in 24 months. Conversion +34% through sales-role untangling. Operations, sales, and partner ecosystem rebuilt.</div>
-        </div>
-      </div>
-      <div class="pp-cv-row">
-        <div class="pp-cv-period">11 years</div>
-        <div class="pp-cv-content">
-          <div class="pp-cv-role">Managing Director · CHECK24</div>
-          <div class="pp-cv-desc">Built a division to market leadership. <strong>€4B+ annual volume, 100+ team.</strong> Full P&amp;L ownership. Enterprise partnerships structured, operational core scaled across a decade of growth.</div>
-        </div>
-      </div>
-      <div class="pp-cv-note">Earlier positions on request.</div>
-    </div>
-
-    <h2 class="pp-cv-section-label">Capabilities</h2>
-    <div class="pp-cv-skills">
-      <div><strong>Operations</strong> <span>P&amp;L · KPI management · Restructuring · Scaling · Interim mandates · Turnarounds</span></div>
-      <div><strong>AI</strong> <span>Voice AI · Workflow automation · LLM orchestration · AI-native CRM · GDPR compliance</span></div>
-      <div><strong>Industries</strong> <span>Marketplace · FinTech · AI / SaaS · Lead generation · German SMB</span></div>
-      <div><strong>Tech stack</strong> <span>Retell AI · Claude · OpenAI Codex · GPT · LLM tooling</span></div>
-    </div>
-
-    <h2 class="pp-cv-section-label">Languages</h2>
-    <div class="pp-cv-langs">German (native) · English (fluent / business)</div>
-
-  </section>
-
   <!-- Footer -->
   <footer class="pp-foot">
     <div class="pp-foot-l">
@@ -466,9 +419,12 @@
 
 </main>
 
-<!-- Print button (hidden on print) -->
+<!-- Combined PDF download (hidden on print) -->
 <div class="controls">
-  <button class="print-btn" onclick="window.print()">Save as PDF</button>
+  <a class="print-btn" href="/Fabian_Spitzer_Brief_EN.pdf" download>
+    Save as PDF
+    <span class="print-btn-pages">Brief&nbsp;+&nbsp;CV · 2&nbsp;pages</span>
+  </a>
 </div>
 
 

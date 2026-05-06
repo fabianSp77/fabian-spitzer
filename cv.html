@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fabian Spitzer — CV · Senior Operations Executive · Berlin</title>
+  <meta name="description" content="Fabian Spitzer · 18 years scaling operations · CHECK24 €4B+, DFKP +400%, Interlead €1.3M EBITDA, AskProAI founder. Full career CV in light-mode A4.">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:title" content="Fabian Spitzer — CV">
+  <meta property="og:description" content="Senior Operations Executive · 18 years · Berlin. Full CV.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fabian-spitzer.de/cv.html">
+  <meta property="og:image" content="https://fabian-spitzer.de/og-image.png">
+  <link rel="canonical" href="https://fabian-spitzer.de/cv.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23a8702f'/><text x='6' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23ffffff'>FS</text></svg>">
+  <link rel="stylesheet" href="/fonts.css">
+  <style>
+    @page { size:A4; margin:0; }
+
+    /* LIGHT-MODE design tokens — matches the brief's @media print theme */
+    :root {
+      --bg:#ffffff;
+      --bg-elevated:#f6f4ef;
+      --border:rgba(0,0,0,.14);
+      --border-strong:rgba(0,0,0,.22);
+      --text:#1a1a1a;
+      --text-sec:#3a3a3a;
+      --muted:#5a5a5a;
+      --dim:#8a8a8a;
+      --amber:#a8702f;
+      --amber-bright:#c08540;
+      --serif:'DM Serif Display', Georgia, serif;
+      --mono:'JetBrains Mono', monospace;
+      --body:'Outfit', -apple-system, sans-serif;
+      --ease:cubic-bezier(.22,1,.36,1);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      background:var(--bg); color:var(--text);
+      font-family:var(--body); font-weight:300;
+      line-height:1.5; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    ::selection { background:rgba(168,112,47,.22); color:var(--text); }
+
+    .container { max-width:780px; margin:0 auto; padding:48px 28px 64px; position:relative; }
+
+    /* ── Header ── */
+    .cv-head { display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:center; margin-bottom:8px; }
+    .cv-mono {
+      width:46px; height:46px;
+      border:2px solid var(--amber);
+      color:var(--amber);
+      font-family:var(--mono); font-size:20px; font-weight:600;
+      display:flex; align-items:center; justify-content:center;
+      letter-spacing:-.02em; flex-shrink:0;
+    }
+    .cv-title-block .cv-name { font-family:var(--serif); font-size:24px; font-weight:400; line-height:1.1; letter-spacing:-.01em; }
+    .cv-title-block .cv-tagline { font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); margin-top:4px; }
+
+    .cv-contact {
+      font-family:var(--mono); font-size:10.5px; color:var(--muted);
+      letter-spacing:.02em; line-height:1.55;
+      margin:14px 0 22px; padding:0; display:flex; flex-wrap:wrap; gap:4px 14px;
+    }
+    .cv-contact a { color:var(--muted); text-decoration:none; transition:color .25s; }
+    .cv-contact a:hover { color:var(--amber); }
+    .cv-contact .sep { color:var(--dim); }
+
+    /* ── Profile / Lead ── */
+    .cv-profile {
+      padding:18px 0 16px;
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+      margin-bottom:20px;
+    }
+    .cv-profile p {
+      font-family:var(--serif); font-size:14px; font-weight:400;
+      line-height:1.45; color:var(--text); letter-spacing:-.005em;
+      max-width:680px;
+    }
+    .cv-profile p em { color:var(--amber); font-style:italic; }
+
+    /* ── Section labels ── */
+    .cv-section-label {
+      font-family:var(--mono); font-size:10px; font-weight:500;
+      letter-spacing:.16em; text-transform:uppercase; color:var(--amber);
+      margin:22px 0 12px;
+    }
+
+    /* ── Highlights row ── */
+    .cv-highlights {
+      display:grid; grid-template-columns:repeat(5, 1fr);
+      gap:1px; background:var(--border);
+      border:1px solid var(--border);
+      margin-bottom:8px;
+      page-break-inside:avoid;
+    }
+    .cv-highlight { background:var(--bg); padding:12px 10px; text-align:center; }
+    .cv-highlight-val { font-family:var(--mono); font-size:18px; font-weight:600; color:var(--amber); line-height:1; letter-spacing:-.02em; }
+    .cv-highlight-lbl { font-family:var(--mono); font-size:8.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--dim); margin-top:5px; line-height:1.3; }
+    .cv-highlight-attr { font-family:var(--mono); font-size:7.5px; color:var(--muted); margin-top:2px; letter-spacing:.04em; }
+
+    /* ── Career rows ── */
+    .cv-experience { display:flex; flex-direction:column; }
+    .cv-exp-row {
+      display:grid; grid-template-columns:120px 1fr;
+      gap:18px; padding:11px 0;
+      border-top:1px solid var(--border);
+      page-break-inside:avoid;
+    }
+    .cv-exp-row:first-child { border-top:none; padding-top:6px; }
+    .cv-exp-period {
+      font-family:var(--mono); font-size:10px; font-weight:500;
+      color:var(--amber); padding-top:4px;
+      letter-spacing:.02em; line-height:1.4;
+    }
+    .cv-exp-content { min-width:0; }
+    .cv-exp-role { font-family:var(--serif); font-size:14px; font-weight:400; line-height:1.2; letter-spacing:-.01em; }
+    .cv-exp-org { font-family:var(--mono); font-size:10px; color:var(--muted); letter-spacing:.04em; margin-top:2px; }
+    .cv-exp-desc { font-size:11.5px; color:var(--text-sec); font-weight:300; line-height:1.55; margin-top:5px; max-width:580px; }
+    .cv-exp-desc strong { color:var(--amber); font-weight:600; font-family:var(--mono); font-size:10.5px; letter-spacing:.02em; }
+    .cv-exp-bullet { display:list-item; list-style-position:outside; margin-left:14px; padding-left:0; }
+    .cv-exp-list { margin-top:5px; padding-left:0; list-style:none; }
+    .cv-exp-list li { font-size:11.5px; color:var(--text-sec); line-height:1.55; padding-left:14px; position:relative; margin-top:3px; }
+    .cv-exp-list li::before { content:'·'; position:absolute; left:5px; color:var(--amber); font-weight:600; }
+    .cv-exp-list li strong { color:var(--amber); font-weight:600; font-family:var(--mono); font-size:10.5px; letter-spacing:.02em; }
+
+    /* ── Sabbatical / break: muted styling ── */
+    .cv-exp-row.cv-exp-break .cv-exp-role { font-style:italic; color:var(--muted); }
+
+    /* ── Competencies grid ── */
+    .cv-comp {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:6px 24px; font-size:11.5px; color:var(--text-sec); line-height:1.55;
+      page-break-inside:avoid;
+    }
+    .cv-comp div { display:flex; align-items:baseline; gap:8px; }
+    .cv-comp div::before { content:'·'; color:var(--amber); font-weight:600; flex-shrink:0; }
+
+    /* ── Education ── */
+    .cv-edu {
+      display:flex; flex-direction:column; gap:5px;
+      font-size:11.5px; color:var(--text-sec); line-height:1.55;
+      page-break-inside:avoid;
+    }
+    .cv-edu-row strong { color:var(--text); font-weight:500; }
+    .cv-edu-row span.cv-edu-inst { color:var(--muted); font-family:var(--mono); font-size:10px; letter-spacing:.02em; }
+
+    /* ── Footer ── */
+    .cv-foot {
+      margin-top:24px; padding-top:14px;
+      border-top:1px solid var(--border);
+      font-family:var(--mono); font-size:9.5px; color:var(--dim);
+      letter-spacing:.04em; text-align:center; line-height:1.55;
+    }
+    .cv-foot a { color:var(--muted); text-decoration:none; }
+    .cv-foot a:hover { color:var(--amber); }
+
+    /* ── Responsive ── */
+    @media (max-width:520px) {
+      .container { padding:32px 18px 48px; }
+      .cv-head { grid-template-columns:auto 1fr; gap:14px; }
+      .cv-mono { width:40px; height:40px; font-size:18px; }
+      .cv-title-block .cv-name { font-size:20px; }
+      .cv-highlights { grid-template-columns:1fr 1fr; }
+      .cv-highlight-val { font-size:16px; }
+      .cv-exp-row { grid-template-columns:1fr; gap:4px; padding:12px 0; }
+      .cv-comp { grid-template-columns:1fr; }
+    }
+
+    /* ══════════════════════════════════
+       PRINT — A4, identical light look
+    ══════════════════════════════════ */
+    @media print {
+      *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important;}
+      html, body { background:#ffffff!important; color:#1a1a1a!important; font-size:11px; }
+      .container { max-width:680px; padding:11mm 11mm 9mm; }
+      .cv-head { gap:12px; margin-bottom:2px; }
+      .cv-mono { width:36px; height:36px; font-size:15px; }
+      .cv-title-block .cv-name { font-size:19px; }
+      .cv-title-block .cv-tagline { font-size:8.5px; margin-top:2px; }
+      .cv-contact { margin:8px 0 12px; font-size:8.5px; gap:2px 12px; }
+      .cv-profile { padding:9px 0 8px; margin-bottom:8px; }
+      .cv-profile p { font-size:10.5px; line-height:1.35; }
+      .cv-section-label { margin:11px 0 6px; font-size:8.5px; letter-spacing:.14em; }
+      .cv-highlights { margin-bottom:4px; }
+      .cv-highlight { padding:7px 4px; }
+      .cv-highlight-val { font-size:14px; }
+      .cv-highlight-lbl { font-size:6.5px; margin-top:2px; letter-spacing:.04em; }
+      .cv-highlight-attr { font-size:6px; margin-top:1px; }
+      .cv-exp-row { padding:5px 0; gap:14px; grid-template-columns:96px 1fr; }
+      .cv-exp-row:first-child { padding-top:3px; }
+      .cv-exp-period { font-size:8.5px; padding-top:2px; }
+      .cv-exp-role { font-size:11px; }
+      .cv-exp-org { font-size:8px; margin-top:1px; }
+      .cv-exp-desc { font-size:9px; margin-top:2px; line-height:1.4; }
+      .cv-exp-list { margin-top:2px; }
+      .cv-exp-list li { font-size:9px; padding-left:9px; margin-top:1px; line-height:1.4; }
+      .cv-exp-list li::before { left:3px; }
+      .cv-comp { font-size:9px; gap:2px 16px; }
+      .cv-comp div { gap:5px; }
+      .cv-edu { font-size:9px; gap:2px; }
+      .cv-edu-row span.cv-edu-inst { font-size:8.5px; }
+      .cv-foot { margin-top:9px; padding-top:6px; font-size:7.5px; }
+    }
+  </style>
+</head>
+<body>
+
+<main class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="cv-head">
+      <div class="cv-mono">FS</div>
+      <div class="cv-title-block">
+        <div class="cv-name">Fabian Spitzer</div>
+        <div class="cv-tagline">Senior Operations Executive · Berlin</div>
+      </div>
+    </div>
+    <div class="cv-contact">
+      <a href="mailto:fabianspitzer@icloud.com">fabianspitzer@icloud.com</a>
+      <span class="sep">·</span>
+      <span>+49 160 4366218</span>
+      <span class="sep">·</span>
+      <a href="https://www.linkedin.com/in/fabian-spitzer/" target="_blank" rel="noopener">linkedin.com/in/fabian-spitzer</a>
+      <span class="sep">·</span>
+      <a href="https://fabian-spitzer.de" target="_blank" rel="noopener">fabian-spitzer.de</a>
+    </div>
+  </header>
+
+  <!-- PROFILE -->
+  <section class="cv-profile">
+    <p>18 years leading Operations, Revenue, and Teams in high-growth digital environments — <em>€4B+ volume, +400 % growth, €1.3M EBITDA recovery</em>. Operational leader who has gone hands-on into applied AI to understand what it takes to turn AI into working business processes. Strong in Business × Ops × Product × Tech — translating operational complexity into scalable, AI-augmented systems.</p>
+  </section>
+
+  <!-- HIGHLIGHTS -->
+  <h2 class="cv-section-label">Career Highlights</h2>
+  <div class="cv-highlights">
+    <div class="cv-highlight">
+      <div class="cv-highlight-val">€4B+</div>
+      <div class="cv-highlight-lbl">Annual vol. scaled</div>
+      <div class="cv-highlight-attr">CHECK24</div>
+    </div>
+    <div class="cv-highlight">
+      <div class="cv-highlight-val">+400%</div>
+      <div class="cv-highlight-lbl">Growth in 24 mo.</div>
+      <div class="cv-highlight-attr">DFKP</div>
+    </div>
+    <div class="cv-highlight">
+      <div class="cv-highlight-val">€1.3M</div>
+      <div class="cv-highlight-lbl">EBITDA turnaround</div>
+      <div class="cv-highlight-attr">Interlead</div>
+    </div>
+    <div class="cv-highlight">
+      <div class="cv-highlight-val">100+</div>
+      <div class="cv-highlight-lbl">Team size led</div>
+      <div class="cv-highlight-attr">CHECK24</div>
+    </div>
+    <div class="cv-highlight">
+      <div class="cv-highlight-val">18 yrs</div>
+      <div class="cv-highlight-lbl">Digital ops exp.</div>
+      <div class="cv-highlight-attr">overall</div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <h2 class="cv-section-label">Professional Experience</h2>
+  <div class="cv-experience">
+
+    <div class="cv-exp-row">
+      <div class="cv-exp-period">Jan 2025 – present</div>
+      <div class="cv-exp-content">
+        <div class="cv-exp-role">Founder · Applied AI Workflow Operations</div>
+        <div class="cv-exp-org">AskProAI · Berlin</div>
+        <ul class="cv-exp-list">
+          <li>Moved hands-on into applied AI to operationalize what most organizations only theorize — built a <strong>live AI voice and workflow platform</strong> for SMEs (Retell AI, Twilio, Cal.com, Laravel, Stripe).</li>
+          <li>Operationalized Claude Code and OpenAI Codex as force multipliers — delivering production-grade output without an engineering team.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-exp-row">
+      <div class="cv-exp-period">Jul 2024 – Dec 2024</div>
+      <div class="cv-exp-content">
+        <div class="cv-exp-role">Chief Operating Officer (Interim)</div>
+        <div class="cv-exp-org">Interlead GmbH · Berlin &amp; Bremen</div>
+        <ul class="cv-exp-list">
+          <li>Grew revenue to <strong>€27M</strong> and EBITDA to <strong>€1.3M within 6 months</strong> through targeted operational restructuring and execution discipline.</li>
+          <li>Built leadership structure; embedded data-led steering frameworks; launched new product lines and scaled onboarding and sales processes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-exp-row">
+      <div class="cv-exp-period">Mar 2022 – May 2024</div>
+      <div class="cv-exp-content">
+        <div class="cv-exp-role">Chief Operating Officer</div>
+        <div class="cv-exp-org">DFKP GmbH · Berlin</div>
+        <ul class="cv-exp-list">
+          <li>Scaled financing volume from €38M to <strong>€223M (+400 %)</strong> in 24 months by overhauling operations, hiring, and conversion workflows.</li>
+          <li>Increased inquiry-to-close conversion by <strong>+34 %</strong> through KPI-driven sales and lead management systems.</li>
+          <li>Built team structures, performance management, and partner network across Sales, HR, Ops, Lead Management, and in-house Academy.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-exp-row cv-exp-break">
+      <div class="cv-exp-period">Jul 2021 – Feb 2022</div>
+      <div class="cv-exp-content">
+        <div class="cv-exp-role">Personal Sabbatical — Europe by Camper</div>
+        <div class="cv-exp-org">Self-directed · Europe</div>
+        <ul class="cv-exp-list">
+          <li>Deliberate break after 14 years of continuous executive leadership — travelled Europe by camper van.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-exp-row">
+      <div class="cv-exp-period">Nov 2019 – Jul 2021</div>
+      <div class="cv-exp-content">
+        <div class="cv-exp-role">Head of Sales / Partner Management / Operations</div>
+        <div class="cv-exp-org">FinCompare GmbH · Berlin</div>
+        <ul class="cv-exp-list">
+          <li>Built direct and partner sales from zero; introduced fee-based monetisation, HubSpot, and a partner scoring and prioritisation system.</li>
+          <li>Developed multiplier segments to scale partner reach; led teams across sales, partner management, and customer support.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-exp-row">
+      <div class="cv-exp-period">Aug 2018 – Feb 2020</div>
+      <div class="cv-exp-content">
+        <div class="cv-exp-role">Co-Founder &amp; CEO</div>
+        <div class="cv-exp-org">Schulport.de · Munich</div>
+        <ul class="cv-exp-list">
+          <li>Built EduTech startup from concept to market validation; led product, business development, and early pilot partnerships.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-exp-row">
+      <div class="cv-exp-period">Feb 2007 – Jun 2018</div>
+      <div class="cv-exp-content">
+        <div class="cv-exp-role">Managing Director, Consumer Loans</div>
+        <div class="cv-exp-org">CHECK24 GmbH · Munich</div>
+        <ul class="cv-exp-list">
+          <li>Scaled the consumer loans division to <strong>€4B+ annual volume</strong> over 11 years — built the market-leading position from the ground up.</li>
+          <li>Led strategy, CRM innovation, partner management, KPI-led execution, and team development across the full business unit.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COMPETENCIES -->
+  <h2 class="cv-section-label">Core Competencies</h2>
+  <div class="cv-comp">
+    <div>AI-augmented Execution &amp; Tooling</div>
+    <div>Voice AI &amp; API Orchestration</div>
+    <div>Business × Product × Tech Translation</div>
+    <div>Operational Scaling &amp; P&amp;L Ownership</div>
+    <div>KPI &amp; Performance Systems</div>
+    <div>Cross-functional Team Leadership</div>
+    <div>Customer &amp; Service Operations</div>
+    <div>Transformation &amp; Turnarounds</div>
+  </div>
+
+  <!-- EDUCATION -->
+  <h2 class="cv-section-label">Education &amp; Certifications</h2>
+  <div class="cv-edu">
+    <div class="cv-edu-row"><strong>Business Administration</strong> <span class="cv-edu-inst">· DEKRA Academy</span></div>
+    <div class="cv-edu-row"><strong>Audio Engineering</strong> <span class="cv-edu-inst">· SAE Institute</span></div>
+    <div class="cv-edu-row"><strong>Project Management — IPMA Level D, Scrum &amp; Kanban</strong> <span class="cv-edu-inst">· DEKRA Academy</span></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="cv-foot">
+    Fabian Spitzer · <a href="mailto:fabianspitzer@icloud.com">fabianspitzer@icloud.com</a> · <a href="https://www.linkedin.com/in/fabian-spitzer/">linkedin.com/in/fabian-spitzer</a> · <a href="https://fabian-spitzer.de">fabian-spitzer.de</a>
+  </footer>
+
+</main>
+
+</body>
+</html>

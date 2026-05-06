@@ -66,6 +66,7 @@ const T = {
     form_ok_h:'Nachricht erhalten.', form_ok_p:'Ich melde mich innerhalb von 24 Stunden. Freue mich auf das Gespräch.',
     nav_dl:'CV ↓',
     footer_cv:'CV herunterladen (PDF)',
+    footer_1pager:'1-Pager',
 
     /* Page CTA (subpages) */
     page_cta:'Bereit zu sprechen? <em>Zum Kontakt.</em>',

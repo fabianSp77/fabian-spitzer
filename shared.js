@@ -430,3 +430,107 @@ document.addEventListener('DOMContentLoaded', () => {
   init();
 })();
 
+/* ── GA4 conversion events ── */
+(function() {
+  function send(name, params) {
+    if (typeof gtag !== 'function') return;
+    try { gtag('event', name, params || {}); } catch (e) {}
+  }
+
+  function clean(s) {
+    return (s || '').trim().replace(/\s+/g, ' ').substring(0, 80);
+  }
+
+  document.addEventListener('click', function(e) {
+    var a = e.target && e.target.closest && e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var label = clean(a.textContent);
+
+    // PDF download
+    if (/\.pdf(\?|$)/i.test(href)) {
+      var fname = href.split('/').pop().split('?')[0];
+      send('pdf_download', {
+        file_name: fname,
+        link_url: href,
+        link_text: label
+      });
+      return;
+    }
+
+    // Contact methods
+    if (href.indexOf('mailto:') === 0) {
+      send('contact_method_click', { method: 'email', link_url: href });
+      return;
+    }
+    if (href.indexOf('tel:') === 0) {
+      send('contact_method_click', { method: 'phone', link_url: href });
+      return;
+    }
+
+    // Outbound (different host)
+    if (/^https?:\/\//i.test(href)) {
+      try {
+        var url = new URL(href, location.href);
+        if (url.host && url.host !== location.host) {
+          send('outbound_click', {
+            link_url: href,
+            link_domain: url.host,
+            link_text: label
+          });
+          return;
+        }
+      } catch (err) {}
+    }
+
+    // Internal CTA link
+    var cls = a.getAttribute('class') || '';
+    var m = cls.match(/\b(btn-primary|btn-secondary|nav-cta)\b/);
+    if (m) {
+      send('cta_click', {
+        cta_label: label,
+        cta_destination: href,
+        cta_class: m[1]
+      });
+    }
+  });
+
+  function watchForm() {
+    var success = document.getElementById('formSuccess');
+    if (!success) return;
+    var obs = new MutationObserver(function() {
+      if (success.classList.contains('show')) {
+        send('generate_lead', {
+          form_location: 'homepage',
+          form_id: 'contactForm'
+        });
+        obs.disconnect();
+      }
+    });
+    obs.observe(success, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  function watchLang() {
+    var btn = document.getElementById('langBtn');
+    if (!btn) return;
+    var oldLang = null;
+    btn.addEventListener('click', function() {
+      oldLang = document.documentElement.lang || '';
+    }, true);
+    btn.addEventListener('click', function() {
+      var newLang = document.documentElement.lang || '';
+      if (oldLang && newLang && oldLang !== newLang) {
+        send('language_switch', { from_lang: oldLang, to_lang: newLang });
+      }
+    }, false);
+  }
+
+  function init() {
+    watchForm();
+    watchLang();
+  }
+
+  if (!document.body) document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+

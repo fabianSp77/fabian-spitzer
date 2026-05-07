@@ -13,6 +13,33 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23d4a054'/><text x='6' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23060610'>FS</text></svg>">
   <link rel="stylesheet" href="/fonts.css">
   <link rel="stylesheet" href="styles.css">
+  <!-- Google tag (gtag.js) — Consent Mode v2, default denied (DSGVO) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+    });
+    try {
+      var c = JSON.parse(localStorage.getItem('fs_consent_v1') || 'null');
+      if (c && c.analytics === true) {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NVHW4JERTN"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-NVHW4JERTN', {
+      'anonymize_ip': true,
+      'allow_google_signals': false,
+      'allow_ad_personalization_signals': false
+    });
+  </script>
 </head>
 <body>
 

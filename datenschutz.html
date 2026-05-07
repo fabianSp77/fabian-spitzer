@@ -13,6 +13,33 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23d4a054'/><text x='6' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23060610'>FS</text></svg>">
   <link rel="stylesheet" href="/fonts.css">
   <link rel="stylesheet" href="styles.css">
+  <!-- Google tag (gtag.js) — Consent Mode v2, default denied (DSGVO) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+    });
+    try {
+      var c = JSON.parse(localStorage.getItem('fs_consent_v1') || 'null');
+      if (c && c.analytics === true) {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NVHW4JERTN"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-NVHW4JERTN', {
+      'anonymize_ip': true,
+      'allow_google_signals': false,
+      'allow_ad_personalization_signals': false
+    });
+  </script>
 </head>
 <body>
 
@@ -90,12 +117,47 @@
 
     <h2>5. Lokaler Speicher (Local Storage)</h2>
     <p>
-      Diese Website speichert in Ihrem Browser einen einzigen technischen Wert unter dem Schlüssel <code>fsLang</code>. Dieser hält fest, ob Sie die deutsche oder englische Sprachversion gewählt haben, und wird ausschließlich auf Ihrem Gerät gespeichert. Es findet keine Übertragung an mich oder Dritte statt. Sie können diesen Eintrag jederzeit über die Browser-Einstellungen löschen.
+      Diese Website speichert in Ihrem Browser zwei technische Werte:
+    </p>
+    <ul>
+      <li><code>fsLang</code> — hält fest, ob Sie die deutsche oder englische Sprachversion gewählt haben.</li>
+      <li><code>fs_consent_v1</code> — hält Ihre Entscheidung zur Webanalyse fest (siehe Abschnitt&nbsp;6), damit das Consent-Banner Sie nicht erneut fragt.</li>
+    </ul>
+    <p>
+      Beide Werte werden ausschließlich auf Ihrem Gerät gespeichert. Es findet keine Übertragung an mich oder Dritte statt. Sie können diese Einträge jederzeit über die Browser-Einstellungen löschen.
     </p>
 
-    <h2>6. Cookies</h2>
+    <h2>6. Cookies und Webanalyse (Google Analytics 4)</h2>
     <p>
-      Diese Website setzt <strong>keine Cookies</strong> — weder eigene noch von Dritten.
+      Diese Website setzt Cookies <strong>nur dann</strong>, wenn Sie ausdrücklich in die Webanalyse eingewilligt haben. Ohne Einwilligung werden keine Analyse-Cookies gesetzt und keine personenbezogenen Daten an Drittanbieter übertragen.
+    </p>
+    <h3>Google Analytics 4</h3>
+    <p>
+      Sofern Sie über das Consent-Banner einwilligen, nutze ich <strong>Google Analytics 4</strong>, um nachzuvollziehen, welche Inhalte aufgerufen werden und wie die Website performt. Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Mit Google besteht ein Auftragsverarbeitungsvertrag gemäß Art.&nbsp;28 DSGVO.
+    </p>
+    <p>
+      <strong>Verarbeitete Daten:</strong> aufgerufene Seiten, Verweildauer, Referrer, Browser- und Geräteinformationen, gekürzte IP-Adresse (IP-Anonymisierung aktiviert), pseudonyme Client-ID. Werbe-Funktionen (Google Signals, Werbe-Personalisierung) sind <strong>deaktiviert</strong>.
+    </p>
+    <p>
+      <strong>Gesetzte Cookies (nach Einwilligung):</strong> <code>_ga</code> (Laufzeit 2&nbsp;Jahre), <code>_ga_NVHW4JERTN</code> (Laufzeit 2&nbsp;Jahre) — sie unterscheiden Erst- und wiederkehrende Besucher.
+    </p>
+    <p>
+      <strong>Rechtsgrundlage:</strong> Ihre Einwilligung gemäß Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO sowie § 25 Abs.&nbsp;1 TDDDG. Vor einer Einwilligung werden ausschließlich technische Consent-Mode-Signale ohne Personenbezug übertragen.
+    </p>
+    <p>
+      <strong>Drittlandübermittlung:</strong> Eine Übermittlung an Google LLC in den USA ist möglich. Google LLC ist nach dem EU-US Data Privacy Framework zertifiziert.
+    </p>
+    <p>
+      <strong>Speicherdauer der Auswertungen:</strong> Aggregierte Auswertungen in Google Analytics werden nach 14&nbsp;Monaten automatisch gelöscht.
+    </p>
+    <p>
+      <strong>Widerruf Ihrer Einwilligung:</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen. Beim Widerruf wird Ihre lokale Entscheidung gelöscht und das Consent-Banner erscheint erneut:
+    </p>
+    <p>
+      <button type="button" id="fs-consent-revoke" class="btn-secondary" onclick="window.fsConsent && window.fsConsent.revoke()">Einwilligung widerrufen</button>
+    </p>
+    <p>
+      Alternativ können Sie die Datenerhebung ganz unterbinden, indem Sie das offizielle <a href="https://tools.google.com/dlpage/gaoptout?hl=de" target="_blank" rel="noopener">Google Analytics Opt-Out-Browser-Add-On</a> installieren.
     </p>
 
     <h2>7. Externe Links</h2>
@@ -131,7 +193,7 @@
       Diese Datenschutzerklärung kann angepasst werden, um sie an geänderte Rechtslagen oder Änderungen meines Angebots anzupassen. Es gilt jeweils die zum Zeitpunkt Ihres Besuchs hier veröffentlichte Fassung.
     </p>
 
-    <p class="legal-meta">Stand: 06.05.2026.</p>
+    <p class="legal-meta">Stand: 07.05.2026.</p>
 
   </div>
 </section>

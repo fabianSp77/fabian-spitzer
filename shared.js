@@ -301,3 +301,132 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+/* ── Consent banner (GA4) ── */
+(function() {
+  var STORAGE_KEY = 'fs_consent_v1';
+  var TXT = {
+    de: {
+      title: 'Cookies & Analyse',
+      body: 'Wir nutzen Google Analytics 4 (anonymisiert), um zu verstehen, welche Inhalte gelesen werden. Daten werden erst nach deiner Einwilligung erhoben.',
+      accept: 'Akzeptieren',
+      reject: 'Ablehnen',
+      privacy: 'Datenschutz'
+    },
+    en: {
+      title: 'Cookies & Analytics',
+      body: 'We use Google Analytics 4 (anonymised) to understand which content gets read. Data is only collected after your consent.',
+      accept: 'Accept',
+      reject: 'Reject',
+      privacy: 'Privacy'
+    }
+  };
+
+  function getLang() {
+    var l = (document.documentElement.lang || 'de').toLowerCase();
+    return l.indexOf('en') === 0 ? 'en' : 'de';
+  }
+
+  function getStored() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); }
+    catch (e) { return null; }
+  }
+
+  function store(analyticsGranted) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        analytics: !!analyticsGranted,
+        ts: new Date().toISOString(),
+        version: 1
+      }));
+    } catch (e) {}
+  }
+
+  function applyConsent(granted) {
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', {
+        'analytics_storage': granted ? 'granted' : 'denied'
+      });
+    }
+  }
+
+  function removeBanner() {
+    var el = document.getElementById('fs-consent-banner');
+    if (el && el.parentNode) el.parentNode.removeChild(el);
+  }
+
+  function el(tag, attrs, text) {
+    var node = document.createElement(tag);
+    if (attrs) {
+      for (var k in attrs) {
+        if (Object.prototype.hasOwnProperty.call(attrs, k)) node.setAttribute(k, attrs[k]);
+      }
+    }
+    if (text != null) node.textContent = text;
+    return node;
+  }
+
+  function build() {
+    var t = TXT[getLang()];
+
+    var wrap = el('div', {
+      id: 'fs-consent-banner',
+      role: 'dialog',
+      'aria-labelledby': 'fs-consent-title',
+      'aria-describedby': 'fs-consent-body'
+    });
+
+    var inner = el('div', { 'class': 'fs-consent-inner' });
+
+    var textWrap = el('div', { 'class': 'fs-consent-text' });
+    textWrap.appendChild(el('strong', { id: 'fs-consent-title' }, t.title));
+
+    var p = el('p', { id: 'fs-consent-body' }, t.body + ' ');
+    var link = el('a', { href: '/datenschutz.html' }, t.privacy);
+    p.appendChild(link);
+    p.appendChild(document.createTextNode('.'));
+    textWrap.appendChild(p);
+
+    var actions = el('div', { 'class': 'fs-consent-actions' });
+    var rejectBtn = el('button', { type: 'button', 'class': 'fs-consent-btn fs-consent-reject' }, t.reject);
+    var acceptBtn = el('button', { type: 'button', 'class': 'fs-consent-btn fs-consent-accept' }, t.accept);
+
+    rejectBtn.addEventListener('click', function() {
+      store(false); applyConsent(false); removeBanner();
+    });
+    acceptBtn.addEventListener('click', function() {
+      store(true); applyConsent(true); removeBanner();
+    });
+
+    actions.appendChild(rejectBtn);
+    actions.appendChild(acceptBtn);
+
+    inner.appendChild(textWrap);
+    inner.appendChild(actions);
+    wrap.appendChild(inner);
+
+    document.body.appendChild(wrap);
+  }
+
+  function init() {
+    if (getStored() !== null) return;
+    if (!document.body) {
+      document.addEventListener('DOMContentLoaded', build);
+    } else {
+      build();
+    }
+  }
+
+  window.fsConsent = {
+    revoke: function() {
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+      applyConsent(false);
+      removeBanner();
+      build();
+    },
+    state: function() { return getStored(); }
+  };
+
+  init();
+})();
+

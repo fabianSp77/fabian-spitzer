@@ -277,6 +277,33 @@
       .pp-cv-skills, .pp-cv-langs{font-size:10.5px;}
     }
   </style>
+  <!-- Google tag (gtag.js) — Consent Mode v2, default denied (DSGVO) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+    });
+    try {
+      var c = JSON.parse(localStorage.getItem('fs_consent_v1') || 'null');
+      if (c && c.analytics === true) {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NVHW4JERTN"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-NVHW4JERTN', {
+      'anonymize_ip': true,
+      'allow_google_signals': false,
+      'allow_ad_personalization_signals': false
+    });
+  </script>
 </head>
 <body>
 
